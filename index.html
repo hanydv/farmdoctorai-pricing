@@ -73,13 +73,6 @@
   .growth{padding:54px 20px 10px;}
   .growth h2{text-align:center;font-size:1.4rem;}
   .growth .sub{text-align:center;color:var(--muted);margin-top:8px;max-width:540px;margin-inline:auto;font-size:.95rem;}
-  .stem-wrap{max-width:760px;margin:40px auto 0;position:relative;}
-  .stem-svg{width:100%;height:auto;display:block;}
-  .stem-labels{display:flex;justify-content:space-between;margin-top:6px;font-weight:800;color:var(--forest);font-size:.9rem;}
-  .stem-labels div{flex:1;text-align:center;}
-  .stem-labels small{display:block;font-weight:500;color:var(--muted);font-size:.74rem;margin-top:2px;}
-  body[dir="rtl"] .stem-svg{transform:scaleX(-1);}
-  body[dir="rtl"] .stem-labels{flex-direction:row;}
 
   /* ---------- toggles ---------- */
   .toggles{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:34px 0 8px;}
@@ -173,27 +166,7 @@
 
 <section class="growth" id="plans">
   <h2 data-i18n="growth_title">كل باقة تفتحلك خطوة جديدة</h2>
-  <p class="sub" data-i18n="growth_sub">من التشخيص الأساسي، للطقس الذكي، لتحليل التربة الكامل — كل ما تكبر الباقة، تكبر معاها إمكانياتك.</p>
-
-  <div class="stem-wrap">
-    <svg class="stem-svg" viewBox="0 0 760 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 70 C 200 70, 260 70, 380 45 C 500 20, 560 20, 740 20" stroke="#bcd9bd" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10"/>
-      <circle cx="20" cy="70" r="9" fill="#2f8f4e"/>
-      <path d="M20 70 q -16 -14 -2 -24 q 14 8 2 24" fill="#6fbf73"/>
-      <circle cx="380" cy="45" r="9" fill="#2f8f4e"/>
-      <path d="M380 45 q -16 -14 -2 -24 q 14 8 2 24" fill="#6fbf73"/>
-      <path d="M380 45 q 16 -6 6 -20 q -16 2 -6 20" fill="#a9dc9e"/>
-      <circle cx="740" cy="20" r="10" fill="#c98f2b"/>
-      <path d="M740 20 q -16 -14 -2 -24 q 14 8 2 24" fill="#e7bf6a"/>
-      <path d="M740 20 q 16 -14 2 -24 q -14 8 -2 24" fill="#e7bf6a"/>
-      <path d="M740 20 q 4 -20 -10 -26 q -8 16 10 26" fill="#f2d795"/>
-    </svg>
-    <div class="stem-labels">
-      <div><span data-i18n="plan_basic">أساس</span> <small data-i18n="stage_basic_sub">تشخيص فقط</small></div>
-      <div><span data-i18n="plan_pro">برو</span> <small data-i18n="stage_pro_sub">+ الطقس الذكي</small></div>
-      <div><span data-i18n="plan_max">ماكس</span> <small data-i18n="stage_max_sub">+ تحليل التربة</small></div>
-    </div>
-  </div>
+  <p class="sub" data-i18n="growth_sub">من التشخيص الأساسي، لتحليل التربة والماء، للطقس الذكي الحصري — كل ما تكبر الباقة، تكبر معاها إمكانياتك.</p>
 
   <div class="toggles">
     <div class="toggle-group" id="regionToggle">
@@ -216,8 +189,8 @@
       <ul>
         <li><span class="check">✓</span> <span data-i18n="feat_diag">تشخيص بالكاميرا والمعرض</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
-        <li class="off"><span class="cross">✕</span> <span data-i18n="plan_pro_full_weather">الطقس الذكي</span></li>
-        <li class="off"><span class="cross">✕</span> <span data-i18n="plan_max_full_soil">تحليل التربة والماء</span></li>
+        <li class="off"><span class="cross">✕</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
+        <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
       </ul>
       <button class="cta-btn" data-plan="basic"><span data-i18n="cta_basic">اشترك في أساس</span></button>
     </div>
@@ -231,8 +204,8 @@
       <ul>
         <li><span class="check">✓</span> <span data-i18n="feat_diag">تشخيص بالكاميرا والمعرض</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
-        <li><span class="check">✓</span> <span data-i18n="plan_pro_full_weather">الطقس الذكي</span></li>
-        <li class="off"><span class="cross">✕</span> <span data-i18n="plan_max_full_soil">تحليل التربة والماء</span></li>
+        <li><span class="check">✓</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
+        <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
       </ul>
       <button class="cta-btn" data-plan="pro"><span data-i18n="cta_pro">اشترك في برو</span></button>
     </div>
@@ -245,8 +218,8 @@
       <ul>
         <li><span class="check">✓</span> <span data-i18n="feat_diag">تشخيص بالكاميرا والمعرض</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
-        <li><span class="check">✓</span> <span data-i18n="plan_pro_full_weather">الطقس الذكي</span></li>
-        <li><span class="check">✓</span> <span data-i18n="plan_max_full_soil">تحليل التربة والماء</span></li>
+        <li><span class="check">✓</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
+        <li><span class="check">✓</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
       </ul>
       <button class="cta-btn" data-plan="max"><span data-i18n="cta_max">اشترك في ماكس</span></button>
     </div>
@@ -275,13 +248,8 @@
     </div>
     <div class="step">
       <div class="num">٢</div>
-      <h4 data-i18n="step2_title">استلم كود التفعيل</h4>
-      <p data-i18n="step2_body">هيوصلك كود تفعيل فريد فورًا بعد تأكيد الدفع.</p>
-    </div>
-    <div class="step">
-      <div class="num">٣</div>
-      <h4 data-i18n="step3_title">فعّل داخل التطبيق</h4>
-      <p data-i18n="step3_body">افتح شاشة "عندك كود تفعيل؟" داخل التطبيق واكتب الكود.</p>
+      <h4 data-i18n="step2_title">التطبيق هيتفعّل تلقائي</h4>
+      <p data-i18n="step2_body">بعد تأكيد الدفع، دوس على رابط التفعيل وهيفتح التطبيق ويشتغل على طول.</p>
     </div>
   </div>
 </section>
@@ -330,13 +298,10 @@ const I18N = {
   hero_sub:{ar:"تشخيص فوري بالكاميرا، متابعة الطقس، وتحليل التربة والماء — بالذكاء الاصطناعي، بلغتك، وبطريقة دفع تناسبك.",en:"Instant camera diagnosis, weather tracking, and soil & water analysis — powered by AI, in your language, with a payment method that suits you.",fr:"Diagnostic instantané par caméra, suivi météo et analyse du sol et de l'eau — grâce à l'IA, dans votre langue, avec un mode de paiement qui vous convient.",zh:"相機即時診斷、天氣追蹤、土壤與水質分析——由AI驅動，支援您的語言，並提供適合您的付款方式。",hi:"कैमरे से तुरंत निदान, मौसम की जानकारी, और मिट्टी व पानी का विश्लेषण — AI द्वारा संचालित, आपकी भाषा में, और आपके अनुकूल भुगतान तरीके के साथ।"},
   hero_cta:{ar:"شوف الباقات",en:"View Plans",fr:"Voir les Forfaits",zh:"查看方案",hi:"प्लान देखें"},
   growth_title:{ar:"كل باقة تفتحلك خطوة جديدة",en:"Each plan unlocks a new step",fr:"Chaque forfait débloque une nouvelle étape",zh:"每個方案解鎖新階段",hi:"हर प्लान एक नया कदम खोलता है"},
-  growth_sub:{ar:"من التشخيص الأساسي، للطقس الذكي، لتحليل التربة الكامل — كل ما تكبر الباقة، تكبر معاها إمكانياتك.",en:"From basic diagnosis, to smart weather, to full soil analysis — the bigger the plan, the more you unlock.",fr:"Du diagnostic de base à la météo intelligente jusqu'à l'analyse complète du sol — plus le forfait grandit, plus vos possibilités grandissent.",zh:"從基本診斷、智慧天氣，到完整的土壤分析——方案越高階，解鎖的功能越多。",hi:"बुनियादी निदान से लेकर स्मार्ट मौसम और पूर्ण मिट्टी विश्लेषण तक — जितना बड़ा प्लान, उतनी ज़्यादा सुविधाएं।"},
+  growth_sub:{ar:"من التشخيص الأساسي، لتحليل التربة والماء، للطقس الذكي الحصري — كل ما تكبر الباقة، تكبر معاها إمكانياتك.",en:"From basic diagnosis, to soil & water analysis, to exclusive smart weather — the bigger the plan, the more you unlock.",fr:"Du diagnostic de base à l'analyse du sol et de l'eau, jusqu'à la météo intelligente exclusive — plus le forfait grandit, plus vos possibilités grandissent.",zh:"從基本診斷、土壤與水質分析，到專屬智慧天氣——方案越高階，解鎖的功能越多。",hi:"बुनियादी निदान से लेकर मिट्टी व पानी विश्लेषण और विशेष स्मार्ट मौसम तक — जितना बड़ा प्लान, उतनी ज़्यादा सुविधाएं।"},
   plan_basic:{ar:"أساس",en:"Basic",fr:"Basique",zh:"基本",hi:"बेसिक"},
   plan_pro:{ar:"برو",en:"Pro",fr:"Pro",zh:"專業版",hi:"प्रो"},
   plan_max:{ar:"ماكس",en:"Max",fr:"Max",zh:"旗艦版",hi:"मैक्स"},
-  stage_basic_sub:{ar:"تشخيص فقط",en:"Diagnosis only",fr:"Diagnostic seulement",zh:"僅診斷",hi:"केवल निदान"},
-  stage_pro_sub:{ar:"+ الطقس الذكي",en:"+ Smart Weather",fr:"+ Météo Intelligente",zh:"+ 智慧天氣",hi:"+ स्मार्ट मौसम"},
-  stage_max_sub:{ar:"+ تحليل التربة",en:"+ Soil Analysis",fr:"+ Analyse du Sol",zh:"+ 土壤分析",hi:"+ मिट्टी विश्लेषण"},
   region_egypt:{ar:"مصر",en:"Egypt",fr:"Égypte",zh:"埃及",hi:"मिस्र"},
   region_intl:{ar:"خارج مصر",en:"Outside Egypt",fr:"Hors Égypte",zh:"埃及境外",hi:"मिस्र के बाहर"},
   cycle_monthly:{ar:"شهري",en:"Monthly",fr:"Mensuel",zh:"每月",hi:"मासिक"},
@@ -345,8 +310,8 @@ const I18N = {
   per_day:{ar:"طلب / يوم",en:"requests / day",fr:"demandes / jour",zh:"次 / 天",hi:"अनुरोध / दिन"},
   feat_diag:{ar:"تشخيص بالكاميرا والمعرض",en:"Camera & gallery diagnosis",fr:"Diagnostic caméra et galerie",zh:"相機與相簿診斷",hi:"कैमरा और गैलरी निदान"},
   feat_consult:{ar:"استشارة نصية",en:"Text consultation",fr:"Consultation textuelle",zh:"文字諮詢",hi:"टेक्स्ट परामर्श"},
-  plan_pro_full_weather:{ar:"الطقس الذكي",en:"Smart Weather",fr:"Météo Intelligente",zh:"智慧天氣",hi:"स्मार्ट मौसम"},
-  plan_max_full_soil:{ar:"تحليل التربة والماء",en:"Soil & Water Analysis",fr:"Analyse du Sol et de l'Eau",zh:"土壤與水質分析",hi:"मिट्टी और पानी का विश्लेषण"},
+  feat_weather:{ar:"الطقس الذكي",en:"Smart Weather",fr:"Météo Intelligente",zh:"智慧天氣",hi:"स्मार्ट मौसम"},
+  feat_soil:{ar:"تحليل التربة والماء",en:"Soil & Water Analysis",fr:"Analyse du Sol et de l'Eau",zh:"土壤與水質分析",hi:"मिट्टी और पानी का विश्लेषण"},
   badge_popular:{ar:"الأكثر طلبًا",en:"Most Popular",fr:"Le Plus Populaire",zh:"最受歡迎",hi:"सबसे लोकप्रिय"},
   cta_basic:{ar:"اشترك في أساس",en:"Subscribe to Basic",fr:"S'abonner à Basique",zh:"訂閱基本方案",hi:"बेसिक में सदस्यता लें"},
   cta_pro:{ar:"اشترك في برو",en:"Subscribe to Pro",fr:"S'abonner à Pro",zh:"訂閱專業版",hi:"प्रो में सदस्यता लें"},
@@ -360,10 +325,8 @@ const I18N = {
   steps_title:{ar:"إزاي تفعّل اشتراكك؟",en:"How to activate your subscription?",fr:"Comment activer votre abonnement ?",zh:"如何啟用您的訂閱？",hi:"अपनी सदस्यता कैसे सक्रिय करें?"},
   step1_title:{ar:"اختار باقتك وادفع",en:"Choose your plan & pay",fr:"Choisissez votre forfait et payez",zh:"選擇方案並付款",hi:"अपना प्लान चुनें और भुगतान करें"},
   step1_body:{ar:"اختار الباقة والمدة، وادفع بأي وسيلة من اللي فوق.",en:"Choose the plan and duration, and pay with any method above.",fr:"Choisissez le forfait et la durée, et payez avec l'une des méthodes ci-dessus.",zh:"選擇方案與週期，並使用上述任一方式付款。",hi:"प्लान और अवधि चुनें, और ऊपर दी गई किसी भी विधि से भुगतान करें।"},
-  step2_title:{ar:"استلم كود التفعيل",en:"Receive your activation code",fr:"Recevez votre code d'activation",zh:"獲取啟用碼",hi:"अपना सक्रियण कोड प्राप्त करें"},
-  step2_body:{ar:"هيوصلك كود تفعيل فريد فورًا بعد تأكيد الدفع.",en:"A unique activation code will reach you right after payment confirmation.",fr:"Un code d'activation unique vous parviendra dès la confirmation du paiement.",zh:"付款確認後將立即收到您的專屬啟用碼。",hi:"भुगतान की पुष्टि होते ही आपको एक विशिष्ट सक्रियण कोड मिलेगा।"},
-  step3_title:{ar:"فعّل داخل التطبيق",en:"Activate inside the app",fr:"Activez dans l'application",zh:"在應用程式內啟用",hi:"ऐप के अंदर सक्रिय करें"},
-  step3_body:{ar:'افتح شاشة "عندك كود تفعيل؟" داخل التطبيق واكتب الكود.',en:'Open the "Have an activation code?" screen in the app and enter the code.',fr:'Ouvrez l\'écran « Vous avez un code d\'activation ? » dans l\'application et entrez le code.',zh:'在應用程式內開啟「有啟用碼嗎？」畫面並輸入代碼。',hi:'ऐप में "क्या आपके पास सक्रियण कोड है?" स्क्रीन खोलें और कोड दर्ज करें।'},
+  step2_title:{ar:"التطبيق هيتفعّل تلقائي",en:"The app activates automatically",fr:"L'application s'active automatiquement",zh:"應用程式將自動啟用",hi:"ऐप अपने आप सक्रिय हो जाएगा"},
+  step2_body:{ar:"بعد تأكيد الدفع، دوس على رابط التفعيل وهيفتح التطبيق ويشتغل على طول.",en:"After payment confirmation, tap the activation link and the app will open and start working right away.",fr:"Après confirmation du paiement, appuyez sur le lien d'activation et l'application s'ouvrira et fonctionnera immédiatement.",zh:"付款確認後，點擊啟用連結，應用程式將立即開啟並開始運作。",hi:"भुगतान की पुष्टि के बाद, सक्रियण लिंक पर टैप करें और ऐप तुरंत खुलकर काम करना शुरू कर देगा।"},
   faq_title:{ar:"أسئلة شائعة",en:"Frequently Asked Questions",fr:"Questions Fréquentes",zh:"常見問題",hi:"अक्सर पूछे जाने वाले प्रश्न"},
   faq1_q:{ar:"هل فيه تجربة مجانية؟",en:"Is there a free trial?",fr:"Y a-t-il un essai gratuit ?",zh:"有免費試用嗎？",hi:"क्या कोई मुफ़्त ट्रायल है?"},
   faq1_a:{ar:"أيوه، 3 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.",en:"Yes, 3 free days with all features (diagnosis + weather + soil), up to 4 requests per day, no payment or card required.",fr:"Oui, 3 jours d'essai gratuit avec toutes les fonctionnalités (diagnostic + météo + sol), jusqu'à 4 demandes par jour, sans paiement ni carte.",zh:"是的，3天免費試用所有功能（診斷+天氣+土壤），每日最多4次請求，無需付款或信用卡。",hi:"हां, सभी सुविधाओं के साथ 3 दिन का मुफ़्त ट्रायल (निदान + मौसम + मिट्टी), प्रतिदिन अधिकतम 4 अनुरोध, बिना किसी भुगतान या कार्ड के।"},
@@ -467,11 +430,20 @@ document.querySelectorAll(".cta-btn").forEach(btn=>{
   });
 });
 
-// تحديد اللغة المبدئية: آخر لغة محفوظة، أو العربية افتراضياً
+// تحديد اللغة المبدئية: لو التطبيق فتح الصفحة برابط فيه ?lang=xx نستخدمها،
+// وإلا آخر لغة محفوظة من زيارة سابقة، وإلا العربية افتراضياً
 (function initLang(){
-  let saved = "ar";
-  try{ saved = localStorage.getItem("fd_lang") || "ar"; }catch(e){}
-  applyLanguage(saved);
+  const SUPPORTED = ["ar","en","fr","zh","hi"];
+  let lang = "ar";
+  try{
+    const urlLang = new URLSearchParams(window.location.search).get("lang");
+    if(urlLang && SUPPORTED.includes(urlLang)){
+      lang = urlLang;
+    } else {
+      lang = localStorage.getItem("fd_lang") || "ar";
+    }
+  }catch(e){}
+  applyLanguage(lang);
 })();
 </script>
 
