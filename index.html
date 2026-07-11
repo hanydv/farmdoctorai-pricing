@@ -448,6 +448,12 @@ function normalizeDeviceId(raw){
   return raw.trim().toUpperCase();
 }
 
+function formatDeviceIdDashed(raw){
+  // نفس شكل معرّف الجهاز الظاهر جوه التطبيق بالظبط: 4-4-4 مفصولة بشرطات
+  const cleaned = normalizeDeviceId(raw).replace(/-/g, "");
+  return cleaned.match(/.{1,4}/g)?.join("-") || cleaned;
+}
+
 function isValidDeviceId(value){
   // نقبل 12 حرف/رقم (سواء بشرطات أو من غيرها)، متسامحين شوية عشان ميضايقش المستخدم
   const cleaned = value.replace(/-/g, "");
@@ -459,11 +465,11 @@ function isValidDeviceId(value){
 try{
   const urlDeviceId = new URLSearchParams(window.location.search).get("device_id");
   if(urlDeviceId && isValidDeviceId(normalizeDeviceId(urlDeviceId))){
-    deviceIdInput.value = normalizeDeviceId(urlDeviceId);
+    deviceIdInput.value = formatDeviceIdDashed(urlDeviceId);
     localStorage.setItem("fd_device_id", deviceIdInput.value);
   } else {
     const savedId = localStorage.getItem("fd_device_id");
-    if(savedId) deviceIdInput.value = savedId;
+    if(savedId) deviceIdInput.value = formatDeviceIdDashed(savedId);
   }
 }catch(e){}
 
@@ -474,9 +480,17 @@ deviceIdInput.addEventListener("input", ()=>{
   try{ localStorage.setItem("fd_device_id", deviceIdInput.value); }catch(e){}
 });
 
+deviceIdInput.addEventListener("blur", ()=>{
+  // نظّم شكل المعرّف بشرطات لما المستخدم يخلص كتابة/لصق، بنفس شكل شاشة التطبيق
+  if(deviceIdInput.value.trim()){
+    deviceIdInput.value = formatDeviceIdDashed(deviceIdInput.value);
+    try{ localStorage.setItem("fd_device_id", deviceIdInput.value); }catch(e){}
+  }
+});
+
 document.querySelectorAll(".cta-btn").forEach(btn=>{
   btn.addEventListener("click", ()=>{
-    const deviceId = normalizeDeviceId(deviceIdInput.value);
+    const deviceId = formatDeviceIdDashed(deviceIdInput.value);
     if(!isValidDeviceId(deviceId)){
       deviceIdInput.classList.add("error");
       deviceIdError.classList.add("show");
