@@ -75,6 +75,14 @@
   .growth .sub{text-align:center;color:var(--muted);margin-top:8px;max-width:540px;margin-inline:auto;font-size:.95rem;}
 
   /* ---------- toggles ---------- */
+  .device-id-box{max-width:420px;margin:36px auto 0;background:#f4f8f2;border:1px solid #d9e6d4;border-radius:14px;padding:18px 20px;text-align:center;}
+  .device-id-box label{display:block;font-weight:800;color:var(--forest);font-size:.88rem;margin-bottom:10px;}
+  .device-id-box input{width:100%;box-sizing:border-box;text-align:center;font-size:1.05rem;font-weight:700;letter-spacing:1px;padding:11px 12px;border-radius:10px;border:1.5px solid #c7dac1;outline:none;}
+  .device-id-box input:focus{border-color:var(--forest);}
+  .device-id-box input.error{border-color:#c0392b;}
+  .device-id-hint{color:var(--muted);font-size:.78rem;margin:8px 0 0;}
+  .device-id-error{display:none;color:#c0392b;font-size:.82rem;font-weight:700;margin:8px 0 0;}
+  .device-id-error.show{display:block;}
   .toggles{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:34px 0 8px;}
   .toggle-group{background:var(--paper);border:1px solid rgba(22,58,31,.12);border-radius:999px;padding:5px;display:flex;box-shadow:var(--shadow);}
   .toggle-group button{border:none;background:transparent;padding:9px 18px;border-radius:999px;font-weight:700;font-size:.84rem;color:var(--muted);cursor:pointer;}
@@ -167,6 +175,13 @@
 <section class="growth" id="plans">
   <h2 data-i18n="growth_title">كل باقة تفتحلك خطوة جديدة</h2>
   <p class="sub" data-i18n="growth_sub">من التشخيص الأساسي، لتحليل التربة والماء، للطقس الذكي الحصري — كل ما تكبر الباقة، تكبر معاها إمكانياتك.</p>
+
+  <div class="device-id-box" id="deviceIdBox">
+    <label for="deviceIdInput" data-i18n="device_id_label">معرّف جهازك (هتلاقيه داخل التطبيق في شاشة الاشتراك)</label>
+    <input type="text" id="deviceIdInput" dir="ltr" data-i18n-placeholder="device_id_placeholder" placeholder="C938-8B66-5081" maxlength="14" autocomplete="off" autocapitalize="characters">
+    <p class="device-id-hint" data-i18n="device_id_hint">اكتبه أو الصقه هنا مرة واحدة، وهيتضاف تلقائيًا لأي باقة تختارها.</p>
+    <p class="device-id-error" id="deviceIdError" data-i18n="device_id_error">من فضلك اكتب معرّف جهازك الأول قبل الاشتراك.</p>
+  </div>
 
   <div class="toggles">
     <div class="toggle-group" id="regionToggle">
@@ -339,12 +354,16 @@ const I18N = {
   footer_wa:{ar:"تواصل معنا على واتساب",en:"Contact us on WhatsApp",fr:"Contactez-nous sur WhatsApp",zh:"透過WhatsApp聯繫我們",hi:"व्हाट्सएप्प पर हमसे संपर्क करें"},
   footer_privacy:{ar:"سياسة الخصوصية",en:"Privacy Policy",fr:"Politique de Confidentialité",zh:"隱私政策",hi:"गोपनीयता नीति"},
   footer_copyright:{ar:"© FarmDoctorAI — جميع الحقوق محفوظة",en:"© FarmDoctorAI — All rights reserved",fr:"© FarmDoctorAI — Tous droits réservés",zh:"© FarmDoctorAI — 版權所有",hi:"© FarmDoctorAI — सर्वाधिकार सुरक्षित"},
+  device_id_label:{ar:"معرّف جهازك (هتلاقيه داخل التطبيق في شاشة الاشتراك)",en:"Your Device ID (found inside the app's subscription screen)",fr:"Identifiant de votre appareil (disponible dans l'écran d'abonnement de l'application)",zh:"您的裝置編號（可在應用程式的訂閱畫面中找到）",hi:"आपकी डिवाइस आईडी (ऐप की सदस्यता स्क्रीन में मिलेगी)"},
+  device_id_placeholder:{ar:"C938-8B66-5081",en:"C938-8B66-5081",fr:"C938-8B66-5081",zh:"C938-8B66-5081",hi:"C938-8B66-5081"},
+  device_id_hint:{ar:"اكتبه أو الصقه هنا مرة واحدة، وهيتضاف تلقائيًا لأي باقة تختارها.",en:"Type or paste it here once, and it'll be added automatically to any plan you choose.",fr:"Saisissez-le ou collez-le ici une fois, il sera ajouté automatiquement au forfait choisi.",zh:"在此輸入或貼上一次，即可自動套用到您選擇的任何方案。",hi:"इसे यहां एक बार लिखें या पेस्ट करें, यह आपके चुने गए किसी भी प्लान में अपने आप जुड़ जाएगा।"},
+  device_id_error:{ar:"من فضلك اكتب معرّف جهازك الأول قبل الاشتراك.",en:"Please enter your Device ID first before subscribing.",fr:"Veuillez d'abord saisir l'identifiant de votre appareil avant de vous abonner.",zh:"訂閱前請先輸入您的裝置編號。",hi:"सदस्यता लेने से पहले कृपया अपनी डिवाइस आईडी दर्ज करें।"},
   wa_message:{
-    ar:(p,c,pr,cur)=>`أريد الاشتراك في باقة ${p} (${c}) بسعر ${pr} ${cur}`,
-    en:(p,c,pr,cur)=>`I want to subscribe to the ${p} plan (${c}) for ${pr} ${cur}`,
-    fr:(p,c,pr,cur)=>`Je veux m'abonner au forfait ${p} (${c}) pour ${pr} ${cur}`,
-    zh:(p,c,pr,cur)=>`我想訂閱${p}方案（${c}），價格為${pr} ${cur}`,
-    hi:(p,c,pr,cur)=>`मैं ${p} प्लान (${c}) की सदस्यता ${pr} ${cur} में लेना चाहता/चाहती हूं`,
+    ar:(p,c,pr,cur,did)=>`أريد الاشتراك في باقة ${p} (${c}) بسعر ${pr} ${cur}\nمعرّف جهازي: ${did}`,
+    en:(p,c,pr,cur,did)=>`I want to subscribe to the ${p} plan (${c}) for ${pr} ${cur}\nMy Device ID: ${did}`,
+    fr:(p,c,pr,cur,did)=>`Je veux m'abonner au forfait ${p} (${c}) pour ${pr} ${cur}\nIdentifiant de mon appareil : ${did}`,
+    zh:(p,c,pr,cur,did)=>`我想訂閱${p}方案（${c}），價格為${pr} ${cur}\n我的裝置編號：${did}`,
+    hi:(p,c,pr,cur,did)=>`मैं ${p} प्लान (${c}) की सदस्यता ${pr} ${cur} में लेना चाहता/चाहती हूं\nमेरी डिवाइस आईडी: ${did}`,
   },
   unit_egp_m:{ar:"جنيه / شهر",en:"EGP / month",fr:"EGP / mois",zh:"埃鎊 / 月",hi:"मिस्री पाउंड / माह"},
   unit_egp_y:{ar:"جنيه / سنة",en:"EGP / year",fr:"EGP / an",zh:"埃鎊 / 年",hi:"मिस्री पाउंड / वर्ष"},
@@ -368,6 +387,12 @@ function applyLanguage(lang){
     const key = el.getAttribute("data-i18n");
     if(I18N[key] && I18N[key][lang]!==undefined){
       el.textContent = I18N[key][lang];
+    }
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
+    const key = el.getAttribute("data-i18n-placeholder");
+    if(I18N[key] && I18N[key][lang]!==undefined){
+      el.setAttribute("placeholder", I18N[key][lang]);
     }
   });
 
@@ -415,8 +440,50 @@ document.getElementById("cycleToggle").addEventListener("click", e=>{
   renderPrices();
 });
 
+// ---- معرّف الجهاز: استرجاع، حفظ، تحقق، وربطه برسالة واتساب ----
+const deviceIdInput = document.getElementById("deviceIdInput");
+const deviceIdError = document.getElementById("deviceIdError");
+
+function normalizeDeviceId(raw){
+  return raw.trim().toUpperCase();
+}
+
+function isValidDeviceId(value){
+  // نقبل 12 حرف/رقم (سواء بشرطات أو من غيرها)، متسامحين شوية عشان ميضايقش المستخدم
+  const cleaned = value.replace(/-/g, "");
+  return cleaned.length >= 8 && /^[A-Z0-9]+$/.test(cleaned);
+}
+
+// معرّف الجهاز: لو التطبيق فتح الصفحة برابط فيه device_id نستخدمه ونعبّي
+// الخانة تلقائيًا من غير ما المزارع يكتب حاجة، وإلا نرجع لآخر قيمة محفوظة
+try{
+  const urlDeviceId = new URLSearchParams(window.location.search).get("device_id");
+  if(urlDeviceId && isValidDeviceId(normalizeDeviceId(urlDeviceId))){
+    deviceIdInput.value = normalizeDeviceId(urlDeviceId);
+    localStorage.setItem("fd_device_id", deviceIdInput.value);
+  } else {
+    const savedId = localStorage.getItem("fd_device_id");
+    if(savedId) deviceIdInput.value = savedId;
+  }
+}catch(e){}
+
+deviceIdInput.addEventListener("input", ()=>{
+  deviceIdInput.value = normalizeDeviceId(deviceIdInput.value);
+  deviceIdInput.classList.remove("error");
+  deviceIdError.classList.remove("show");
+  try{ localStorage.setItem("fd_device_id", deviceIdInput.value); }catch(e){}
+});
+
 document.querySelectorAll(".cta-btn").forEach(btn=>{
   btn.addEventListener("click", ()=>{
+    const deviceId = normalizeDeviceId(deviceIdInput.value);
+    if(!isValidDeviceId(deviceId)){
+      deviceIdInput.classList.add("error");
+      deviceIdError.classList.add("show");
+      deviceIdInput.scrollIntoView({behavior:"smooth", block:"center"});
+      deviceIdInput.focus();
+      return;
+    }
     const plan = btn.dataset.plan;
     const planNameKey = plan==="basic" ? "plan_basic" : plan==="pro" ? "plan_pro" : "plan_max";
     const planName = I18N[planNameKey][state.lang];
@@ -425,7 +492,7 @@ document.querySelectorAll(".cta-btn").forEach(btn=>{
     const price = priceEl.getAttribute(key);
     const currency = state.region==="eg" ? "EGP" : "USD";
     const cycleText = I18N[state.cycle==="m" ? "cycle_monthly" : "cycle_yearly"][state.lang];
-    const msg = encodeURIComponent(I18N.wa_message[state.lang](planName, cycleText, price, currency));
+    const msg = encodeURIComponent(I18N.wa_message[state.lang](planName, cycleText, price, currency, deviceId));
     window.open(`https://wa.me/201063732596?text=${msg}`, "_blank");
   });
 });
