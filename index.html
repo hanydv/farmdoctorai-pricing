@@ -299,7 +299,7 @@
   </p>
   <p style="text-align:center;color:var(--muted);margin-top:14px;">
     <span data-i18n="about_address">📍 جمهورية مصر العربية</span> &nbsp;|&nbsp;
-    <a href="mailto:hanyk201@gmail.com">✉️ hanyk201@gmail.com</a>
+    <a data-mail-link href="mailto:hanyk201@gmail.com?subject=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20FarmDoctorAI&body=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%0A%0A%D9%85%D8%B9%D8%B1%D9%91%D9%81%20%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%3A%20%0A%D8%B1%D8%B3%D8%A7%D9%84%D8%AA%D9%8A%3A%20%0A">✉️ hanyk201@gmail.com</a>
   </p>
 </section>
 
@@ -310,7 +310,7 @@
   </div>
   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
     <a class="wa-btn" href="https://wa.me/201063732596" target="_blank" data-i18n="footer_wa">تواصل معنا على واتساب</a>
-    <a class="wa-btn" href="mailto:hanyk201@gmail.com">hanyk201@gmail.com</a>
+    <a class="wa-btn" data-mail-link href="mailto:hanyk201@gmail.com?subject=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20FarmDoctorAI&body=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%0A%0A%D9%85%D8%B9%D8%B1%D9%91%D9%81%20%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%3A%20%0A%D8%B1%D8%B3%D8%A7%D9%84%D8%AA%D9%8A%3A%20%0A">hanyk201@gmail.com</a>
   </div>
   <div class="links">
     <a href="privacy-policy.html" data-i18n="footer_privacy">سياسة الخصوصية</a>
@@ -391,6 +391,20 @@ const I18N = {
     zh:(p,c,pr,cur,did)=>`我想訂閱${p}方案（${c}），價格為${pr} ${cur}\n我的裝置編號：${did}`,
     hi:(p,c,pr,cur,did)=>`मैं ${p} प्लान (${c}) की सदस्यता ${pr} ${cur} में लेना चाहता/चाहती हूं\nमेरी डिवाइस आईडी: ${did}`,
   },
+  mail_subject:{
+    ar:"استفسار من صفحة FarmDoctorAI",
+    en:"Inquiry from the FarmDoctorAI page",
+    fr:"Demande depuis la page FarmDoctorAI",
+    zh:"來自 FarmDoctorAI 頁面的詢問",
+    hi:"FarmDoctorAI पेज से पूछताछ",
+  },
+  mail_body:{
+    ar:"مرحبًا،\n\nمعرّف جهازي: \nرسالتي: \n",
+    en:"Hello,\n\nMy Device ID: \nMy message: \n",
+    fr:"Bonjour,\n\nIdentifiant de mon appareil : \nMon message : \n",
+    zh:"您好，\n\n我的裝置編號：\n我的訊息：\n",
+    hi:"नमस्ते,\n\nमेरी डिवाइस आईडी: \nमेरा संदेश: \n",
+  },
   unit_egp_m:{ar:"جنيه / شهر",en:"EGP / month",fr:"EGP / mois",zh:"埃鎊 / 月",hi:"मिस्री पाउंड / माह"},
   unit_egp_y:{ar:"جنيه / سنة",en:"EGP / year",fr:"EGP / an",zh:"埃鎊 / 年",hi:"मिस्री पाउंड / वर्ष"},
   unit_usd_m:{ar:"$ / شهر",en:"$ / month",fr:"$ / mois",zh:"$ / 月",hi:"$ / माह"},
@@ -425,6 +439,13 @@ function applyLanguage(lang){
   document.querySelectorAll("#langStack button").forEach(b=>{
     b.classList.toggle("active", b.dataset.lang === lang);
   });
+
+  const mailSubject = encodeURIComponent(I18N.mail_subject[lang] || I18N.mail_subject.ar);
+  const mailBody = encodeURIComponent(I18N.mail_body[lang] || I18N.mail_body.ar);
+  document.querySelectorAll("[data-mail-link]").forEach(el=>{
+    el.setAttribute("href", `mailto:hanyk201@gmail.com?subject=${mailSubject}&body=${mailBody}`);
+  });
+
   renderPrices();
   try{ localStorage.setItem("fd_lang", lang); }catch(e){}
 }
