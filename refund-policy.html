@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سياسة الاسترجاع والإلغاء | FarmDoctorAI</title>
+<title data-i18n="page_title">سياسة الاسترجاع والإلغاء | FarmDoctorAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@400;600;800&family=Noto+Sans+TC:wght@400;600;800&family=Noto+Sans+Devanagari:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{--forest:#163a1f;--leaf:#2f8f4e;--cream:#c6d8c1;--paper:#ffffff;--muted:#6b7a6d;}
+  :root{--forest:#163a1f;--leaf:#2f8f4e;--wheat:#c98f2b;--cream:#c6d8c1;--paper:#ffffff;--muted:#6b7a6d;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--cream);color:var(--forest);font-family:'Noto Naskh Arabic', serif;line-height:1.85;}
+  body{margin:0;background:var(--cream);color:var(--forest);font-family:'Noto Naskh Arabic', 'Noto Sans', serif;line-height:1.85;}
+  body.lang-en, body.lang-fr{font-family:'Noto Sans', sans-serif;}
+  body.lang-zh{font-family:'Noto Sans TC', sans-serif;}
+  body.lang-hi{font-family:'Noto Sans Devanagari', sans-serif;}
 
   header{position:sticky; top:0; z-index:50; background:rgba(198,216,193,.94); backdrop-filter:blur(6px); border-bottom:1px solid rgba(22,58,31,.08);}
   .headerbar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 20px; max-width:900px; margin:0 auto; flex-wrap:wrap;}
@@ -19,6 +23,19 @@
   .header-right{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
   .back-link{color:var(--forest); text-decoration:none; font-weight:700; font-size:.85rem;}
   .wa-btn{display:flex; align-items:center; gap:6px; background:var(--leaf); color:#fff; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:700; font-size:.85rem; white-space:nowrap;}
+
+  .lang-stack{
+    display:flex; flex-direction:column; gap:3px;
+    background:var(--paper); border:1px solid rgba(22,58,31,.15); border-radius:12px;
+    padding:5px; box-shadow:0 12px 30px -12px rgba(22,58,31,.25);
+  }
+  .lang-stack button{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    padding:4px 16px; border-radius:8px; font-size:.76rem; font-weight:700;
+    color:var(--forest); text-align:center; white-space:nowrap;
+  }
+  .lang-stack button.active{background:var(--leaf); color:#fff;}
+
   main{max-width:720px;margin:0 auto;padding:30px 20px 60px;}
   section{background:var(--paper);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 8px 20px -10px rgba(22,58,31,.15);}
   h2{color:var(--leaf);font-size:1.1rem;margin-top:0;}
@@ -29,7 +46,7 @@
   .page-title{text-align:center;color:var(--forest);font-size:1.35rem;margin:8px 0 20px;}
 </style>
 </head>
-<body>
+<body class="lang-ar">
 
 <header class="legalheader">
   <div class="headerbar">
@@ -38,18 +55,25 @@
       <span>FarmDoctorAI</span>
     </div>
     <div class="header-right">
-      <a class="back-link" href="./index.html">← رجوع لصفحة الأسعار</a>
-      <a class="wa-btn" href="https://wa.me/201063732596" target="_blank">تواصل واتساب</a>
+      <div class="lang-stack" id="langStack">
+        <button type="button" data-lang="ar">العربية</button>
+        <button type="button" data-lang="en">English</button>
+        <button type="button" data-lang="fr">Français</button>
+        <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="hi">हिन्दी</button>
+      </div>
+      <a class="back-link" href="./index.html" data-i18n="back_link">← رجوع لصفحة الأسعار</a>
+      <a class="wa-btn" href="https://wa.me/201063732596" target="_blank" data-i18n="nav_wa">تواصل واتساب</a>
     </div>
   </div>
 </header>
 
 <main>
-<h1 class="page-title">سياسة الاسترجاع والإلغاء</h1>
+<h1 class="page-title" data-i18n="page_h1">سياسة الاسترجاع والإلغاء</h1>
 
   <section>
-    <h2>طبيعة الخدمة</h2>
-    <p>
+    <h2 data-i18n="s1_h">طبيعة الخدمة</h2>
+    <p data-i18n="s1_p">
       FarmDoctorAI خدمة اشتراك رقمية (تشخيص أمراض المحاصيل، تحليل التربة
       والماء، الطقس الذكي) تُفعَّل فور الدفع عبر كود تفعيل مرتبط بمعرّف
       جهازك. لا يوجد منتج مادي يُشحن أو يُسلَّم فعليًا.
@@ -57,18 +81,18 @@
   </section>
 
   <section>
-    <h2>سياسة الاسترجاع</h2>
+    <h2 data-i18n="s2_h">سياسة الاسترجاع</h2>
     <ul>
-      <li>
+      <li data-i18n="s2_li1">
         يحق لك طلب استرداد كامل قيمة الاشتراك خلال <b>48 ساعة</b> من تاريخ
         الدفع، بشرط عدم استخدام مزايا الباقة المدفوعة (مثل تحليل التربة
         والماء أو الطقس الذكي) بعد تجاوز حدود النسخة التجريبية المجانية.
       </li>
-      <li>
+      <li data-i18n="s2_li2">
         في حال وجود عطل تقني يمنع تفعيل الاشتراك خلال 24 ساعة من الدفع ولم
         يتم حله، يحق لك السحب أو الاسترداد الكامل دون شروط.
       </li>
-      <li>
+      <li data-i18n="s2_li3">
         لا يُسترد المبلغ في حال تجاوز مدة 48 ساعة واستخدام المزايا المدفوعة
         فعليًا خلال هذه الفترة.
       </li>
@@ -76,8 +100,8 @@
   </section>
 
   <section>
-    <h2>سياسة الإلغاء</h2>
-    <p>
+    <h2 data-i18n="s3_h">سياسة الإلغاء</h2>
+    <p data-i18n="s3_p">
       الاشتراكات في FarmDoctorAI ليست تلقائية التجديد؛ الباقة تنتهي في
       تاريخها المحدد ولا يُخصم أي مبلغ إضافي دون إجراء دفع جديد صريح منك.
       يمكنك ببساطة عدم تجديد الاشتراك في أي وقت دون الحاجة لإجراء إلغاء رسمي.
@@ -85,14 +109,13 @@
   </section>
 
   <section>
-    <h2>طريقة طلب الاسترداد</h2>
+    <h2 data-i18n="s4_h">طريقة طلب الاسترداد</h2>
     <p>
-      للتقدم بطلب استرداد، تواصل معنا موضحًا معرّف جهازك وتاريخ الدفع
-      وطريقة الدفع المستخدمة، عبر:<br>
-      البريد الإلكتروني: <a href="mailto:hanyk201@gmail.com">hanyk201@gmail.com</a><br>
-      واتساب: <a href="https://wa.me/201063732596" target="_blank">+20 106 373 2596</a>
+      <span data-i18n="s4_p1">للتقدم بطلب استرداد، تواصل معنا موضحًا معرّف جهازك وتاريخ الدفع وطريقة الدفع المستخدمة، عبر:</span><br>
+      <span data-i18n="contact_email_label">البريد الإلكتروني:</span> <a data-mail-link href="mailto:hanyk201@gmail.com?subject=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20FarmDoctorAI&body=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%0A%0A%D9%85%D8%B9%D8%B1%D9%91%D9%81%20%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%3A%20%0A%D8%B1%D8%B3%D8%A7%D9%84%D8%AA%D9%8A%3A%20%0A">hanyk201@gmail.com</a><br>
+      <span data-i18n="contact_wa_label">واتساب:</span> <a href="https://wa.me/201063732596" target="_blank">+20 106 373 2596</a>
     </p>
-    <p>
+    <p data-i18n="s4_p2">
       تتم مراجعة طلبات الاسترداد والرد عليها خلال 3 أيام عمل، ويُعاد المبلغ
       بنفس وسيلة الدفع الأصلية خلال مدة تتراوح بين 5 إلى 14 يوم عمل حسب
       سياسة مزوّد خدمة الدفع.
@@ -101,8 +124,119 @@
 </main>
 
 <footer>
-  © FarmDoctorAI — جميع الحقوق محفوظة | <a href="./index.html">الرئيسية</a>
+  <span data-i18n="footer_copy">© FarmDoctorAI — جميع الحقوق محفوظة</span> | <a href="./index.html" data-i18n="footer_home">الرئيسية</a>
 </footer>
+
+<script>
+const RTL_LANGS = ["ar"];
+
+const I18N = {
+  page_title:{ar:"سياسة الاسترجاع والإلغاء | FarmDoctorAI",en:"Refund & Cancellation Policy | FarmDoctorAI",fr:"Politique de Remboursement et d'Annulation | FarmDoctorAI",zh:"退款與取消政策 | FarmDoctorAI",hi:"रिफंड और रद्दीकरण नीति | FarmDoctorAI"},
+  back_link:{ar:"← رجوع لصفحة الأسعار",en:"← Back to pricing page",fr:"← Retour à la page des tarifs",zh:"← 返回價格頁面",hi:"← मूल्य निर्धारण पेज पर वापस जाएं"},
+  nav_wa:{ar:"تواصل واتساب",en:"Contact on WhatsApp",fr:"Contacter sur WhatsApp",zh:"透過WhatsApp聯繫",hi:"व्हाट्सएप्प पर संपर्क करें"},
+  page_h1:{ar:"سياسة الاسترجاع والإلغاء",en:"Refund & Cancellation Policy",fr:"Politique de Remboursement et d'Annulation",zh:"退款與取消政策",hi:"रिफंड और रद्दीकरण नीति"},
+
+  s1_h:{ar:"طبيعة الخدمة",en:"Nature of the Service",fr:"Nature du Service",zh:"服務性質",hi:"सेवा की प्रकृति"},
+  s1_p:{ar:"FarmDoctorAI خدمة اشتراك رقمية (تشخيص أمراض المحاصيل، تحليل التربة والماء، الطقس الذكي) تُفعَّل فور الدفع عبر كود تفعيل مرتبط بمعرّف جهازك. لا يوجد منتج مادي يُشحن أو يُسلَّم فعليًا.",
+    en:"FarmDoctorAI is a digital subscription service (crop disease diagnosis, soil and water analysis, smart weather) activated immediately upon payment via an activation code linked to your device ID. There is no physical product that is shipped or delivered.",
+    fr:"FarmDoctorAI est un service d'abonnement numérique (diagnostic des maladies des cultures, analyse du sol et de l'eau, météo intelligente) activé immédiatement après paiement via un code d'activation lié à l'identifiant de votre appareil. Il n'y a aucun produit physique expédié ou livré.",
+    zh:"FarmDoctorAI 是一項數位訂閱服務（作物病害診斷、土壤與水質分析、智慧天氣），透過與您裝置編號連結的啟用碼，在付款後立即啟用。並無需要運送或交付的實體產品。",
+    hi:"FarmDoctorAI एक डिजिटल सदस्यता सेवा है (फसल रोग निदान, मिट्टी और पानी विश्लेषण, स्मार्ट मौसम) जो आपकी डिवाइस आईडी से जुड़े सक्रियण कोड के माध्यम से भुगतान के तुरंत बाद सक्रिय हो जाती है। इसमें कोई भौतिक उत्पाद नहीं है जिसे भेजा या वितरित किया जाए।"},
+
+  s2_h:{ar:"سياسة الاسترجاع",en:"Refund Policy",fr:"Politique de Remboursement",zh:"退款政策",hi:"रिफंड नीति"},
+  s2_li1:{ar:"يحق لك طلب استرداد كامل قيمة الاشتراك خلال <b>48 ساعة</b> من تاريخ الدفع، بشرط عدم استخدام مزايا الباقة المدفوعة (مثل تحليل التربة والماء أو الطقس الذكي) بعد تجاوز حدود النسخة التجريبية المجانية.",
+    en:"You are entitled to a full refund within <b>48 hours</b> of the payment date, provided you have not used the paid plan's features (such as soil/water analysis or smart weather) beyond the free trial limits.",
+    fr:"Vous avez droit à un remboursement intégral dans les <b>48 heures</b> suivant la date de paiement, à condition de ne pas avoir utilisé les fonctionnalités du forfait payant (telles que l'analyse du sol/de l'eau ou la météo intelligente) au-delà des limites de l'essai gratuit.",
+    zh:"您有權在付款日期起 <b>48 小時內</b>要求全額退款，前提是您尚未在免費試用額度之外使用付費方案的功能（例如土壤／水質分析或智慧天氣）。",
+    hi:"आप भुगतान की तारीख से <b>48 घंटे</b> के भीतर पूर्ण रिफंड के हकदार हैं, बशर्ते आपने निःशुल्क परीक्षण सीमा से अधिक भुगतान योजना की सुविधाओं (जैसे मिट्टी/पानी विश्लेषण या स्मार्ट मौसम) का उपयोग न किया हो।"},
+  s2_li2:{ar:"في حال وجود عطل تقني يمنع تفعيل الاشتراك خلال 24 ساعة من الدفع ولم يتم حله، يحق لك السحب أو الاسترداد الكامل دون شروط.",
+    en:"If a technical issue prevents activation of the subscription within 24 hours of payment and is not resolved, you are entitled to withdraw or receive a full unconditional refund.",
+    fr:"Si un problème technique empêche l'activation de l'abonnement dans les 24 heures suivant le paiement et n'est pas résolu, vous avez droit à un retrait ou à un remboursement intégral sans conditions.",
+    zh:"若技術問題導致訂閱在付款後24小時內無法啟用且未獲解決，您有權無條件撤回或獲得全額退款。",
+    hi:"यदि कोई तकनीकी समस्या भुगतान के 24 घंटे के भीतर सदस्यता सक्रियण को रोकती है और उसका समाधान नहीं होता है, तो आप बिना शर्त पूर्ण रिफंड प्राप्त करने के हकदार हैं।"},
+  s2_li3:{ar:"لا يُسترد المبلغ في حال تجاوز مدة 48 ساعة واستخدام المزايا المدفوعة فعليًا خلال هذه الفترة.",
+    en:"No refund will be issued if the 48-hour period has passed and the paid features have actually been used during that time.",
+    fr:"Aucun remboursement ne sera effectué si la période de 48 heures est dépassée et que les fonctionnalités payantes ont été effectivement utilisées pendant cette période.",
+    zh:"若超過48小時期限且該期間內已實際使用付費功能，將不予退款。",
+    hi:"यदि 48 घंटे की अवधि बीत चुकी है और उस दौरान भुगतान की गई सुविधाओं का वास्तव में उपयोग किया गया है, तो कोई रिफंड जारी नहीं किया जाएगा।"},
+
+  s3_h:{ar:"سياسة الإلغاء",en:"Cancellation Policy",fr:"Politique d'Annulation",zh:"取消政策",hi:"रद्दीकरण नीति"},
+  s3_p:{ar:"الاشتراكات في FarmDoctorAI ليست تلقائية التجديد؛ الباقة تنتهي في تاريخها المحدد ولا يُخصم أي مبلغ إضافي دون إجراء دفع جديد صريح منك. يمكنك ببساطة عدم تجديد الاشتراك في أي وقت دون الحاجة لإجراء إلغاء رسمي.",
+    en:"FarmDoctorAI subscriptions do not auto-renew; the plan simply ends on its specified date, and no additional amount is charged without an explicit new payment from you. You can simply choose not to renew at any time without needing to take any formal cancellation action.",
+    fr:"Les abonnements FarmDoctorAI ne se renouvellent pas automatiquement ; le forfait se termine simplement à sa date spécifiée, et aucun montant supplémentaire n'est débité sans un nouveau paiement explicite de votre part. Vous pouvez simplement choisir de ne pas renouveler à tout moment sans avoir besoin d'entreprendre une démarche d'annulation formelle.",
+    zh:"FarmDoctorAI 的訂閱不會自動續訂；方案將在指定日期自動結束，未經您明確的新付款，不會扣取任何額外費用。您可以隨時選擇不續訂，無需進行任何正式的取消程序。",
+    hi:"FarmDoctorAI सदस्यताएं स्वतः नवीनीकृत नहीं होती हैं; प्लान बस अपनी निर्दिष्ट तारीख पर समाप्त हो जाता है, और आपसे स्पष्ट नए भुगतान के बिना कोई अतिरिक्त राशि नहीं ली जाती है। आप किसी भी समय बिना किसी औपचारिक रद्दीकरण कार्रवाई की आवश्यकता के केवल नवीनीकरण न करने का विकल्प चुन सकते हैं।"},
+
+  s4_h:{ar:"طريقة طلب الاسترداد",en:"How to Request a Refund",fr:"Comment Demander un Remboursement",zh:"如何申請退款",hi:"रिफंड का अनुरोध कैसे करें"},
+  s4_p1:{ar:"للتقدم بطلب استرداد، تواصل معنا موضحًا معرّف جهازك وتاريخ الدفع وطريقة الدفع المستخدمة، عبر:",
+    en:"To submit a refund request, contact us stating your device ID, the payment date, and the payment method used, via:",
+    fr:"Pour soumettre une demande de remboursement, contactez-nous en indiquant l'identifiant de votre appareil, la date de paiement et le mode de paiement utilisé, via :",
+    zh:"如需提交退款申請，請透過以下方式聯絡我們，並註明您的裝置編號、付款日期及使用的付款方式：",
+    hi:"रिफंड अनुरोध सबमिट करने के लिए, अपनी डिवाइस आईडी, भुगतान की तारीख, और उपयोग की गई भुगतान विधि बताते हुए हमसे संपर्क करें:"},
+  contact_email_label:{ar:"البريد الإلكتروني:",en:"Email:",fr:"E-mail :",zh:"電子郵件：",hi:"ईमेल:"},
+  contact_wa_label:{ar:"واتساب:",en:"WhatsApp:",fr:"WhatsApp :",zh:"WhatsApp：",hi:"व्हाट्सएप्प:"},
+  s4_p2:{ar:"تتم مراجعة طلبات الاسترداد والرد عليها خلال 3 أيام عمل، ويُعاد المبلغ بنفس وسيلة الدفع الأصلية خلال مدة تتراوح بين 5 إلى 14 يوم عمل حسب سياسة مزوّد خدمة الدفع.",
+    en:"Refund requests are reviewed and responded to within 3 business days, and the amount is refunded via the original payment method within 5 to 14 business days, depending on the payment provider's policy.",
+    fr:"Les demandes de remboursement sont examinées et traitées dans un délai de 3 jours ouvrables, et le montant est remboursé via le mode de paiement d'origine dans un délai de 5 à 14 jours ouvrables, selon la politique du prestataire de paiement.",
+    zh:"退款申請將於3個工作天內審核並回覆，款項將依原付款方式於5至14個工作天內退還，實際時間視付款服務商政策而定。",
+    hi:"रिफंड अनुरोधों की समीक्षा 3 कार्य दिवसों के भीतर की जाती है और उनका जवाब दिया जाता है, और भुगतान प्रदाता की नीति के आधार पर मूल भुगतान विधि के माध्यम से 5 से 14 कार्य दिवसों के भीतर राशि वापस कर दी जाती है।"},
+
+  footer_copy:{ar:"© FarmDoctorAI — جميع الحقوق محفوظة",en:"© FarmDoctorAI — All rights reserved",fr:"© FarmDoctorAI — Tous droits réservés",zh:"© FarmDoctorAI — 版權所有",hi:"© FarmDoctorAI — सर्वाधिकार सुरक्षित"},
+  footer_home:{ar:"الرئيسية",en:"Home",fr:"Accueil",zh:"首頁",hi:"होम"},
+
+  mail_subject:{ar:"استفسار من صفحة FarmDoctorAI",en:"Inquiry from the FarmDoctorAI page",fr:"Demande depuis la page FarmDoctorAI",zh:"來自 FarmDoctorAI 頁面的詢問",hi:"FarmDoctorAI पेज से पूछताछ"},
+  mail_body:{ar:"مرحبًا،\n\nمعرّف جهازي: \nرسالتي: \n",en:"Hello,\n\nMy Device ID: \nMy message: \n",fr:"Bonjour,\n\nIdentifiant de mon appareil : \nMon message : \n",zh:"您好，\n\n我的裝置編號：\n我的訊息：\n",hi:"नमस्ते,\n\nमेरी डिवाइस आईडी: \nमेरा संदेश: \n"},
+};
+
+function applyLanguage(lang){
+  const html = document.getElementById("htmlRoot");
+  const isRtl = RTL_LANGS.includes(lang);
+  html.setAttribute("lang", lang);
+  html.setAttribute("dir", isRtl ? "rtl" : "ltr");
+  document.body.setAttribute("dir", isRtl ? "rtl" : "ltr");
+  document.body.className = "lang-" + lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(I18N[key] && I18N[key][lang]!==undefined){
+      el.innerHTML = I18N[key][lang];
+    }
+  });
+
+  document.querySelectorAll("#langStack button").forEach(b=>{
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+
+  const mailSubject = encodeURIComponent(I18N.mail_subject[lang] || I18N.mail_subject.ar);
+  const mailBody = encodeURIComponent(I18N.mail_body[lang] || I18N.mail_body.ar);
+  document.querySelectorAll("[data-mail-link]").forEach(el=>{
+    el.setAttribute("href", `mailto:hanyk201@gmail.com?subject=${mailSubject}&body=${mailBody}`);
+  });
+
+  document.title = I18N.page_title[lang] || I18N.page_title.ar;
+  try{ localStorage.setItem("fd_lang", lang); }catch(e){}
+}
+
+(function initLang(){
+  const SUPPORTED = ["ar","en","fr","zh","hi"];
+  let lang = "ar";
+  try{
+    const urlLang = new URLSearchParams(window.location.search).get("lang");
+    if(urlLang && SUPPORTED.includes(urlLang)){
+      lang = urlLang;
+    } else {
+      lang = localStorage.getItem("fd_lang") || "ar";
+    }
+  }catch(e){}
+  applyLanguage(lang);
+})();
+
+document.querySelectorAll("#langStack button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    applyLanguage(btn.dataset.lang);
+  });
+});
+</script>
 
 </body>
 </html>
