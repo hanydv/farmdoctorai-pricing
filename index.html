@@ -84,7 +84,6 @@
   .device-id-error{display:none;color:#c0392b;font-size:.82rem;font-weight:700;margin:8px 0 0;}
   .device-id-error.show{display:block;}
   .toggles{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:34px 0 8px;}
-  .toggle-group{background:var(--paper);border:1px solid rgba(22,58,31,.12);border-radius:999px;padding:5px;display:flex;box-shadow:var(--shadow);}
   .toggle-group button{border:none;background:transparent;padding:9px 18px;border-radius:999px;font-weight:700;font-size:.84rem;color:var(--muted);cursor:pointer;}
   .toggle-group button.active{background:var(--leaf);color:#fff;}
   .save-badge{font-size:.7rem;background:var(--wheat-light);color:#5b4530;border-radius:999px;padding:2px 8px;margin-inline-start:4px;font-weight:700;}
@@ -409,10 +408,12 @@ const I18N = {
   unit_egp_y:{ar:"جنيه / سنة",en:"EGP / year",fr:"EGP / an",zh:"埃鎊 / 年",hi:"मिस्री पाउंड / वर्ष"},
   unit_usd_m:{ar:"$ / شهر",en:"$ / month",fr:"$ / mois",zh:"$ / 月",hi:"$ / माह"},
   unit_usd_y:{ar:"$ / سنة",en:"$ / year",fr:"$ / an",zh:"$ / 年",hi:"$ / वर्ष"},
+  unit_suffix_m:{ar:"/ شهر",en:"/ month",fr:"/ mois",zh:"/ 月",hi:"/ माह"},
+  unit_suffix_y:{ar:"/ سنة",en:"/ year",fr:"/ an",zh:"/ 年",hi:"/ वर्ष"},
 };
 
 const RTL_LANGS = ["ar"];
-const state = { region:"eg", cycle:"m", lang:"ar" };
+const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null };
 
 function applyLanguage(lang){
   state.lang = lang;
@@ -451,15 +452,31 @@ function applyLanguage(lang){
 }
 
 function renderPrices(){
-  const key = "data-" + state.region + "-" + state.cycle;
+  const isEgypt = state.region === "eg";
+  const hasLocal = !isEgypt && state.localCurrency && getRate(state.localCurrency);
+
   document.querySelectorAll(".p").forEach(el=>{
-    el.textContent = el.getAttribute(key);
+    if(isEgypt){
+      el.textContent = el.getAttribute("data-eg-" + state.cycle);
+    } else if(hasLocal){
+      const usdVal = parseFloat(el.getAttribute("data-intl-" + state.cycle));
+      el.textContent = formatLocalAmount(usdVal * getRate(state.localCurrency));
+    } else {
+      el.textContent = el.getAttribute("data-intl-" + state.cycle);
+    }
   });
-  const unitKey = state.region==="eg"
-    ? (state.cycle==="m" ? "unit_egp_m" : "unit_egp_y")
-    : (state.cycle==="m" ? "unit_usd_m" : "unit_usd_y");
+
+  let unitText;
+  if(isEgypt){
+    unitText = I18N[state.cycle==="m" ? "unit_egp_m" : "unit_egp_y"][state.lang];
+  } else if(hasLocal){
+    const suffix = I18N[state.cycle==="m" ? "unit_suffix_m" : "unit_suffix_y"][state.lang];
+    unitText = state.localCurrency + " " + suffix;
+  } else {
+    unitText = I18N[state.cycle==="m" ? "unit_usd_m" : "unit_usd_y"][state.lang];
+  }
   document.querySelectorAll(".unit").forEach(u=>{
-    u.textContent = I18N[unitKey][state.lang];
+    u.textContent = unitText;
   });
 }
 
@@ -469,13 +486,111 @@ document.getElementById("langStack").addEventListener("click", e=>{
   applyLanguage(btn.dataset.lang);
 });
 
+// أسعار الصرف تقريبية مقابل الدولار الأمريكي — للعرض فقط، وتُحدَّث يدويًا بين الحين والآخر
+const CURRENCY_RATES = {
+  SAR:3.75, AED:3.67, KWD:0.31, QAR:3.64, OMR:0.38, BHD:0.38, JOD:0.71,
+  EUR:0.92, GBP:0.79, CHF:0.88, SEK:10.5, NOK:10.7, DKK:6.9, PLN:4.0, CZK:23, HUF:365, RON:4.6, UAH:39,
+  INR:83, PKR:278, BDT:117, LKR:300, NPR:133,
+  MAD:9.9, TND:3.1, DZD:134,
+  NGN:1550, KES:129, GHS:15, ETB:115, ZAR:18.5, TZS:2600, UGX:3800,
+  IDR:15800, MYR:4.7, PHP:57, VND:25400, THB:36,
+  TRY:32, ILS:3.7, IQD:1310,
+  CNY:7.2, JPY:151, KRW:1330,
+  CAD:1.36, AUD:1.52, NZD:1.64,
+  BRL:5.1, MXN:17, COP:4000, PEN:3.7, CLP:950,
+};
+
+// خريطة كود الدولة (ISO 3166-1 alpha-2) إلى عملتها المحلية
+const COUNTRY_CURRENCY = {
+  SA:"SAR", AE:"AED", KW:"KWD", QA:"QAR", OM:"OMR", BH:"BHD", JO:"JOD", IQ:"IQD", LY:"USD", SD:"USD", SY:"USD", YE:"USD", PS:"ILS", LB:"USD",
+  DE:"EUR", FR:"EUR", ES:"EUR", IT:"EUR", NL:"EUR", BE:"EUR", AT:"EUR", PT:"EUR", GR:"EUR", IE:"EUR", FI:"EUR", LU:"EUR", MT:"EUR", CY:"EUR", SK:"EUR", SI:"EUR", EE:"EUR", LV:"EUR", LT:"EUR", HR:"EUR",
+  GB:"GBP", CH:"CHF", SE:"SEK", NO:"NOK", DK:"DKK", PL:"PLN", CZ:"CZK", HU:"HUF", RO:"RON", UA:"UAH",
+  IN:"INR", PK:"PKR", BD:"BDT", LK:"LKR", NP:"NPR",
+  MA:"MAD", TN:"TND", DZ:"DZD",
+  NG:"NGN", KE:"KES", GH:"GHS", ET:"ETB", ZA:"ZAR", TZ:"TZS", UG:"UGX", SN:"USD", CI:"USD", CM:"USD",
+  ID:"IDR", MY:"MYR", PH:"PHP", VN:"VND", TH:"THB", SG:"USD",
+  TR:"TRY", IL:"ILS",
+  CN:"CNY", JP:"JPY", KR:"KRW",
+  CA:"CAD", AU:"AUD", NZ:"NZD",
+  BR:"BRL", MX:"MXN", CO:"COP", PE:"PEN", CL:"CLP",
+  US:"USD",
+};
+
+function formatLocalAmount(amount){
+  if(amount >= 100) return Math.round(amount).toString();
+  if(amount >= 10) return amount.toFixed(1);
+  return amount.toFixed(2);
+}
+
+// أسعار الصرف الحية: بنجيبها من مصدر مجاني في الخلفية وبنخزّنها 24 ساعة،
+// ولو فشل الجلب لأي سبب (نت، حظر، تعطل الخدمة) بنستخدم الجدول الثابت فوق كشبكة أمان
+let liveRates = null;
+
+function getRate(currencyCode){
+  if(liveRates && liveRates[currencyCode]) return liveRates[currencyCode];
+  return CURRENCY_RATES[currencyCode] || null;
+}
+
+async function syncLiveRates(){
+  try{
+    const cachedRaw = localStorage.getItem("fd_rates_cache");
+    const cachedTime = parseInt(localStorage.getItem("fd_rates_time") || "0", 10);
+    const isFresh = (Date.now() - cachedTime) < (24 * 60 * 60 * 1000); // أقل من 24 ساعة
+
+    if(cachedRaw && isFresh){
+      liveRates = JSON.parse(cachedRaw);
+      renderPrices();
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeout = setTimeout(()=>controller.abort(), 5000);
+    const res = await fetch("https://open.er-api.com/v6/latest/USD", { signal: controller.signal });
+    clearTimeout(timeout);
+    if(!res.ok) throw new Error("bad response");
+    const data = await res.json();
+    if(data && data.rates){
+      liveRates = data.rates;
+      localStorage.setItem("fd_rates_cache", JSON.stringify(data.rates));
+      localStorage.setItem("fd_rates_time", Date.now().toString());
+      renderPrices();
+    }
+  }catch(e){
+    // فشل الجلب أو التخزين — نفضل شغالين بالجدول الثابت من غير أي ظهور خطأ للمستخدم
+  }
+}
+syncLiveRates();
+
+async function detectLocationAndCurrency(){
+  try{
+    const controller = new AbortController();
+    const timeout = setTimeout(()=>controller.abort(), 4000);
+    const res = await fetch("https://ipapi.co/json/", { signal: controller.signal });
+    clearTimeout(timeout);
+    if(!res.ok) return;
+    const data = await res.json();
+    const countryCode = (data.country_code || data.country || "").toUpperCase();
+    if(!countryCode) return;
+
+    if(countryCode === "EG"){
+      setRegion("eg");
+      return;
+    }
+    const currency = COUNTRY_CURRENCY[countryCode];
+    if(currency && CURRENCY_RATES[currency]){
+      state.localCurrency = currency;
+    }
+    setRegion("intl");
+  }catch(e){
+    // فشل الكشف (شبكة/حظر إعلانات/انتهاء مهلة) — نسيب الوضع الافتراضي (مصر) من غير أي إزعاج للمستخدم
+  }
+}
+detectLocationAndCurrency();
+
 document.getElementById("regionToggle").addEventListener("click", e=>{
   if(e.target.tagName!=="BUTTON" && !e.target.closest("button")) return;
   const btn = e.target.closest("button");
-  document.querySelectorAll("#regionToggle button").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  state.region = btn.dataset.region;
-  renderPrices();
+  setRegion(btn.dataset.region);
 });
 
 document.getElementById("cycleToggle").addEventListener("click", e=>{
