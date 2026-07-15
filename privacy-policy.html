@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سياسة الخصوصية | FarmDoctorAI</title>
+<title data-i18n="page_title">سياسة الخصوصية | FarmDoctorAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@400;600;800&family=Noto+Sans+TC:wght@400;600;800&family=Noto+Sans+Devanagari:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --forest:#163a1f;
@@ -20,9 +21,13 @@
     margin:0;
     background:var(--cream);
     color:var(--forest);
-    font-family:'Noto Naskh Arabic', serif;
+    font-family:'Noto Naskh Arabic', 'Noto Sans', serif;
     line-height:1.85;
+    transition:font-family .1s;
   }
+  body.lang-en, body.lang-fr{font-family:'Noto Sans', sans-serif;}
+  body.lang-zh{font-family:'Noto Sans TC', sans-serif;}
+  body.lang-hi{font-family:'Noto Sans Devanagari', sans-serif;}
 
   header{position:sticky; top:0; z-index:50; background:rgba(198,216,193,.94); backdrop-filter:blur(6px); border-bottom:1px solid rgba(22,58,31,.08);}
   .headerbar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 20px; max-width:900px; margin:0 auto; flex-wrap:wrap;}
@@ -32,6 +37,19 @@
   .header-right{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
   .back-link{color:var(--forest); text-decoration:none; font-weight:700; font-size:.85rem;}
   .wa-btn{display:flex; align-items:center; gap:6px; background:var(--leaf); color:#fff; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:700; font-size:.85rem; white-space:nowrap;}
+
+  .lang-stack{
+    display:flex; flex-direction:column; gap:3px;
+    background:var(--paper); border:1px solid rgba(22,58,31,.15); border-radius:12px;
+    padding:5px; box-shadow:0 12px 30px -12px rgba(22,58,31,.25);
+  }
+  .lang-stack button{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    padding:4px 16px; border-radius:8px; font-size:.76rem; font-weight:700;
+    color:var(--forest); text-align:center; white-space:nowrap;
+  }
+  .lang-stack button.active{background:var(--leaf); color:#fff;}
+
   main{max-width:720px;margin:0 auto;padding:30px 20px 60px;}
   section{background:var(--paper);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 8px 20px -10px rgba(22,58,31,.15);}
   h2{color:var(--leaf);font-size:1.1rem;margin-top:0;}
@@ -43,7 +61,7 @@
   .page-title{text-align:center;color:var(--forest);font-size:1.35rem;margin:8px 0 20px;}
 </style>
 </head>
-<body>
+<body class="lang-ar">
 
 <header class="legalheader">
   <div class="headerbar">
@@ -52,20 +70,27 @@
       <span>FarmDoctorAI</span>
     </div>
     <div class="header-right">
-      <a class="back-link" href="./index.html">← رجوع لصفحة الأسعار</a>
-      <a class="wa-btn" href="https://wa.me/201063732596" target="_blank">تواصل واتساب</a>
+      <div class="lang-stack" id="langStack">
+        <button type="button" data-lang="ar">العربية</button>
+        <button type="button" data-lang="en">English</button>
+        <button type="button" data-lang="fr">Français</button>
+        <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="hi">हिन्दी</button>
+      </div>
+      <a class="back-link" href="./index.html" data-i18n="back_link">← رجوع لصفحة الأسعار</a>
+      <a class="wa-btn" href="https://wa.me/201063732596" target="_blank" data-i18n="nav_wa">تواصل واتساب</a>
     </div>
   </div>
 </header>
 
 <main>
-<h1 class="page-title">سياسة الخصوصية</h1>
+<h1 class="page-title" data-i18n="page_h1">سياسة الخصوصية</h1>
 
-  <p class="updated">آخر تحديث: يوليو 2026</p>
+  <p class="updated" data-i18n="updated">آخر تحديث: يوليو 2026</p>
 
   <section>
-    <h2>مقدمة</h2>
-    <p>
+    <h2 data-i18n="s1_h">مقدمة</h2>
+    <p data-i18n="s1_p">
       نحن في FarmDoctorAI نحترم خصوصيتك. توضح هذه السياسة نوع البيانات التي
       يجمعها التطبيق، وكيف تُستخدم، ومع من قد تُشارَك، والخيارات المتاحة لك.
       باستخدامك للتطبيق فإنك توافق على الممارسات الموضحة هنا.
@@ -73,29 +98,29 @@
   </section>
 
   <section>
-    <h2>البيانات التي نجمعها</h2>
+    <h2 data-i18n="s2_h">البيانات التي نجمعها</h2>
     <ul>
-      <li><b>الصور التي ترفعها:</b> صور المحاصيل أو التربة أو الماء التي تلتقطها بالكاميرا أو تختارها من المعرض، وتُرسَل إلى واجهة Google Gemini API لغرض التحليل والتشخيص فقط.</li>
-      <li><b>النصوص التي تكتبها:</b> أي استفسار أو وصف نصي تكتبه في شاشات الاستشارة أو تحليل التربة والماء.</li>
-      <li><b>معرّف الجهاز (Device ID):</b> مُعرّف تقني غير شخصي يُستخدم فقط لإدارة الاشتراك وتفعيله على جهازك.</li>
-      <li><b>بيانات الموقع (اختياري):</b> في حالة استخدام ميزة "الطقس الذكي"، قد يُستخدم موقعك (أو اسم المدينة الذي تكتبه) لجلب بيانات الطقس الخاصة بمنطقتك فقط.</li>
-      <li><b>سجلات الاستخدام المحلية:</b> نتائج التشخيص والتحليل تُحفظ محليًا على جهازك (شاشة السجلات) لتسهيل الرجوع إليها، ولا تُرفع لأي خادم خارجي دائم بخلاف ما يلزم لعملية التحليل نفسها.</li>
+      <li data-i18n="s2_li1"><b>الصور التي ترفعها:</b> صور المحاصيل أو التربة أو الماء التي تلتقطها بالكاميرا أو تختارها من المعرض، وتُرسَل إلى واجهة Google Gemini API لغرض التحليل والتشخيص فقط.</li>
+      <li data-i18n="s2_li2"><b>النصوص التي تكتبها:</b> أي استفسار أو وصف نصي تكتبه في شاشات الاستشارة أو تحليل التربة والماء.</li>
+      <li data-i18n="s2_li3"><b>معرّف الجهاز (Device ID):</b> مُعرّف تقني غير شخصي يُستخدم فقط لإدارة الاشتراك وتفعيله على جهازك.</li>
+      <li data-i18n="s2_li4"><b>بيانات الموقع (اختياري):</b> في حالة استخدام ميزة "الطقس الذكي"، قد يُستخدم موقعك (أو اسم المدينة الذي تكتبه) لجلب بيانات الطقس الخاصة بمنطقتك فقط.</li>
+      <li data-i18n="s2_li5"><b>سجلات الاستخدام المحلية:</b> نتائج التشخيص والتحليل تُحفظ محليًا على جهازك (شاشة السجلات) لتسهيل الرجوع إليها، ولا تُرفع لأي خادم خارجي دائم بخلاف ما يلزم لعملية التحليل نفسها.</li>
     </ul>
   </section>
 
   <section>
-    <h2>كيف نستخدم بياناتك</h2>
+    <h2 data-i18n="s3_h">كيف نستخدم بياناتك</h2>
     <ul>
-      <li>تحليل الصور والنصوص وتقديم نتائج التشخيص والتوصيات الزراعية.</li>
-      <li>تتبّع الفترة التجريبية المجانية وحالة الاشتراك (عبر Firebase Firestore) لمنع إساءة الاستخدام.</li>
-      <li>التحقق من صحة أكواد التفعيل المرتبطة بمعرّف جهازك.</li>
-      <li>تحسين دقة الاستجابات وتجربة الاستخدام بشكل عام.</li>
+      <li data-i18n="s3_li1">تحليل الصور والنصوص وتقديم نتائج التشخيص والتوصيات الزراعية.</li>
+      <li data-i18n="s3_li2">تتبّع الفترة التجريبية المجانية وحالة الاشتراك (عبر Firebase Firestore) لمنع إساءة الاستخدام.</li>
+      <li data-i18n="s3_li3">التحقق من صحة أكواد التفعيل المرتبطة بمعرّف جهازك.</li>
+      <li data-i18n="s3_li4">تحسين دقة الاستجابات وتجربة الاستخدام بشكل عام.</li>
     </ul>
   </section>
 
   <section>
-    <h2>مشاركة البيانات مع أطراف ثالثة</h2>
-    <p>
+    <h2 data-i18n="s4_h">مشاركة البيانات مع أطراف ثالثة</h2>
+    <p data-i18n="s4_p">
       لا نبيع بياناتك ولا نشاركها لأغراض تسويقية مع أي طرف ثالث. تُرسَل الصور
       والنصوص فقط إلى <b>Google Gemini API</b> بغرض التحليل الفني، وتخضع تلك
       البيانات لسياسة خصوصية Google الخاصة بواجهة Gemini. تُستخدم
@@ -105,8 +130,8 @@
   </section>
 
   <section>
-    <h2>الدفع والاشتراكات</h2>
-    <p>
+    <h2 data-i18n="s5_h">الدفع والاشتراكات</h2>
+    <p data-i18n="s5_p">
       عمليات الدفع تتم عبر وسائل دفع خارجية (مثل فودافون كاش، المحافظ
       الإلكترونية، أو بوابات دفع إلكترونية معتمدة). لا نقوم بتخزين أي بيانات
       بطاقات ائتمان أو معلومات دفع حساسة داخل التطبيق نفسه؛ تتم معالجة هذه
@@ -115,8 +140,8 @@
   </section>
 
   <section>
-    <h2>أمان البيانات</h2>
-    <p>
+    <h2 data-i18n="s6_h">أمان البيانات</h2>
+    <p data-i18n="s6_p">
       نتخذ إجراءات تقنية معقولة لحماية بياناتك من الوصول أو الاستخدام أو
       الإفصاح غير المصرح به. مع ذلك، لا توجد وسيلة نقل أو تخزين إلكتروني آمنة
       بنسبة 100%، ولا يمكننا ضمان الأمان المطلق.
@@ -124,43 +149,197 @@
   </section>
 
   <section>
-    <h2>حقوقك</h2>
+    <h2 data-i18n="s7_h">حقوقك</h2>
     <ul>
-      <li>يمكنك التواصل معنا في أي وقت لطلب حذف بياناتك المرتبطة بجهازك.</li>
-      <li>يمكنك التوقف عن استخدام التطبيق في أي وقت دون أي التزام إضافي.</li>
-      <li>لا يُطلب منك إنشاء حساب بريد إلكتروني أو تسجيل هوية شخصية لاستخدام التطبيق.</li>
+      <li data-i18n="s7_li1">يمكنك التواصل معنا في أي وقت لطلب حذف بياناتك المرتبطة بجهازك.</li>
+      <li data-i18n="s7_li2">يمكنك التوقف عن استخدام التطبيق في أي وقت دون أي التزام إضافي.</li>
+      <li data-i18n="s7_li3">لا يُطلب منك إنشاء حساب بريد إلكتروني أو تسجيل هوية شخصية لاستخدام التطبيق.</li>
     </ul>
   </section>
 
   <section>
-    <h2>خصوصية الأطفال</h2>
-    <p>
+    <h2 data-i18n="s8_h">خصوصية الأطفال</h2>
+    <p data-i18n="s8_p">
       التطبيق موجّه للمزارعين والمستخدمين البالغين، ولا نجمع عن قصد بيانات
       شخصية من الأطفال دون سن 13 عامًا.
     </p>
   </section>
 
   <section>
-    <h2>التعديلات على هذه السياسة</h2>
-    <p>
+    <h2 data-i18n="s9_h">التعديلات على هذه السياسة</h2>
+    <p data-i18n="s9_p">
       قد تُحدَّث هذه السياسة من وقت لآخر. سيتم نشر أي تحديث على هذه الصفحة
       مع تاريخ التحديث في الأعلى.
     </p>
   </section>
 
   <section>
-    <h2>التواصل معنا</h2>
+    <h2 data-i18n="s10_h">التواصل معنا</h2>
     <p>
-      لأي استفسار بخصوص هذه السياسة أو بياناتك، تواصل معنا عبر:<br>
-      البريد الإلكتروني: <a href="mailto:hanyk201@gmail.com">hanyk201@gmail.com</a><br>
-      واتساب: <a href="https://wa.me/201063732596" target="_blank">+20 106 373 2596</a>
+      <span data-i18n="s10_p">لأي استفسار بخصوص هذه السياسة أو بياناتك، تواصل معنا عبر:</span><br>
+      <span data-i18n="contact_email_label">البريد الإلكتروني:</span> <a data-mail-link href="mailto:hanyk201@gmail.com?subject=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20FarmDoctorAI&body=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%0A%0A%D9%85%D8%B9%D8%B1%D9%91%D9%81%20%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%3A%20%0A%D8%B1%D8%B3%D8%A7%D9%84%D8%AA%D9%8A%3A%20%0A">hanyk201@gmail.com</a><br>
+      <span data-i18n="contact_wa_label">واتساب:</span> <a href="https://wa.me/201063732596" target="_blank">+20 106 373 2596</a>
     </p>
   </section>
 </main>
 
 <footer>
-  © FarmDoctorAI — جميع الحقوق محفوظة | <a href="./index.html">الرئيسية</a>
+  <span data-i18n="footer_copy">© FarmDoctorAI — جميع الحقوق محفوظة</span> | <a href="./index.html" data-i18n="footer_home">الرئيسية</a>
 </footer>
+
+<script>
+const RTL_LANGS = ["ar"];
+const LANG_LABELS = {ar:"العربية", en:"English", fr:"Français", zh:"中文", hi:"हिन्दी"};
+
+const I18N = {
+  page_title:{ar:"سياسة الخصوصية | FarmDoctorAI",en:"Privacy Policy | FarmDoctorAI",fr:"Politique de Confidentialité | FarmDoctorAI",zh:"隱私政策 | FarmDoctorAI",hi:"गोपनीयता नीति | FarmDoctorAI"},
+  back_link:{ar:"← رجوع لصفحة الأسعار",en:"← Back to pricing page",fr:"← Retour à la page des tarifs",zh:"← 返回價格頁面",hi:"← मूल्य निर्धारण पेज पर वापस जाएं"},
+  nav_wa:{ar:"تواصل واتساب",en:"Contact on WhatsApp",fr:"Contacter sur WhatsApp",zh:"透過WhatsApp聯繫",hi:"व्हाट्सएप्प पर संपर्क करें"},
+  page_h1:{ar:"سياسة الخصوصية",en:"Privacy Policy",fr:"Politique de Confidentialité",zh:"隱私政策",hi:"गोपनीयता नीति"},
+  updated:{ar:"آخر تحديث: يوليو 2026",en:"Last updated: July 2026",fr:"Dernière mise à jour : juillet 2026",zh:"最後更新：2026年7月",hi:"अंतिम अपडेट: जुलाई 2026"},
+
+  s1_h:{ar:"مقدمة",en:"Introduction",fr:"Introduction",zh:"簡介",hi:"परिचय"},
+  s1_p:{ar:"نحن في FarmDoctorAI نحترم خصوصيتك. توضح هذه السياسة نوع البيانات التي يجمعها التطبيق، وكيف تُستخدم، ومع من قد تُشارَك، والخيارات المتاحة لك. باستخدامك للتطبيق فإنك توافق على الممارسات الموضحة هنا.",
+    en:"At FarmDoctorAI, we respect your privacy. This policy explains what data the app collects, how it's used, who it may be shared with, and the choices available to you. By using the app, you agree to the practices described here.",
+    fr:"Chez FarmDoctorAI, nous respectons votre vie privée. Cette politique explique quelles données l'application collecte, comment elles sont utilisées, avec qui elles peuvent être partagées, et les choix qui s'offrent à vous. En utilisant l'application, vous acceptez les pratiques décrites ici.",
+    zh:"在 FarmDoctorAI，我們尊重您的隱私。本政策說明應用程式收集哪些資料、如何使用、可能與誰共享，以及您可用的選擇。使用本應用程式即表示您同意此處所述的做法。",
+    hi:"FarmDoctorAI में, हम आपकी गोपनीयता का सम्मान करते हैं। यह नीति बताती है कि ऐप किस प्रकार का डेटा एकत्र करता है, इसका उपयोग कैसे किया जाता है, इसे किसके साथ साझा किया जा सकता है, और आपके पास उपलब्ध विकल्प क्या हैं। ऐप का उपयोग करके, आप यहां वर्णित प्रथाओं से सहमत होते हैं।"},
+
+  s2_h:{ar:"البيانات التي نجمعها",en:"Data We Collect",fr:"Données que Nous Collectons",zh:"我們收集的資料",hi:"हम जो डेटा एकत्र करते हैं"},
+  s2_li1:{ar:"<b>الصور التي ترفعها:</b> صور المحاصيل أو التربة أو الماء التي تلتقطها بالكاميرا أو تختارها من المعرض، وتُرسَل إلى واجهة Google Gemini API لغرض التحليل والتشخيص فقط.",
+    en:"<b>Images you upload:</b> photos of crops, soil, or water captured via camera or chosen from the gallery, sent to the Google Gemini API solely for analysis and diagnosis.",
+    fr:"<b>Images que vous téléchargez :</b> photos de cultures, de sol ou d'eau prises par la caméra ou choisies dans la galerie, envoyées à l'API Google Gemini uniquement à des fins d'analyse et de diagnostic.",
+    zh:"<b>您上傳的圖片：</b>透過相機拍攝或從相簿選擇的作物、土壤或水質照片，僅用於傳送至 Google Gemini API 進行分析與診斷。",
+    hi:"<b>आपके द्वारा अपलोड की गई तस्वीरें:</b> कैमरे से ली गई या गैलरी से चुनी गई फसलों, मिट्टी या पानी की तस्वीरें, जो केवल विश्लेषण और निदान के लिए Google Gemini API को भेजी जाती हैं।"},
+  s2_li2:{ar:"<b>النصوص التي تكتبها:</b> أي استفسار أو وصف نصي تكتبه في شاشات الاستشارة أو تحليل التربة والماء.",
+    en:"<b>Text you write:</b> any inquiry or description you type in the consultation or soil/water analysis screens.",
+    fr:"<b>Texte que vous saisissez :</b> toute demande ou description que vous rédigez dans les écrans de consultation ou d'analyse du sol et de l'eau.",
+    zh:"<b>您輸入的文字：</b>您在諮詢或土壤／水質分析畫面中輸入的任何詢問或描述。",
+    hi:"<b>आपके द्वारा लिखा गया टेक्स्ट:</b> परामर्श या मिट्टी/पानी विश्लेषण स्क्रीन में आपके द्वारा लिखी गई कोई भी पूछताछ या विवरण।"},
+  s2_li3:{ar:"<b>معرّف الجهاز (Device ID):</b> مُعرّف تقني غير شخصي يُستخدم فقط لإدارة الاشتراك وتفعيله على جهازك.",
+    en:"<b>Device ID:</b> a non-personal technical identifier used only to manage and activate your subscription on your device.",
+    fr:"<b>Identifiant de l'appareil :</b> un identifiant technique non personnel utilisé uniquement pour gérer et activer votre abonnement sur votre appareil.",
+    zh:"<b>裝置編號：</b>非個人技術識別碼，僅用於在您的裝置上管理與啟用訂閱。",
+    hi:"<b>डिवाइस आईडी:</b> एक गैर-व्यक्तिगत तकनीकी पहचानकर्ता जो केवल आपके डिवाइस पर सदस्यता प्रबंधित और सक्रिय करने के लिए उपयोग किया जाता है।"},
+  s2_li4:{ar:"<b>بيانات الموقع (اختياري):</b> في حالة استخدام ميزة \"الطقس الذكي\"، قد يُستخدم موقعك (أو اسم المدينة الذي تكتبه) لجلب بيانات الطقس الخاصة بمنطقتك فقط.",
+    en:"<b>Location data (optional):</b> when using the \"Smart Weather\" feature, your location (or the city name you enter) may be used solely to fetch weather data for your area.",
+    fr:"<b>Données de localisation (facultatif) :</b> lors de l'utilisation de la fonction « Météo Intelligente », votre position (ou le nom de la ville saisi) peut être utilisée uniquement pour récupérer les données météo de votre région.",
+    zh:"<b>位置資料（選填）：</b>使用「智慧天氣」功能時，您的位置（或您輸入的城市名稱）僅用於取得您所在地區的天氣資料。",
+    hi:"<b>स्थान डेटा (वैकल्पिक):</b> \"स्मार्ट मौसम\" सुविधा का उपयोग करते समय, आपके क्षेत्र के मौसम डेटा को प्राप्त करने के लिए केवल आपका स्थान (या आपके द्वारा दर्ज किया गया शहर का नाम) उपयोग किया जा सकता है।"},
+  s2_li5:{ar:"<b>سجلات الاستخدام المحلية:</b> نتائج التشخيص والتحليل تُحفظ محليًا على جهازك (شاشة السجلات) لتسهيل الرجوع إليها، ولا تُرفع لأي خادم خارجي دائم بخلاف ما يلزم لعملية التحليل نفسها.",
+    en:"<b>Local usage records:</b> diagnosis and analysis results are stored locally on your device (Records screen) for easy reference, and are not uploaded to any persistent external server beyond what's required for the analysis itself.",
+    fr:"<b>Enregistrements d'utilisation locaux :</b> les résultats de diagnostic et d'analyse sont stockés localement sur votre appareil (écran des enregistrements) pour faciliter la consultation, et ne sont pas téléchargés vers un serveur externe permanent au-delà de ce qui est nécessaire à l'analyse elle-même.",
+    zh:"<b>本機使用記錄：</b>診斷與分析結果會儲存在您裝置的本機（記錄畫面）以便查閱，除分析本身所需外，不會上傳至任何永久性外部伺服器。",
+    hi:"<b>स्थानीय उपयोग रिकॉर्ड:</b> निदान और विश्लेषण परिणाम आसान संदर्भ के लिए आपके डिवाइस पर स्थानीय रूप से संग्रहीत किए जाते हैं (रिकॉर्ड स्क्रीन), और विश्लेषण के लिए आवश्यक से अधिक किसी स्थायी बाहरी सर्वर पर अपलोड नहीं किए जाते।"},
+
+  s3_h:{ar:"كيف نستخدم بياناتك",en:"How We Use Your Data",fr:"Comment Nous Utilisons Vos Données",zh:"我們如何使用您的資料",hi:"हम आपके डेटा का उपयोग कैसे करते हैं"},
+  s3_li1:{ar:"تحليل الصور والنصوص وتقديم نتائج التشخيص والتوصيات الزراعية.",en:"Analyzing images and text to provide diagnosis results and agricultural recommendations.",fr:"Analyser les images et le texte pour fournir des résultats de diagnostic et des recommandations agricoles.",zh:"分析圖片與文字，提供診斷結果與農業建議。",hi:"निदान परिणाम और कृषि सिफारिशें प्रदान करने के लिए छवियों और टेक्स्ट का विश्लेषण करना।"},
+  s3_li2:{ar:"تتبّع الفترة التجريبية المجانية وحالة الاشتراك (عبر Firebase Firestore) لمنع إساءة الاستخدام.",en:"Tracking the free trial period and subscription status (via Firebase Firestore) to prevent abuse.",fr:"Suivi de la période d'essai gratuite et du statut de l'abonnement (via Firebase Firestore) pour prévenir les abus.",zh:"透過 Firebase Firestore 追蹤免費試用期與訂閱狀態，以防止濫用。",hi:"दुरुपयोग को रोकने के लिए निःशुल्क परीक्षण अवधि और सदस्यता स्थिति (Firebase Firestore के माध्यम से) को ट्रैक करना।"},
+  s3_li3:{ar:"التحقق من صحة أكواد التفعيل المرتبطة بمعرّف جهازك.",en:"Validating activation codes linked to your device ID.",fr:"Validation des codes d'activation liés à l'identifiant de votre appareil.",zh:"驗證與您的裝置編號相關聯的啟用碼。",hi:"आपकी डिवाइस आईडी से जुड़े सक्रियण कोड को सत्यापित करना।"},
+  s3_li4:{ar:"تحسين دقة الاستجابات وتجربة الاستخدام بشكل عام.",en:"Improving response accuracy and the overall user experience.",fr:"Améliorer la précision des réponses et l'expérience utilisateur globale.",zh:"提升回應準確度與整體使用體驗。",hi:"प्रतिक्रिया सटीकता और समग्र उपयोगकर्ता अनुभव में सुधार करना।"},
+
+  s4_h:{ar:"مشاركة البيانات مع أطراف ثالثة",en:"Sharing Data with Third Parties",fr:"Partage des Données avec des Tiers",zh:"與第三方共享資料",hi:"तृतीय पक्षों के साथ डेटा साझा करना"},
+  s4_p:{ar:"لا نبيع بياناتك ولا نشاركها لأغراض تسويقية مع أي طرف ثالث. تُرسَل الصور والنصوص فقط إلى <b>Google Gemini API</b> بغرض التحليل الفني، وتخضع تلك البيانات لسياسة خصوصية Google الخاصة بواجهة Gemini. تُستخدم <b>Firebase Firestore</b> (خدمة تابعة لـ Google) لتخزين بيانات تقنية محدودة متعلقة بحالة الاشتراك والفترة التجريبية فقط.",
+    en:"We do not sell your data or share it for marketing purposes with any third party. Images and text are sent only to the <b>Google Gemini API</b> for technical analysis, and that data is subject to Google's Gemini API privacy policy. <b>Firebase Firestore</b> (a Google service) is used to store limited technical data related solely to subscription status and the trial period.",
+    fr:"Nous ne vendons pas vos données et ne les partageons pas à des fins marketing avec des tiers. Les images et le texte sont envoyés uniquement à l'<b>API Google Gemini</b> à des fins d'analyse technique, et ces données sont soumises à la politique de confidentialité de l'API Gemini de Google. <b>Firebase Firestore</b> (un service Google) est utilisé pour stocker des données techniques limitées relatives uniquement au statut de l'abonnement et à la période d'essai.",
+    zh:"我們不會出售您的資料，也不會為行銷目的與任何第三方共享。圖片與文字僅傳送至 <b>Google Gemini API</b> 進行技術分析，該資料受 Google Gemini API 隱私政策約束。<b>Firebase Firestore</b>（Google 服務）僅用於儲存與訂閱狀態及試用期相關的有限技術資料。",
+    hi:"हम आपके डेटा को बेचते नहीं हैं और न ही इसे मार्केटिंग उद्देश्यों के लिए किसी तृतीय पक्ष के साथ साझा करते हैं। छवियां और टेक्स्ट केवल तकनीकी विश्लेषण के लिए <b>Google Gemini API</b> को भेजे जाते हैं, और वह डेटा Google की Gemini API गोपनीयता नीति के अधीन है। <b>Firebase Firestore</b> (एक Google सेवा) का उपयोग केवल सदस्यता स्थिति और परीक्षण अवधि से संबंधित सीमित तकनीकी डेटा संग्रहीत करने के लिए किया जाता है।"},
+
+  s5_h:{ar:"الدفع والاشتراكات",en:"Payments and Subscriptions",fr:"Paiements et Abonnements",zh:"付款與訂閱",hi:"भुगतान और सदस्यताएं"},
+  s5_p:{ar:"عمليات الدفع تتم عبر وسائل دفع خارجية (مثل فودافون كاش، المحافظ الإلكترونية، أو بوابات دفع إلكترونية معتمدة). لا نقوم بتخزين أي بيانات بطاقات ائتمان أو معلومات دفع حساسة داخل التطبيق نفسه؛ تتم معالجة هذه البيانات بالكامل من خلال مزوّد خدمة الدفع المعتمد.",
+    en:"Payments are processed through external payment methods (such as Vodafone Cash, electronic wallets, or approved payment gateways). We do not store any credit card data or sensitive payment information within the app itself; this data is handled entirely by the approved payment service provider.",
+    fr:"Les paiements sont traités via des moyens de paiement externes (tels que Vodafone Cash, les portefeuilles électroniques ou les passerelles de paiement agréées). Nous ne stockons aucune donnée de carte de crédit ni information de paiement sensible dans l'application elle-même ; ces données sont entièrement traitées par le prestataire de services de paiement agréé.",
+    zh:"付款透過外部付款方式處理（例如 Vodafone Cash、電子錢包或核准的付款閘道）。我們不會在應用程式內儲存任何信用卡資料或敏感付款資訊；此類資料完全由核准的付款服務提供商處理。",
+    hi:"भुगतान बाहरी भुगतान विधियों (जैसे वोडाफोन कैश, इलेक्ट्रॉनिक वॉलेट, या अनुमोदित भुगतान गेटवे) के माध्यम से संसाधित किए जाते हैं। हम ऐप के भीतर कोई क्रेडिट कार्ड डेटा या संवेदनशील भुगतान जानकारी संग्रहीत नहीं करते हैं; यह डेटा पूरी तरह से अनुमोदित भुगतान सेवा प्रदाता द्वारा संभाला जाता है।"},
+
+  s6_h:{ar:"أمان البيانات",en:"Data Security",fr:"Sécurité des Données",zh:"資料安全",hi:"डेटा सुरक्षा"},
+  s6_p:{ar:"نتخذ إجراءات تقنية معقولة لحماية بياناتك من الوصول أو الاستخدام أو الإفصاح غير المصرح به. مع ذلك، لا توجد وسيلة نقل أو تخزين إلكتروني آمنة بنسبة 100%، ولا يمكننا ضمان الأمان المطلق.",
+    en:"We take reasonable technical measures to protect your data from unauthorized access, use, or disclosure. However, no method of electronic transmission or storage is 100% secure, and we cannot guarantee absolute security.",
+    fr:"Nous prenons des mesures techniques raisonnables pour protéger vos données contre tout accès, utilisation ou divulgation non autorisés. Cependant, aucune méthode de transmission ou de stockage électronique n'est sécurisée à 100 %, et nous ne pouvons garantir une sécurité absolue.",
+    zh:"我們採取合理的技術措施保護您的資料，防止未經授權的存取、使用或洩露。然而，沒有任何電子傳輸或儲存方式是百分之百安全的，我們無法保證絕對的安全性。",
+    hi:"हम आपके डेटा को अनधिकृत पहुंच, उपयोग या प्रकटीकरण से बचाने के लिए उचित तकनीकी उपाय अपनाते हैं। हालांकि, इलेक्ट्रॉनिक ट्रांसमिशन या भंडारण की कोई भी विधि 100% सुरक्षित नहीं है, और हम पूर्ण सुरक्षा की गारंटी नहीं दे सकते।"},
+
+  s7_h:{ar:"حقوقك",en:"Your Rights",fr:"Vos Droits",zh:"您的權利",hi:"आपके अधिकार"},
+  s7_li1:{ar:"يمكنك التواصل معنا في أي وقت لطلب حذف بياناتك المرتبطة بجهازك.",en:"You can contact us at any time to request deletion of your device-related data.",fr:"Vous pouvez nous contacter à tout moment pour demander la suppression de vos données liées à l'appareil.",zh:"您可以隨時聯繫我們，要求刪除與您裝置相關的資料。",hi:"आप अपने डिवाइस से संबंधित डेटा को हटाने का अनुरोध करने के लिए किसी भी समय हमसे संपर्क कर सकते हैं।"},
+  s7_li2:{ar:"يمكنك التوقف عن استخدام التطبيق في أي وقت دون أي التزام إضافي.",en:"You can stop using the app at any time without any further obligation.",fr:"Vous pouvez cesser d'utiliser l'application à tout moment sans aucune obligation supplémentaire.",zh:"您可以隨時停止使用本應用程式，無需承擔任何進一步義務。",hi:"आप बिना किसी अतिरिक्त दायित्व के किसी भी समय ऐप का उपयोग बंद कर सकते हैं।"},
+  s7_li3:{ar:"لا يُطلب منك إنشاء حساب بريد إلكتروني أو تسجيل هوية شخصية لاستخدام التطبيق.",en:"You are not required to create an email account or register a personal identity to use the app.",fr:"Vous n'êtes pas tenu de créer un compte e-mail ni d'enregistrer une identité personnelle pour utiliser l'application.",zh:"您無需建立電子郵件帳戶或註冊個人身分即可使用本應用程式。",hi:"ऐप का उपयोग करने के लिए आपको ईमेल खाता बनाने या व्यक्तिगत पहचान पंजीकृत करने की आवश्यकता नहीं है।"},
+
+  s8_h:{ar:"خصوصية الأطفال",en:"Children's Privacy",fr:"Confidentialité des Enfants",zh:"兒童隱私",hi:"बच्चों की गोपनीयता"},
+  s8_p:{ar:"التطبيق موجّه للمزارعين والمستخدمين البالغين، ولا نجمع عن قصد بيانات شخصية من الأطفال دون سن 13 عامًا.",
+    en:"The app is intended for farmers and adult users, and we do not knowingly collect personal data from children under the age of 13.",
+    fr:"L'application est destinée aux agriculteurs et aux utilisateurs adultes, et nous ne collectons pas sciemment de données personnelles auprès d'enfants de moins de 13 ans.",
+    zh:"本應用程式適用於農民及成年使用者，我們不會刻意收集13歲以下兒童的個人資料。",
+    hi:"यह ऐप किसानों और वयस्क उपयोगकर्ताओं के लिए है, और हम जानबूझकर 13 वर्ष से कम आयु के बच्चों से व्यक्तिगत डेटा एकत्र नहीं करते हैं।"},
+
+  s9_h:{ar:"التعديلات على هذه السياسة",en:"Changes to This Policy",fr:"Modifications de Cette Politique",zh:"本政策的變更",hi:"इस नीति में परिवर्तन"},
+  s9_p:{ar:"قد تُحدَّث هذه السياسة من وقت لآخر. سيتم نشر أي تحديث على هذه الصفحة مع تاريخ التحديث في الأعلى.",
+    en:"This policy may be updated from time to time. Any update will be posted on this page along with the update date at the top.",
+    fr:"Cette politique peut être mise à jour de temps à autre. Toute mise à jour sera publiée sur cette page avec la date de mise à jour en haut.",
+    zh:"本政策可能會不時更新。任何更新都會發佈在此頁面上，並在頂部標示更新日期。",
+    hi:"यह नीति समय-समय पर अपडेट की जा सकती है। कोई भी अपडेट इस पेज पर शीर्ष पर अपडेट की तारीख के साथ पोस्ट किया जाएगा।"},
+
+  s10_h:{ar:"التواصل معنا",en:"Contact Us",fr:"Nous Contacter",zh:"聯絡我們",hi:"हमसे संपर्क करें"},
+  s10_p:{ar:"لأي استفسار بخصوص هذه السياسة أو بياناتك، تواصل معنا عبر:",en:"For any inquiry regarding this policy or your data, contact us via:",fr:"Pour toute question concernant cette politique ou vos données, contactez-nous via :",zh:"如對本政策或您的資料有任何疑問，請透過以下方式聯絡我們：",hi:"इस नीति या आपके डेटा से संबंधित किसी भी पूछताछ के लिए, हमसे संपर्क करें:"},
+  contact_email_label:{ar:"البريد الإلكتروني:",en:"Email:",fr:"E-mail :",zh:"電子郵件：",hi:"ईमेल:"},
+  contact_wa_label:{ar:"واتساب:",en:"WhatsApp:",fr:"WhatsApp :",zh:"WhatsApp：",hi:"व्हाट्सएप्प:"},
+
+  footer_copy:{ar:"© FarmDoctorAI — جميع الحقوق محفوظة",en:"© FarmDoctorAI — All rights reserved",fr:"© FarmDoctorAI — Tous droits réservés",zh:"© FarmDoctorAI — 版權所有",hi:"© FarmDoctorAI — सर्वाधिकार सुरक्षित"},
+  footer_home:{ar:"الرئيسية",en:"Home",fr:"Accueil",zh:"首頁",hi:"होम"},
+
+  mail_subject:{ar:"استفسار من صفحة FarmDoctorAI",en:"Inquiry from the FarmDoctorAI page",fr:"Demande depuis la page FarmDoctorAI",zh:"來自 FarmDoctorAI 頁面的詢問",hi:"FarmDoctorAI पेज से पूछताछ"},
+  mail_body:{ar:"مرحبًا،\n\nمعرّف جهازي: \nرسالتي: \n",en:"Hello,\n\nMy Device ID: \nMy message: \n",fr:"Bonjour,\n\nIdentifiant de mon appareil : \nMon message : \n",zh:"您好，\n\n我的裝置編號：\n我的訊息：\n",hi:"नमस्ते,\n\nमेरी डिवाइस आईडी: \nमेरा संदेश: \n"},
+};
+
+function applyLanguage(lang){
+  const html = document.getElementById("htmlRoot");
+  const isRtl = RTL_LANGS.includes(lang);
+  html.setAttribute("lang", lang);
+  html.setAttribute("dir", isRtl ? "rtl" : "ltr");
+  document.body.setAttribute("dir", isRtl ? "rtl" : "ltr");
+  document.body.className = "lang-" + lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(I18N[key] && I18N[key][lang]!==undefined){
+      el.innerHTML = I18N[key][lang];
+    }
+  });
+
+  document.getElementById("langLabel") && (document.getElementById("langLabel").textContent = LANG_LABELS[lang]);
+  document.querySelectorAll("#langStack button").forEach(b=>{
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+
+  const mailSubject = encodeURIComponent(I18N.mail_subject[lang] || I18N.mail_subject.ar);
+  const mailBody = encodeURIComponent(I18N.mail_body[lang] || I18N.mail_body.ar);
+  document.querySelectorAll("[data-mail-link]").forEach(el=>{
+    el.setAttribute("href", `mailto:hanyk201@gmail.com?subject=${mailSubject}&body=${mailBody}`);
+  });
+
+  document.title = I18N.page_title[lang] || I18N.page_title.ar;
+  try{ localStorage.setItem("fd_lang", lang); }catch(e){}
+}
+
+(function initLang(){
+  const SUPPORTED = ["ar","en","fr","zh","hi"];
+  let lang = "ar";
+  try{
+    const urlLang = new URLSearchParams(window.location.search).get("lang");
+    if(urlLang && SUPPORTED.includes(urlLang)){
+      lang = urlLang;
+    } else {
+      lang = localStorage.getItem("fd_lang") || "ar";
+    }
+  }catch(e){}
+  applyLanguage(lang);
+})();
+
+document.querySelectorAll("#langStack button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    applyLanguage(btn.dataset.lang);
+  });
+});
+</script>
 
 </body>
 </html>
