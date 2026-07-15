@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سياسة التسليم | FarmDoctorAI</title>
+<title data-i18n="page_title">سياسة التسليم | FarmDoctorAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@400;600;800&family=Noto+Sans+TC:wght@400;600;800&family=Noto+Sans+Devanagari:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{--forest:#163a1f;--leaf:#2f8f4e;--cream:#c6d8c1;--paper:#ffffff;--muted:#6b7a6d;}
+  :root{--forest:#163a1f;--leaf:#2f8f4e;--wheat:#c98f2b;--cream:#c6d8c1;--paper:#ffffff;--muted:#6b7a6d;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--cream);color:var(--forest);font-family:'Noto Naskh Arabic', serif;line-height:1.85;}
+  body{margin:0;background:var(--cream);color:var(--forest);font-family:'Noto Naskh Arabic', 'Noto Sans', serif;line-height:1.85;}
+  body.lang-en, body.lang-fr{font-family:'Noto Sans', sans-serif;}
+  body.lang-zh{font-family:'Noto Sans TC', sans-serif;}
+  body.lang-hi{font-family:'Noto Sans Devanagari', sans-serif;}
 
   header{position:sticky; top:0; z-index:50; background:rgba(198,216,193,.94); backdrop-filter:blur(6px); border-bottom:1px solid rgba(22,58,31,.08);}
   .headerbar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 20px; max-width:900px; margin:0 auto; flex-wrap:wrap;}
@@ -19,6 +23,19 @@
   .header-right{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
   .back-link{color:var(--forest); text-decoration:none; font-weight:700; font-size:.85rem;}
   .wa-btn{display:flex; align-items:center; gap:6px; background:var(--leaf); color:#fff; text-decoration:none; padding:9px 16px; border-radius:999px; font-weight:700; font-size:.85rem; white-space:nowrap;}
+
+  .lang-stack{
+    display:flex; flex-direction:column; gap:3px;
+    background:var(--paper); border:1px solid rgba(22,58,31,.15); border-radius:12px;
+    padding:5px; box-shadow:0 12px 30px -12px rgba(22,58,31,.25);
+  }
+  .lang-stack button{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    padding:4px 16px; border-radius:8px; font-size:.76rem; font-weight:700;
+    color:var(--forest); text-align:center; white-space:nowrap;
+  }
+  .lang-stack button.active{background:var(--leaf); color:#fff;}
+
   main{max-width:720px;margin:0 auto;padding:30px 20px 60px;}
   section{background:var(--paper);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 8px 20px -10px rgba(22,58,31,.15);}
   h2{color:var(--leaf);font-size:1.1rem;margin-top:0;}
@@ -29,7 +46,7 @@
   .page-title{text-align:center;color:var(--forest);font-size:1.35rem;margin:8px 0 20px;}
 </style>
 </head>
-<body>
+<body class="lang-ar">
 
 <header class="legalheader">
   <div class="headerbar">
@@ -38,18 +55,25 @@
       <span>FarmDoctorAI</span>
     </div>
     <div class="header-right">
-      <a class="back-link" href="./index.html">← رجوع لصفحة الأسعار</a>
-      <a class="wa-btn" href="https://wa.me/201063732596" target="_blank">تواصل واتساب</a>
+      <div class="lang-stack" id="langStack">
+        <button type="button" data-lang="ar">العربية</button>
+        <button type="button" data-lang="en">English</button>
+        <button type="button" data-lang="fr">Français</button>
+        <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="hi">हिन्दी</button>
+      </div>
+      <a class="back-link" href="./index.html" data-i18n="back_link">← رجوع لصفحة الأسعار</a>
+      <a class="wa-btn" href="https://wa.me/201063732596" target="_blank" data-i18n="nav_wa">تواصل واتساب</a>
     </div>
   </div>
 </header>
 
 <main>
-<h1 class="page-title">سياسة التسليم</h1>
+<h1 class="page-title" data-i18n="page_h1">سياسة التسليم</h1>
 
   <section>
-    <h2>طبيعة "التسليم" في خدمتنا</h2>
-    <p>
+    <h2 data-i18n="s1_h">طبيعة "التسليم" في خدمتنا</h2>
+    <p data-i18n="s1_p">
       FarmDoctorAI تطبيق وخدمة رقمية بالكامل، ولا يتضمن أي شحن أو تسليم
       لمنتجات مادية. "التسليم" هنا يعني تفعيل اشتراكك داخل التطبيق بعد إتمام
       عملية الدفع بنجاح.
@@ -57,36 +81,128 @@
   </section>
 
   <section>
-    <h2>خطوات التسليم (التفعيل)</h2>
+    <h2 data-i18n="s2_h">خطوات التسليم (التفعيل)</h2>
     <ul>
-      <li>تختار الباقة والمدة المناسبة وتدفع بأي وسيلة دفع متاحة.</li>
-      <li>فور تأكيد الدفع، يُولَّد كود تفعيل فريد مرتبط بمعرّف جهازك.</li>
-      <li>يصلك رابط أو كود التفعيل، وبمجرد الضغط عليه أو إدخاله داخل التطبيق يتم تفعيل اشتراكك فورًا وتصبح كل مزايا باقتك متاحة على طول.</li>
+      <li data-i18n="s2_li1">تختار الباقة والمدة المناسبة وتدفع بأي وسيلة دفع متاحة.</li>
+      <li data-i18n="s2_li2">فور تأكيد الدفع، يُولَّد كود تفعيل فريد مرتبط بمعرّف جهازك.</li>
+      <li data-i18n="s2_li3">يصلك رابط أو كود التفعيل، وبمجرد الضغط عليه أو إدخاله داخل التطبيق يتم تفعيل اشتراكك فورًا وتصبح كل مزايا باقتك متاحة على طول.</li>
     </ul>
   </section>
 
   <section>
-    <h2>مدة التفعيل</h2>
+    <h2 data-i18n="s3_h">مدة التفعيل</h2>
     <p>
-      في الحالات العادية يتم التفعيل خلال دقائق من تأكيد الدفع. في حال
-      حدوث أي تأخير غير معتاد (أكثر من 24 ساعة)، يرجى التواصل معنا مباشرة
-      عبر واتساب أو البريد الإلكتروني وسيتم حل المشكلة أو استرداد المبلغ
-      وفق <a href="./refund-policy.html">سياسة الاسترجاع والإلغاء</a>.
+      <span data-i18n="s3_p1">في الحالات العادية يتم التفعيل خلال دقائق من تأكيد الدفع. في حال حدوث أي تأخير غير معتاد (أكثر من 24 ساعة)، يرجى التواصل معنا مباشرة عبر واتساب أو البريد الإلكتروني وسيتم حل المشكلة أو استرداد المبلغ وفق</span>
+      <a href="./refund-policy.html" data-i18n="s3_link">سياسة الاسترجاع والإلغاء</a>.
     </p>
   </section>
 
   <section>
-    <h2>التواصل معنا</h2>
+    <h2 data-i18n="s4_h">التواصل معنا</h2>
     <p>
-      البريد الإلكتروني: <a href="mailto:hanyk201@gmail.com">hanyk201@gmail.com</a><br>
-      واتساب: <a href="https://wa.me/201063732596" target="_blank">+20 106 373 2596</a>
+      <span data-i18n="contact_email_label">البريد الإلكتروني:</span> <a data-mail-link href="mailto:hanyk201@gmail.com?subject=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20FarmDoctorAI&body=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%0A%0A%D9%85%D8%B9%D8%B1%D9%91%D9%81%20%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%3A%20%0A%D8%B1%D8%B3%D8%A7%D9%84%D8%AA%D9%8A%3A%20%0A">hanyk201@gmail.com</a><br>
+      <span data-i18n="contact_wa_label">واتساب:</span> <a href="https://wa.me/201063732596" target="_blank">+20 106 373 2596</a>
     </p>
   </section>
 </main>
 
 <footer>
-  © FarmDoctorAI — جميع الحقوق محفوظة | <a href="./index.html">الرئيسية</a>
+  <span data-i18n="footer_copy">© FarmDoctorAI — جميع الحقوق محفوظة</span> | <a href="./index.html" data-i18n="footer_home">الرئيسية</a>
 </footer>
+
+<script>
+const RTL_LANGS = ["ar"];
+
+const I18N = {
+  page_title:{ar:"سياسة التسليم | FarmDoctorAI",en:"Delivery Policy | FarmDoctorAI",fr:"Politique de Livraison | FarmDoctorAI",zh:"交付政策 | FarmDoctorAI",hi:"डिलीवरी नीति | FarmDoctorAI"},
+  back_link:{ar:"← رجوع لصفحة الأسعار",en:"← Back to pricing page",fr:"← Retour à la page des tarifs",zh:"← 返回價格頁面",hi:"← मूल्य निर्धारण पेज पर वापस जाएं"},
+  nav_wa:{ar:"تواصل واتساب",en:"Contact on WhatsApp",fr:"Contacter sur WhatsApp",zh:"透過WhatsApp聯繫",hi:"व्हाट्सएप्प पर संपर्क करें"},
+  page_h1:{ar:"سياسة التسليم",en:"Delivery Policy",fr:"Politique de Livraison",zh:"交付政策",hi:"डिलीवरी नीति"},
+
+  s1_h:{ar:"طبيعة \"التسليم\" في خدمتنا",en:"The Nature of \"Delivery\" in Our Service",fr:"La Nature de la « Livraison » dans Notre Service",zh:"我們服務中的「交付」性質",hi:"हमारी सेवा में \"डिलीवरी\" की प्रकृति"},
+  s1_p:{ar:"FarmDoctorAI تطبيق وخدمة رقمية بالكامل، ولا يتضمن أي شحن أو تسليم لمنتجات مادية. \"التسليم\" هنا يعني تفعيل اشتراكك داخل التطبيق بعد إتمام عملية الدفع بنجاح.",
+    en:"FarmDoctorAI is a fully digital app and service, and does not involve shipping or delivery of any physical products. \"Delivery\" here means activating your subscription inside the app after your payment is successfully completed.",
+    fr:"FarmDoctorAI est une application et un service entièrement numériques, n'impliquant aucune expédition ni livraison de produits physiques. « Livraison » signifie ici l'activation de votre abonnement dans l'application après la réussite du paiement.",
+    zh:"FarmDoctorAI 是一款完全數位化的應用程式與服務，不涉及任何實體產品的運送或交付。此處所指的「交付」是指在您成功完成付款後，在應用程式內啟用您的訂閱。",
+    hi:"FarmDoctorAI एक पूर्णतः डिजिटल ऐप और सेवा है, और इसमें किसी भी भौतिक उत्पाद की शिपिंग या डिलीवरी शामिल नहीं है। यहां \"डिलीवरी\" का अर्थ है आपके भुगतान के सफलतापूर्वक पूरा होने के बाद ऐप के भीतर आपकी सदस्यता को सक्रिय करना।"},
+
+  s2_h:{ar:"خطوات التسليم (التفعيل)",en:"Delivery (Activation) Steps",fr:"Étapes de Livraison (Activation)",zh:"交付（啟用）步驟",hi:"डिलीवरी (सक्रियण) के चरण"},
+  s2_li1:{ar:"تختار الباقة والمدة المناسبة وتدفع بأي وسيلة دفع متاحة.",en:"You choose the appropriate plan and duration and pay via any available payment method.",fr:"Vous choisissez le forfait et la durée appropriés et payez via un moyen de paiement disponible.",zh:"您選擇合適的方案與期限，並透過任何可用的付款方式付款。",hi:"आप उपयुक्त प्लान और अवधि चुनते हैं और किसी भी उपलब्ध भुगतान विधि के माध्यम से भुगतान करते हैं।"},
+  s2_li2:{ar:"فور تأكيد الدفع، يُولَّد كود تفعيل فريد مرتبط بمعرّف جهازك.",en:"As soon as payment is confirmed, a unique activation code linked to your device ID is generated.",fr:"Dès que le paiement est confirmé, un code d'activation unique lié à l'identifiant de votre appareil est généré.",zh:"付款確認後，系統會立即產生與您裝置編號相關聯的專屬啟用碼。",hi:"भुगतान की पुष्टि होते ही, आपकी डिवाइस आईडी से जुड़ा एक अद्वितीय सक्रियण कोड जनरेट किया जाता है।"},
+  s2_li3:{ar:"يصلك رابط أو كود التفعيل، وبمجرد الضغط عليه أو إدخاله داخل التطبيق يتم تفعيل اشتراكك فورًا وتصبح كل مزايا باقتك متاحة على طول.",
+    en:"You receive the activation link or code, and as soon as you tap it or enter it in the app, your subscription is activated immediately and all your plan's features become available right away.",
+    fr:"Vous recevez le lien ou le code d'activation, et dès que vous appuyez dessus ou le saisissez dans l'application, votre abonnement est activé immédiatement et toutes les fonctionnalités de votre forfait deviennent disponibles instantanément.",
+    zh:"您將收到啟用連結或啟用碼，只要點擊或在應用程式中輸入，您的訂閱即會立即啟用，方案的所有功能也會馬上開放使用。",
+    hi:"आपको सक्रियण लिंक या कोड प्राप्त होता है, और जैसे ही आप उस पर टैप करते हैं या इसे ऐप में दर्ज करते हैं, आपकी सदस्यता तुरंत सक्रिय हो जाती है और आपके प्लान की सभी सुविधाएं तुरंत उपलब्ध हो जाती हैं।"},
+
+  s3_h:{ar:"مدة التفعيل",en:"Activation Time",fr:"Délai d'Activation",zh:"啟用時間",hi:"सक्रियण समय"},
+  s3_p1:{ar:"في الحالات العادية يتم التفعيل خلال دقائق من تأكيد الدفع. في حال حدوث أي تأخير غير معتاد (أكثر من 24 ساعة)، يرجى التواصل معنا مباشرة عبر واتساب أو البريد الإلكتروني وسيتم حل المشكلة أو استرداد المبلغ وفق",
+    en:"Under normal circumstances, activation happens within minutes of payment confirmation. If an unusual delay occurs (more than 24 hours), please contact us directly via WhatsApp or email, and the issue will be resolved or the amount refunded according to our",
+    fr:"Dans des circonstances normales, l'activation se produit dans les minutes suivant la confirmation du paiement. En cas de retard inhabituel (plus de 24 heures), veuillez nous contacter directement via WhatsApp ou e-mail, et le problème sera résolu ou le montant remboursé conformément à notre",
+    zh:"正常情況下，啟用會在付款確認後幾分鐘內完成。若發生異常延遲（超過24小時），請透過WhatsApp或電子郵件直接聯絡我們，我們將依照",
+    hi:"सामान्य परिस्थितियों में, भुगतान की पुष्टि के कुछ ही मिनटों के भीतर सक्रियण हो जाता है। यदि कोई असामान्य देरी होती है (24 घंटे से अधिक), तो कृपया व्हाट्सएप्प या ईमेल के माध्यम से सीधे हमसे संपर्क करें, और समस्या का समाधान किया जाएगा या राशि वापस कर दी जाएगी, इसके अनुसार:"},
+  s3_link:{ar:"سياسة الاسترجاع والإلغاء",en:"Refund & Cancellation Policy",fr:"Politique de Remboursement et d'Annulation",zh:"退款與取消政策",hi:"रिफंड और रद्दीकरण नीति"},
+
+  s4_h:{ar:"التواصل معنا",en:"Contact Us",fr:"Nous Contacter",zh:"聯絡我們",hi:"हमसे संपर्क करें"},
+  contact_email_label:{ar:"البريد الإلكتروني:",en:"Email:",fr:"E-mail :",zh:"電子郵件：",hi:"ईमेल:"},
+  contact_wa_label:{ar:"واتساب:",en:"WhatsApp:",fr:"WhatsApp :",zh:"WhatsApp：",hi:"व्हाट्सएप्प:"},
+
+  footer_copy:{ar:"© FarmDoctorAI — جميع الحقوق محفوظة",en:"© FarmDoctorAI — All rights reserved",fr:"© FarmDoctorAI — Tous droits réservés",zh:"© FarmDoctorAI — 版權所有",hi:"© FarmDoctorAI — सर्वाधिकार सुरक्षित"},
+  footer_home:{ar:"الرئيسية",en:"Home",fr:"Accueil",zh:"首頁",hi:"होम"},
+
+  mail_subject:{ar:"استفسار من صفحة FarmDoctorAI",en:"Inquiry from the FarmDoctorAI page",fr:"Demande depuis la page FarmDoctorAI",zh:"來自 FarmDoctorAI 頁面的詢問",hi:"FarmDoctorAI पेज से पूछताछ"},
+  mail_body:{ar:"مرحبًا،\n\nمعرّف جهازي: \nرسالتي: \n",en:"Hello,\n\nMy Device ID: \nMy message: \n",fr:"Bonjour,\n\nIdentifiant de mon appareil : \nMon message : \n",zh:"您好，\n\n我的裝置編號：\n我的訊息：\n",hi:"नमस्ते,\n\nमेरी डिवाइस आईडी: \nमेरा संदेश: \n"},
+};
+
+function applyLanguage(lang){
+  const html = document.getElementById("htmlRoot");
+  const isRtl = RTL_LANGS.includes(lang);
+  html.setAttribute("lang", lang);
+  html.setAttribute("dir", isRtl ? "rtl" : "ltr");
+  document.body.setAttribute("dir", isRtl ? "rtl" : "ltr");
+  document.body.className = "lang-" + lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(I18N[key] && I18N[key][lang]!==undefined){
+      el.innerHTML = I18N[key][lang];
+    }
+  });
+
+  document.querySelectorAll("#langStack button").forEach(b=>{
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+
+  const mailSubject = encodeURIComponent(I18N.mail_subject[lang] || I18N.mail_subject.ar);
+  const mailBody = encodeURIComponent(I18N.mail_body[lang] || I18N.mail_body.ar);
+  document.querySelectorAll("[data-mail-link]").forEach(el=>{
+    el.setAttribute("href", `mailto:hanyk201@gmail.com?subject=${mailSubject}&body=${mailBody}`);
+  });
+
+  document.title = I18N.page_title[lang] || I18N.page_title.ar;
+  try{ localStorage.setItem("fd_lang", lang); }catch(e){}
+}
+
+(function initLang(){
+  const SUPPORTED = ["ar","en","fr","zh","hi"];
+  let lang = "ar";
+  try{
+    const urlLang = new URLSearchParams(window.location.search).get("lang");
+    if(urlLang && SUPPORTED.includes(urlLang)){
+      lang = urlLang;
+    } else {
+      lang = localStorage.getItem("fd_lang") || "ar";
+    }
+  }catch(e){}
+  applyLanguage(lang);
+})();
+
+document.querySelectorAll("#langStack button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    applyLanguage(btn.dataset.lang);
+  });
+});
+</script>
 
 </body>
 </html>
