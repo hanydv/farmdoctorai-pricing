@@ -489,6 +489,14 @@ function renderPrices(){
   });
 }
 
+function setRegion(region){
+  state.region = region;
+  document.querySelectorAll("#regionToggle button").forEach(b=>{
+    b.classList.toggle("active", b.dataset.region === region);
+  });
+  renderPrices();
+}
+
 document.getElementById("langStack").addEventListener("click", e=>{
   const btn = e.target.closest("button");
   if(!btn) return;
