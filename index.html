@@ -702,7 +702,10 @@ document.querySelectorAll(".cta-btn").forEach(btn=>{
           window.location.href = checkoutUrl;
           return;
         }
-      }catch(e){}
+        console.error("Paymob: لم يتم استلام client_secret أو public_key. الرد الكامل:", data);
+      }catch(e){
+        console.error("Paymob: فشل الاتصال بالسيرفر:", e);
+      }
       // لو فشل الاتصال بـ Paymob لأي سبب، نرجع تلقائيًا لمسار الواتساب بدل ما نوقّف المزارع
       btn.textContent = originalText;
       btn.disabled = false;
