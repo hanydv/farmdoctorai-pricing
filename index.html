@@ -690,15 +690,12 @@ document.querySelectorAll(".cta-btn").forEach(btn=>{
       btn.textContent = "...";
       btn.disabled = true;
       try{
-        const res = await fetch(PAYMENT_API_URL, {
-          method: "POST",
-          body: JSON.stringify({
-            action: "create_payment",
-            tier: plan,
-            cycle: state.cycle,
-            device_id: deviceId.replace(/-/g, "")
-          })
-        });
+        const url = PAYMENT_API_URL
+          + "?action=create_payment"
+          + "&tier=" + encodeURIComponent(plan)
+          + "&cycle=" + encodeURIComponent(state.cycle)
+          + "&device_id=" + encodeURIComponent(deviceId.replace(/-/g, ""));
+        const res = await fetch(url);
         const data = await res.json();
         if(data.client_secret && data.public_key){
           const checkoutUrl = `https://accept.paymob.com/unifiedcheckout/?publicKey=${data.public_key}&clientSecret=${data.client_secret}`;
