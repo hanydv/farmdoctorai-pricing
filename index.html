@@ -205,6 +205,7 @@
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
         <li class="off"><span class="cross">✕</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
         <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
+        <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weeds">تحديد الحشائش</span></li>
       </ul>
       <button class="cta-btn" data-plan="basic"><span data-i18n="cta_basic">اشترك في أساس</span></button>
     </div>
@@ -220,6 +221,7 @@
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
         <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
+        <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weeds">تحديد الحشائش</span></li>
       </ul>
       <button class="cta-btn" data-plan="pro"><span data-i18n="cta_pro">اشترك في برو</span></button>
     </div>
@@ -234,6 +236,7 @@
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
+        <li><span class="check">✓</span> <span data-i18n="feat_weeds">تحديد الحشائش</span></li>
       </ul>
       <button class="cta-btn" data-plan="max"><span data-i18n="cta_max">اشترك في ماكس</span></button>
     </div>
@@ -352,6 +355,7 @@ const I18N = {
   feat_consult:{ar:"استشارة نصية",en:"Text consultation",fr:"Consultation textuelle",zh:"文字諮詢",hi:"टेक्स्ट परामर्श"},
   feat_weather:{ar:"الطقس الذكي",en:"Smart Weather",fr:"Météo Intelligente",zh:"智慧天氣",hi:"स्मार्ट मौसम"},
   feat_soil:{ar:"تحليل التربة والماء",en:"Soil & Water Analysis",fr:"Analyse du Sol et de l'Eau",zh:"土壤與水質分析",hi:"मिट्टी और पानी का विश्लेषण"},
+  feat_weeds:{ar:"تحديد الحشائش",en:"Weed Identification",fr:"Identification des Mauvaises Herbes",zh:"雜草辨識",hi:"खरपतवार पहचान"},
   badge_popular:{ar:"الأكثر طلبًا",en:"Most Popular",fr:"Le Plus Populaire",zh:"最受歡迎",hi:"सबसे लोकप्रिय"},
   cta_basic:{ar:"اشترك في أساس",en:"Subscribe to Basic",fr:"S'abonner à Basique",zh:"訂閱基本方案",hi:"बेसिक में सदस्यता लें"},
   cta_pro:{ar:"اشترك في برو",en:"Subscribe to Pro",fr:"S'abonner à Pro",zh:"訂閱專業版",hi:"प्रो में सदस्यता लें"},
@@ -422,7 +426,7 @@ const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null };
 
 // رابط تكامل Paymob (Apps Script) — يتحط هنا بمجرد نشر paymob_integration_gas.js
 // لحد ما يتحط رابط حقيقي، الزرار هيفضل شغال بمسار الواتساب زي ما هو دلوقتي
-const PAYMENT_API_URL = "PASTE_PAYMOB_GAS_URL_HERE";
+const PAYMENT_API_URL = "https://script.google.com/macros/s/AKfycbz30_NftznrA99ibd_07q-QTAgDBFxL71ImLxnVR51vf9mIxOOk3P-GzQucpS_80rszPw/exec";
 
 function applyLanguage(lang){
   state.lang = lang;
