@@ -422,7 +422,7 @@ const I18N = {
 };
 
 const RTL_LANGS = ["ar"];
-const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null };
+const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null, detectedCountry:null };
 
 // رابط تكامل Paymob (Apps Script) — يتحط هنا بمجرد نشر paymob_integration_gas.js
 // لحد ما يتحط رابط حقيقي، الزرار هيفضل شغال بمسار الواتساب زي ما هو دلوقتي
@@ -592,6 +592,7 @@ async function detectLocationAndCurrency(){
     const data = await res.json();
     const countryCode = (data.country_code || data.country || "").toUpperCase();
     if(!countryCode) return;
+    state.detectedCountry = countryCode; // القيمة الحقيقية من IP المتصفح — لا تتأثر بالزرار اليدوي أبداً
 
     if(countryCode === "EG"){
       setRegion("eg");
@@ -694,7 +695,8 @@ document.querySelectorAll(".cta-btn").forEach(btn=>{
           + "?action=create_payment"
           + "&tier=" + encodeURIComponent(plan)
           + "&cycle=" + encodeURIComponent(state.cycle)
-          + "&device_id=" + encodeURIComponent(deviceId.replace(/-/g, ""));
+          + "&device_id=" + encodeURIComponent(deviceId.replace(/-/g, ""))
+          + "&verified_country=" + encodeURIComponent(state.detectedCountry || "");
         const res = await fetch(url);
         const data = await res.json();
         if(data.client_secret && data.public_key){
