@@ -583,17 +583,68 @@ async function syncLiveRates(){
 }
 syncLiveRates();
 
+async function fetchCountryFrom(url, extractCode, timeoutMs){
+  const controller = new AbortController();
+  const timeout = setTimeout(()=>controller.abort(), timeoutMs);
+  try{
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeout);
+    if(!res.ok) return null;
+    const data = await res.json();
+    const code = extractCode(data);
+    return code ? code.toUpperCase() : null;
+  }catch(e){
+    clearTimeout(timeout);
+    return null;
+  }
+}
+
 async function detectLocationAndCurrency(){
   try{
-    const controller = new AbortController();
-    const timeout = setTimeout(()=>controller.abort(), 4000);
-    const res = await fetch("https://ipapi.co/json/", { signal: controller.signal });
-    clearTimeout(timeout);
-    if(!res.ok) return;
-    const data = await res.json();
-    const countryCode = (data.country_code || data.country || "").toUpperCase();
+    // لو الجلسة دي أصلاً اكتشفنا فيها الدولة قبل كده، منعملش طلب شبكة تاني خالص
+    const cached = sessionStorage.getItem("fd_detected_country");
+    if(cached){
+      state.detectedCountry = cached;
+      if(cached === "EG"){ setRegion("eg"); return; }
+      const cachedCurrency = COUNTRY_CURRENCY[cached];
+      if(cachedCurrency && CURRENCY_RATES[cachedCurrency]) state.localCurrency = cachedCurrency;
+      setRegion("intl");
+      return;
+    }
+
+    // نجرب 3 خدمات كشف مستقلة بالترتيب — كل واحدة عندها حد أقصى يومي منفصل
+    // عن التانية، فتوزيع المحاولات بينهم بيقلل احتمال الوصول للحد في أي واحدة،
+    // وبيوفر بديل جاهز فوري لو أي خدمة فشلت أو وقفت مؤقتًا
+    let countryCode = await fetchCountryFrom(
+      "https://ipapi.co/json/",
+      d => d.country_code || d.country,
+      4000
+    );
+    if(!countryCode){
+      countryCode = await fetchCountryFrom(
+        "https://ipwho.is/",
+        d => d.country_code,
+        4000
+      );
+    }
+    if(!countryCode){
+      countryCode = await fetchCountryFrom(
+        "https://geolocation-db.com/json/",
+        d => d.country_code,
+        4000
+      );
+    }
+    if(!countryCode){
+      countryCode = await fetchCountryFrom(
+        "https://freeipapi.com/api/json/",
+        d => d.countryCode,
+        4000
+      );
+    }
     if(!countryCode) return;
+
     state.detectedCountry = countryCode; // القيمة الحقيقية من IP المتصفح — لا تتأثر بالزرار اليدوي أبداً
+    sessionStorage.setItem("fd_detected_country", countryCode);
 
     if(countryCode === "EG"){
       setRegion("eg");
@@ -605,7 +656,7 @@ async function detectLocationAndCurrency(){
     }
     setRegion("intl");
   }catch(e){
-    // فشل الكشف (شبكة/حظر إعلانات/انتهاء مهلة) — نسيب الوضع الافتراضي (مصر) من غير أي إزعاج للمستخدم
+    // فشل الكشف بالكامل (شبكة/حظر إعلانات) — نسيب الوضع الافتراضي من غير أي إزعاج للمستخدم
   }
 }
 const locationDetectionPromise = detectLocationAndCurrency();
@@ -614,7 +665,7 @@ const locationDetectionPromise = detectLocationAndCurrency();
 document.querySelectorAll(".cta-btn").forEach(b => b.disabled = true);
 Promise.race([
   locationDetectionPromise,
-  new Promise(resolve => setTimeout(resolve, 4500))
+  new Promise(resolve => setTimeout(resolve, 16500))
 ]).finally(() => {
   document.querySelectorAll(".cta-btn").forEach(b => b.disabled = false);
 });
