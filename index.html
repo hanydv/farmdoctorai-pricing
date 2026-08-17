@@ -106,7 +106,6 @@
   .check{color:var(--leaf);font-weight:900;flex-shrink:0;}
   .cross{color:#c9c9c0;font-weight:900;flex-shrink:0;}
   .card .cta-btn{display:block; text-align:center; text-decoration:none; background:var(--forest); color:#fff; font-weight:800; padding:13px; border-radius:12px; font-size:.9rem; cursor:pointer; border:none; width:100%;}
-  .card .cta-btn:disabled{opacity:.55; cursor:default;}
   .card.featured .cta-btn{background:var(--wheat); color:var(--forest);}
   .card.basic .cta-btn{background:var(--leaf);}
 
@@ -166,7 +165,7 @@
 </header>
 
 <section class="hero">
-  <div class="eyebrow" data-i18n="hero_eyebrow">🌱 جرّب 5 أيام مجانًا قبل ما تختار</div>
+  <div class="eyebrow" data-i18n="hero_eyebrow">🌱 جرّب 3 أيام مجانًا قبل ما تختار</div>
   <h1><span data-i18n="hero_title_1">زرعك يستاهل تشخيص</span> <span class="hl" data-i18n="hero_title_hl">ذكي وسريع</span><br><span data-i18n="hero_title_2">اختر الباقة اللي تناسب مزرعتك</span></h1>
   <p data-i18n="hero_sub">تشخيص فوري بالكاميرا، متابعة الطقس، وتحليل التربة والماء — بالذكاء الاصطناعي، بلغتك، وبطريقة دفع تناسبك.</p>
   <a class="cta" href="#plans" data-i18n="hero_cta">شوف الباقات</a>
@@ -200,7 +199,7 @@
       <div class="leaves">🌱</div>
       <h3 data-i18n="plan_basic">أساس</h3>
       <div class="price"><b class="p" data-eg-m="100" data-eg-y="1020" data-intl-m="4" data-intl-y="40.8">100</b> <span class="unit">جنيه / شهر</span></div>
-      <div class="limit"><span class="limit-n">15</span> <span data-i18n="per_day">طلب / يوم</span></div>
+      <div class="limit"><span class="limit-n">12</span> <span data-i18n="per_day">طلب / يوم</span></div>
       <ul>
         <li><span class="check">✓</span> <span data-i18n="feat_diag">تشخيص بالكاميرا والمعرض</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
@@ -216,7 +215,7 @@
       <div class="leaves">🌱🌿</div>
       <h3 data-i18n="plan_pro">برو</h3>
       <div class="price"><b class="p" data-eg-m="150" data-eg-y="1530" data-intl-m="6" data-intl-y="61.2">150</b> <span class="unit">جنيه / شهر</span></div>
-      <div class="limit"><span class="limit-n">35</span> <span data-i18n="per_day">طلب / يوم</span></div>
+      <div class="limit"><span class="limit-n">20</span> <span data-i18n="per_day">طلب / يوم</span></div>
       <ul>
         <li><span class="check">✓</span> <span data-i18n="feat_diag">تشخيص بالكاميرا والمعرض</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
@@ -231,7 +230,7 @@
       <div class="leaves">🌱🌿🌾</div>
       <h3 data-i18n="plan_max">ماكس</h3>
       <div class="price"><b class="p" data-eg-m="250" data-eg-y="2550" data-intl-m="10" data-intl-y="102">250</b> <span class="unit">جنيه / شهر</span></div>
-      <div class="limit"><span class="limit-n">60</span> <span data-i18n="per_day">طلب / يوم</span></div>
+      <div class="limit"><span class="limit-n">35</span> <span data-i18n="per_day">طلب / يوم</span></div>
       <ul>
         <li><span class="check">✓</span> <span data-i18n="feat_diag">تشخيص بالكاميرا والمعرض</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_consult">استشارة نصية</span></li>
@@ -276,7 +275,7 @@
   <h2 data-i18n="faq_title">أسئلة شائعة</h2>
   <details>
     <summary data-i18n="faq1_q">هل فيه تجربة مجانية؟</summary>
-    <p data-i18n="faq1_a">أيوه، 5 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 3 طلبات في اليوم، من غير أي دفع أو بطاقة.</p>
+    <p data-i18n="faq1_a">أيوه، 3 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.</p>
   </details>
   <details>
     <summary data-i18n="faq2_q">الكود بيشتغل على جهاز واحد ولا أكتر؟</summary>
@@ -335,7 +334,7 @@
 const I18N = {
   app_name:{ar:"طبيب المزرعة الذكي",en:"FarmDoctorAI",fr:"FarmDoctorAI",zh:"FarmDoctorAI 智慧農場醫生",hi:"फार्मडॉक्टरएआई"},
   nav_contact:{ar:"تواصل واتساب",en:"Contact WhatsApp",fr:"Contacter WhatsApp",zh:"聯繫 WhatsApp",hi:"व्हाट्सएप्प से संपर्क करें"},
-  hero_eyebrow:{ar:"🌱 جرّب 5 أيام مجانًا قبل ما تختار",en:"🌱 Try 5 days free before you choose",fr:"🌱 Essayez 5 jours gratuitement avant de choisir",zh:"🌱 選擇前先免費試用5天",hi:"🌱 चुनने से पहले 5 दिन मुफ़्त आज़माएं"},
+  hero_eyebrow:{ar:"🌱 جرّب 3 أيام مجانًا قبل ما تختار",en:"🌱 Try 3 days free before you choose",fr:"🌱 Essayez 3 jours gratuitement avant de choisir",zh:"🌱 選擇前先免費試用3天",hi:"🌱 चुनने से पहले 3 दिन मुफ़्त आज़माएं"},
   hero_title_1:{ar:"زرعك يستاهل تشخيص",en:"Your crop deserves",fr:"Votre récolte mérite",zh:"您的作物值得",hi:"आपकी फ़सल के लिए चाहिए"},
   hero_title_hl:{ar:"ذكي وسريع",en:"smart, fast diagnosis",fr:"un diagnostic rapide et intelligent",zh:"智慧快速的診斷",hi:"स्मार्ट और तेज़ निदान"},
   hero_title_2:{ar:"اختر الباقة اللي تناسب مزرعتك",en:"Choose the plan that fits your farm",fr:"Choisissez le forfait adapté à votre ferme",zh:"選擇適合您農場的方案",hi:"अपने खेत के लिए सही प्लान चुनें"},
@@ -374,7 +373,7 @@ const I18N = {
   step2_body:{ar:"بعد تأكيد الدفع، دوس على رابط التفعيل وهيفتح التطبيق ويشتغل على طول.",en:"After payment confirmation, tap the activation link and the app will open and start working right away.",fr:"Après confirmation du paiement, appuyez sur le lien d'activation et l'application s'ouvrira et fonctionnera immédiatement.",zh:"付款確認後，點擊啟用連結，應用程式將立即開啟並開始運作。",hi:"भुगतान की पुष्टि के बाद, सक्रियण लिंक पर टैप करें और ऐप तुरंत खुलकर काम करना शुरू कर देगा।"},
   faq_title:{ar:"أسئلة شائعة",en:"Frequently Asked Questions",fr:"Questions Fréquentes",zh:"常見問題",hi:"अक्सर पूछे जाने वाले प्रश्न"},
   faq1_q:{ar:"هل فيه تجربة مجانية؟",en:"Is there a free trial?",fr:"Y a-t-il un essai gratuit ?",zh:"有免費試用嗎？",hi:"क्या कोई मुफ़्त ट्रायल है?"},
-  faq1_a:{ar:"أيوه، 5 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 3 طلبات في اليوم، من غير أي دفع أو بطاقة.",en:"Yes, 5 free days with all features (diagnosis + weather + soil), up to 3 requests per day, no payment or card required.",fr:"Oui, 5 jours d'essai gratuit avec toutes les fonctionnalités (diagnostic + météo + sol), jusqu'à 3 demandes par jour, sans paiement ni carte.",zh:"是的，5天免費試用所有功能（診斷+天氣+土壤），每日最多3次請求，無需付款或信用卡。",hi:"हां, सभी सुविधाओं के साथ 5 दिन का मुफ़्त ट्रायल (निदान + मौसम + मिट्टी), प्रतिदिन अधिकतम 3 अनुरोध, बिना किसी भुगतान या कार्ड के।"},
+  faq1_a:{ar:"أيوه، 3 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.",en:"Yes, 3 free days with all features (diagnosis + weather + soil), up to 4 requests per day, no payment or card required.",fr:"Oui, 3 jours d'essai gratuit avec toutes les fonctionnalités (diagnostic + météo + sol), jusqu'à 4 demandes par jour, sans paiement ni carte.",zh:"是的，3天免費試用所有功能（診斷+天氣+土壤），每日最多4次請求，無需付款或信用卡。",hi:"हां, सभी सुविधाओं के साथ 3 दिन का मुफ़्त ट्रायल (निदान + मौसम + मिट्टी), प्रतिदिन अधिकतम 4 अनुरोध, बिना किसी भुगतान या कार्ड के।"},
   faq2_q:{ar:"الكود بيشتغل على جهاز واحد ولا أكتر؟",en:"Does the code work on one device or more?",fr:"Le code fonctionne-t-il sur un ou plusieurs appareils ?",zh:"代碼可在一台還是多台裝置上使用？",hi:"क्या कोड एक डिवाइस पर या अधिक पर काम करता है?"},
   faq2_a:{ar:"الكود مرتبط بمعرف جهازك، فيشتغل على نفس الجهاز حتى لو مسحت التطبيق وثبتّه تاني.",en:"The code is linked to your device ID, so it works on the same device even if you delete and reinstall the app.",fr:"Le code est lié à l'identifiant de votre appareil, il fonctionne donc sur le même appareil même si vous supprimez et réinstallez l'application.",zh:"代碼與您的裝置編號綁定，即使刪除並重新安裝應用程式，仍可在同一裝置上使用。",hi:"कोड आपकी डिवाइस आईडी से जुड़ा है, इसलिए ऐप को हटाने और फिर से इंस्टॉल करने पर भी यह उसी डिवाइस पर काम करता है।"},
   faq3_q:{ar:"إمتى الاشتراك بينتهي؟",en:"When does the subscription expire?",fr:"Quand l'abonnement expire-t-il ?",zh:"訂閱何時到期？",hi:"सदस्यता कब समाप्त होती है?"},
@@ -423,7 +422,7 @@ const I18N = {
 };
 
 const RTL_LANGS = ["ar"];
-const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null, detectedCountry:null };
+const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null };
 
 // رابط تكامل Paymob (Apps Script) — يتحط هنا بمجرد نشر paymob_integration_gas.js
 // لحد ما يتحط رابط حقيقي، الزرار هيفضل شغال بمسار الواتساب زي ما هو دلوقتي
@@ -583,68 +582,16 @@ async function syncLiveRates(){
 }
 syncLiveRates();
 
-async function fetchCountryFrom(url, extractCode, timeoutMs){
-  const controller = new AbortController();
-  const timeout = setTimeout(()=>controller.abort(), timeoutMs);
-  try{
-    const res = await fetch(url, { signal: controller.signal });
-    clearTimeout(timeout);
-    if(!res.ok) return null;
-    const data = await res.json();
-    const code = extractCode(data);
-    return code ? code.toUpperCase() : null;
-  }catch(e){
-    clearTimeout(timeout);
-    return null;
-  }
-}
-
 async function detectLocationAndCurrency(){
   try{
-    // لو الجلسة دي أصلاً اكتشفنا فيها الدولة قبل كده، منعملش طلب شبكة تاني خالص
-    const cached = sessionStorage.getItem("fd_detected_country");
-    if(cached){
-      state.detectedCountry = cached;
-      if(cached === "EG"){ setRegion("eg"); return; }
-      const cachedCurrency = COUNTRY_CURRENCY[cached];
-      if(cachedCurrency && CURRENCY_RATES[cachedCurrency]) state.localCurrency = cachedCurrency;
-      setRegion("intl");
-      return;
-    }
-
-    // نجرب 3 خدمات كشف مستقلة بالترتيب — كل واحدة عندها حد أقصى يومي منفصل
-    // عن التانية، فتوزيع المحاولات بينهم بيقلل احتمال الوصول للحد في أي واحدة،
-    // وبيوفر بديل جاهز فوري لو أي خدمة فشلت أو وقفت مؤقتًا
-    let countryCode = await fetchCountryFrom(
-      "https://ipapi.co/json/",
-      d => d.country_code || d.country,
-      4000
-    );
-    if(!countryCode){
-      countryCode = await fetchCountryFrom(
-        "https://ipwho.is/",
-        d => d.country_code,
-        4000
-      );
-    }
-    if(!countryCode){
-      countryCode = await fetchCountryFrom(
-        "https://geolocation-db.com/json/",
-        d => d.country_code,
-        4000
-      );
-    }
-    if(!countryCode){
-      countryCode = await fetchCountryFrom(
-        "https://freeipapi.com/api/json/",
-        d => d.countryCode,
-        4000
-      );
-    }
+    const controller = new AbortController();
+    const timeout = setTimeout(()=>controller.abort(), 4000);
+    const res = await fetch("https://ipapi.co/json/", { signal: controller.signal });
+    clearTimeout(timeout);
+    if(!res.ok) return;
+    const data = await res.json();
+    const countryCode = (data.country_code || data.country || "").toUpperCase();
     if(!countryCode) return;
-
-    state.detectedCountry = countryCode; // القيمة الحقيقية من IP المتصفح — لا تتأثر بالزرار اليدوي أبداً
-    sessionStorage.setItem("fd_detected_country", countryCode);
 
     if(countryCode === "EG"){
       setRegion("eg");
@@ -656,19 +603,10 @@ async function detectLocationAndCurrency(){
     }
     setRegion("intl");
   }catch(e){
-    // فشل الكشف بالكامل (شبكة/حظر إعلانات) — نسيب الوضع الافتراضي من غير أي إزعاج للمستخدم
+    // فشل الكشف (شبكة/حظر إعلانات/انتهاء مهلة) — نسيب الوضع الافتراضي (مصر) من غير أي إزعاج للمستخدم
   }
 }
-const locationDetectionPromise = detectLocationAndCurrency();
-// نقفل أزرار الاشتراك مؤقتًا لحد ما نتأكد من الدولة الحقيقية، فمفيش أي
-// انتظار محسوس وقت الدوسة نفسها — الزرار ببساطة مش هيبان جاهز إلا وهو فعلاً جاهز
-document.querySelectorAll(".cta-btn").forEach(b => b.disabled = true);
-Promise.race([
-  locationDetectionPromise,
-  new Promise(resolve => setTimeout(resolve, 16500))
-]).finally(() => {
-  document.querySelectorAll(".cta-btn").forEach(b => b.disabled = false);
-});
+detectLocationAndCurrency();
 
 document.getElementById("regionToggle").addEventListener("click", e=>{
   if(e.target.tagName!=="BUTTON" && !e.target.closest("button")) return;
@@ -752,23 +690,22 @@ document.querySelectorAll(".cta-btn").forEach(btn=>{
       btn.textContent = "...";
       btn.disabled = true;
       try{
-        const url = PAYMENT_API_URL
-          + "?action=create_payment"
-          + "&tier=" + encodeURIComponent(plan)
-          + "&cycle=" + encodeURIComponent(state.cycle)
-          + "&device_id=" + encodeURIComponent(deviceId.replace(/-/g, ""))
-          + "&verified_country=" + encodeURIComponent(state.detectedCountry || "");
-        const res = await fetch(url);
+        const res = await fetch(PAYMENT_API_URL, {
+          method: "POST",
+          body: JSON.stringify({
+            action: "create_payment",
+            tier: plan,
+            cycle: state.cycle,
+            device_id: deviceId.replace(/-/g, "")
+          })
+        });
         const data = await res.json();
         if(data.client_secret && data.public_key){
           const checkoutUrl = `https://accept.paymob.com/unifiedcheckout/?publicKey=${data.public_key}&clientSecret=${data.client_secret}`;
           window.location.href = checkoutUrl;
           return;
         }
-        console.error("Paymob: لم يتم استلام client_secret أو public_key. الرد الكامل:", data);
-      }catch(e){
-        console.error("Paymob: فشل الاتصال بالسيرفر:", e);
-      }
+      }catch(e){}
       // لو فشل الاتصال بـ Paymob لأي سبب، نرجع تلقائيًا لمسار الواتساب بدل ما نوقّف المزارع
       btn.textContent = originalText;
       btn.disabled = false;
