@@ -246,7 +246,7 @@
 
 <section class="paymethods">
   <h2 data-i18n="pay_title">ادفع بالطريقة اللي تناسبك</h2>
-  <p class="sub" data-i18n="pay_sub">دعم كامل لوسائل الدفع المصرية داخل مصر — والمستخدمون خارج مصر يمكنهم التواصل معنا مباشرة عبر واتساب</p>
+  <p class="sub" data-i18n="pay_sub">دعم كامل لوسائل الدفع المصرية، وبطاقات دولية لو كنت خارج مصر</p>
   <div class="pm-row">
     <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_vodafone">فودافون كاش</span></div>
     <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_fawry">فوري</span></div>
@@ -361,7 +361,7 @@ const I18N = {
   cta_pro:{ar:"اشترك في برو",en:"Subscribe to Pro",fr:"S'abonner à Pro",zh:"訂閱專業版",hi:"प्रो में सदस्यता लें"},
   cta_max:{ar:"اشترك في ماكس",en:"Subscribe to Max",fr:"S'abonner à Max",zh:"訂閱旗艦版",hi:"मैक्स में सदस्यता लें"},
   pay_title:{ar:"ادفع بالطريقة اللي تناسبك",en:"Pay the way that suits you",fr:"Payez de la manière qui vous convient",zh:"以適合您的方式付款",hi:"अपनी सुविधा अनुसार भुगतान करें"},
-  pay_sub:{ar:"دعم كامل لوسائل الدفع المصرية داخل مصر — والمستخدمون خارج مصر يمكنهم التواصل معنا مباشرة عبر واتساب",en:"Full support for Egyptian payment methods inside Egypt — users outside Egypt can contact us directly via WhatsApp",fr:"Prise en charge complète des moyens de paiement égyptiens en Égypte — les utilisateurs hors d'Égypte peuvent nous contacter directement via WhatsApp",zh:"在埃及境內完全支援埃及付款方式——境外用戶可直接透過WhatsApp與我們聯繫",hi:"मिस्र के अंदर मिस्री भुगतान तरीकों का पूर्ण समर्थन — मिस्र के बाहर के उपयोगकर्ता सीधे व्हाट्सएप के ज़रिए हमसे संपर्क कर सकते हैं"},
+  pay_sub:{ar:"دعم كامل لوسائل الدفع المصرية، وبطاقات دولية لو كنت خارج مصر",en:"Full support for Egyptian payment methods, and international cards if you're outside Egypt",fr:"Prise en charge complète des moyens de paiement égyptiens, et cartes internationales si vous êtes hors d'Égypte",zh:"全面支援埃及付款方式，境外用戶可使用國際卡付款",hi:"मिस्र के भुगतान तरीकों के साथ-साथ मिस्र के बाहर के लिए अंतरराष्ट्रीय कार्ड समर्थन"},
   pm_vodafone:{ar:"فودافون كاش",en:"Vodafone Cash",fr:"Vodafone Cash",zh:"Vodafone Cash",hi:"वोडाफोन कैश"},
   pm_fawry:{ar:"فوري",en:"Fawry",fr:"Fawry",zh:"Fawry",hi:"फ़ॉरी"},
   pm_bank:{ar:"تحويل بنكي",en:"Bank Transfer",fr:"Virement Bancaire",zh:"銀行轉帳",hi:"बैंक ट्रांसफर"},
@@ -432,7 +432,16 @@ const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null, verifiedC
 
 // رابط تكامل Paymob (Apps Script) — يتحط هنا بمجرد نشر paymob_integration_gas.js
 // لحد ما يتحط رابط حقيقي، الزرار هيفضل شغال بمسار الواتساب زي ما هو دلوقتي
-const PAYMENT_API_URL = "https://script.google.com/macros/s/AKfycbz30_NftznrA99ibd_07q-QTAgDBFxL71ImLxnVR51vf9mIxOOk3P-GzQucpS_80rszPw/exec";
+// ⚠️ endpoint السيرفر الخاص بينا مباشرة (بورت 3000 - Node.js عبر
+// pm2)، مش رابط Google Apps Script القديم. السيرفر الخاص اتعمل أصلاً
+// عشان يبقى الوسيط الوحيد بين Google وبوابة الدفع (لحل مشكلة الـ IPs
+// المتغيرة اللي بوابة الدفع كانت بترفضها)، ونُقلت الملفات ليه
+// للأمان. Google Apps Script بقى نسخة احتياطية مُجمّدة (Cold
+// Standby) بس - لو اتضرب مباشرة، الاتصال ببوابة الدفع بيفشل لأنه مش
+// الوسيط الفعلي النشط. server.js بيقرا بس tier/cycle/device_id من
+// الرابط، فأي باراميترز زيادة تحت (action, verified_country) بتتجاهل
+// من غير أي مشكلة - مفيش داعي نلمس باقي الكود.
+const PAYMENT_API_URL = "http://5.223.55.113:3000/paymob-proxy";
 
 function applyLanguage(lang){
   state.lang = lang;
