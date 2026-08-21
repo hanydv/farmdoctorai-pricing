@@ -177,7 +177,7 @@
 
   <div class="device-id-box" id="deviceIdBox">
     <label for="deviceIdInput" data-i18n="device_id_label">معرّف جهازك (هتلاقيه داخل التطبيق في شاشة الاشتراك)</label>
-    <input type="text" id="deviceIdInput" dir="ltr" data-i18n-placeholder="device_id_placeholder" placeholder="C938-8B66-5081" maxlength="14" autocomplete="off" autocapitalize="characters">
+    <input type="text" id="deviceIdInput" dir="ltr" data-i18n-placeholder="device_id_placeholder" placeholder="C938-8B66-5081" maxlength="19" autocomplete="off" autocapitalize="characters">
     <p class="device-id-hint" data-i18n="device_id_hint">اكتبه أو الصقه هنا مرة واحدة، وهيتضاف تلقائيًا لأي باقة تختارها.</p>
     <p class="device-id-error" id="deviceIdError" data-i18n="device_id_error">من فضلك اكتب معرّف جهازك الأول قبل الاشتراك.</p>
   </div>
@@ -246,7 +246,7 @@
 
 <section class="paymethods">
   <h2 data-i18n="pay_title">ادفع بالطريقة اللي تناسبك</h2>
-  <p class="sub" data-i18n="pay_sub">دعم كامل لوسائل الدفع المصرية، وبطاقات دولية لو كنت خارج مصر</p>
+  <p class="sub" data-i18n="pay_sub">دعم كامل لوسائل الدفع المصرية داخل مصر — والمستخدمون خارج مصر يمكنهم التواصل معنا مباشرة عبر واتساب</p>
   <div class="pm-row">
     <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_vodafone">فودافون كاش</span></div>
     <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_fawry">فوري</span></div>
@@ -361,7 +361,7 @@ const I18N = {
   cta_pro:{ar:"اشترك في برو",en:"Subscribe to Pro",fr:"S'abonner à Pro",zh:"訂閱專業版",hi:"प्रो में सदस्यता लें"},
   cta_max:{ar:"اشترك في ماكس",en:"Subscribe to Max",fr:"S'abonner à Max",zh:"訂閱旗艦版",hi:"मैक्स में सदस्यता लें"},
   pay_title:{ar:"ادفع بالطريقة اللي تناسبك",en:"Pay the way that suits you",fr:"Payez de la manière qui vous convient",zh:"以適合您的方式付款",hi:"अपनी सुविधा अनुसार भुगतान करें"},
-  pay_sub:{ar:"دعم كامل لوسائل الدفع المصرية، وبطاقات دولية لو كنت خارج مصر",en:"Full support for Egyptian payment methods, and international cards if you're outside Egypt",fr:"Prise en charge complète des moyens de paiement égyptiens, et cartes internationales si vous êtes hors d'Égypte",zh:"全面支援埃及付款方式，境外用戶可使用國際卡付款",hi:"मिस्र के भुगतान तरीकों के साथ-साथ मिस्र के बाहर के लिए अंतरराष्ट्रीय कार्ड समर्थन"},
+  pay_sub:{ar:"دعم كامل لوسائل الدفع المصرية داخل مصر — والمستخدمون خارج مصر يمكنهم التواصل معنا مباشرة عبر واتساب",en:"Full support for Egyptian payment methods inside Egypt — users outside Egypt can contact us directly via WhatsApp",fr:"Prise en charge complète des moyens de paiement égyptiens en Égypte — les utilisateurs hors d'Égypte peuvent nous contacter directement via WhatsApp",zh:"在埃及境內完全支援埃及付款方式——境外用戶可直接透過WhatsApp與我們聯繫",hi:"मिस्र के अंदर मिस्री भुगतान तरीकों का पूर्ण समर्थन — मिस्र के बाहर के उपयोगकर्ता सीधे व्हाट्सएप के ज़रिए हमसे संपर्क कर सकते हैं"},
   pm_vodafone:{ar:"فودافون كاش",en:"Vodafone Cash",fr:"Vodafone Cash",zh:"Vodafone Cash",hi:"वोडाफोन कैश"},
   pm_fawry:{ar:"فوري",en:"Fawry",fr:"Fawry",zh:"Fawry",hi:"फ़ॉरी"},
   pm_bank:{ar:"تحويل بنكي",en:"Bank Transfer",fr:"Virement Bancaire",zh:"銀行轉帳",hi:"बैंक ट्रांसफर"},
@@ -422,7 +422,13 @@ const I18N = {
 };
 
 const RTL_LANGS = ["ar"];
-const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null };
+// region: بيتحدد من الكشف التلقائي بالـ IP أو من زرار المستخدم اليدوي معًا -
+// يُستخدم للعرض بس (تحديد السعر المعروض للمستخدم).
+// verifiedCountry: بيتحدد من الكشف التلقائي بالـ IP فقط (detectLocationAndCurrency)
+// ومش بيتأثر خالص بزرار المستخدم اليدوي - ده اللي بيتبعت فعليًا للسيرفر
+// كـ verified_country وقت الدفع، عشان محدش يقدر يدوس "مصر" يدويًا
+// ويوهم النظام إنه في مصر عشان ياخد السعر الأرخص وهو فعليًا مش هناك.
+const state = { region:"eg", cycle:"m", lang:"ar", localCurrency:null, verifiedCountry:null };
 
 // رابط تكامل Paymob (Apps Script) — يتحط هنا بمجرد نشر paymob_integration_gas.js
 // لحد ما يتحط رابط حقيقي، الزرار هيفضل شغال بمسار الواتساب زي ما هو دلوقتي
@@ -593,6 +599,11 @@ async function detectLocationAndCurrency(){
     const countryCode = (data.country_code || data.country || "").toUpperCase();
     if(!countryCode) return;
 
+    // القيمة دي (مش state.region) هي اللي هتتبعت فعليًا للسيرفر وقت
+    // الدفع - مبنية بس على نتيجة كشف الـ IP الحقيقي، بمعزل تام عن أي
+    // اختيار يدوي لاحق من المستخدم بزرار مصر/خارج مصر.
+    state.verifiedCountry = countryCode;
+
     if(countryCode === "EG"){
       setRegion("eg");
       return;
@@ -603,7 +614,9 @@ async function detectLocationAndCurrency(){
     }
     setRegion("intl");
   }catch(e){
-    // فشل الكشف (شبكة/حظر إعلانات/انتهاء مهلة) — نسيب الوضع الافتراضي (مصر) من غير أي إزعاج للمستخدم
+    // فشل الكشف (شبكة/حظر إعلانات/انتهاء مهلة) — نسيب الوضع الافتراضي (مصر)
+    // للعرض من غير أي إزعاج للمستخدم، لكن state.verifiedCountry بيفضل null
+    // عمدًا (مش "EG")، عشان الطلب للسيرفر ميدّعيش تحقق ماحصلش فعليًا.
   }
 }
 detectLocationAndCurrency();
@@ -690,15 +703,29 @@ document.querySelectorAll(".cta-btn").forEach(btn=>{
       btn.textContent = "...";
       btn.disabled = true;
       try{
-        const res = await fetch(PAYMENT_API_URL, {
-          method: "POST",
-          body: JSON.stringify({
-            action: "create_payment",
-            tier: plan,
-            cycle: state.cycle,
-            device_id: deviceId.replace(/-/g, "")
-          })
+        // doGet مش doPost - عشان Google Apps Script بيفقد بيانات POST
+        // أثناء الـ redirect (302) اللي بيعمله تلقائيًا، بعكس GET اللي
+        // بتحافظ على query params بعد أي إعادة توجيه (نفس السبب
+        // الموثّق في تعليق doGet() على السيرفر نفسه).
+        //
+        // verified_country: لازم تتبعت لـ createPaymentIntention() اللي
+        // بتمررها بدورها لـ paymob-proxy على Hetzner - من غيرها الـ proxy
+        // معندوش أي طريقة يتأكد إن المستخدم في مصر، فبيرجع region:UNKNOWN
+        // ويوجّه المستخدم لواتساب حتى لو فعليًا في مصر.
+        //
+        // ⚠️ عمدًا بنستخدم state.verifiedCountry هنا، مش state.region:
+        // state.region بيتغيّر بزرار "مصر/خارج مصر" اليدوي (للعرض بس)،
+        // وأي حد يقدر يدوسه بدون ما يكون فعليًا في مصر عشان ياخد السعر
+        // الأرخص. state.verifiedCountry بيتحدد بس من كشف الـ IP الحقيقي
+        // في detectLocationAndCurrency() ومش بيتأثر بالزرار اليدوي خالص.
+        const params = new URLSearchParams({
+          action: "create_payment",
+          tier: plan,
+          cycle: state.cycle,
+          device_id: deviceId.replace(/-/g, ""),
+          verified_country: state.verifiedCountry === "EG" ? "EG" : ""
         });
+        const res = await fetch(`${PAYMENT_API_URL}?${params.toString()}`);
         const data = await res.json();
         if(data.client_secret && data.public_key){
           const checkoutUrl = `https://accept.paymob.com/unifiedcheckout/?publicKey=${data.public_key}&clientSecret=${data.client_secret}`;
