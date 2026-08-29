@@ -6,7 +6,7 @@
 <title>باقات طبيب المزرعة الذكي | FarmDoctorAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@400;600;800&family=Noto+Sans+TC:wght@400;600;800&family=Noto+Sans+Devanagari:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@400;600;800&family=Noto+Sans+TC:wght@400;600;800&family=Noto+Sans+SC:wght@400;600;800&family=Noto+Sans+Devanagari:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --forest:#163a1f;
@@ -32,6 +32,12 @@
   body.lang-ar{font-family:'Noto Naskh Arabic', serif;}
   body.lang-en, body.lang-fr{font-family:'Noto Sans', sans-serif;}
   body.lang-zh{font-family:'Noto Sans TC', sans-serif;}
+  body.lang-zh_cn{font-family:'Noto Sans SC', sans-serif;}
+  /* فيسبوك ويوتيوب محجوبين في الصين البرّية - نخفيهم تلقائيًا لـ zh_cn */
+  body.lang-zh_cn #socialLinks{display:none !important;}
+  /* ملاحظة "متاح عبر متجر هواوي" - ظاهرة بس لما zh_cn تبقى اللغة النشطة فعليًا */
+  #zhCnNote{display:none;}
+  body.lang-zh_cn #zhCnNote{display:block;}
   body.lang-hi{font-family:'Noto Sans Devanagari', sans-serif;}
 
   h1,h2,h3,.display{font-weight:800;margin:0;color:var(--forest);}
@@ -157,6 +163,8 @@
         <button type="button" data-lang="en">English</button>
         <button type="button" data-lang="fr">Français</button>
         <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="zh_cn">简体中文</button>
+        <div id="zhCnNote" style="font-size:.62rem;color:var(--muted);text-align:center;padding:0 6px;line-height:1.3;">可通过华为应用市场下载 App</div>
         <button type="button" data-lang="hi">हिन्दी</button>
       </div>
       <a class="wa-btn" href="https://wa.me/201063732596" target="_blank" data-i18n="nav_contact">تواصل واتساب</a>
@@ -316,6 +324,16 @@
     <a class="wa-btn" href="https://wa.me/201063732596" target="_blank" data-i18n="footer_wa">تواصل معنا على واتساب</a>
     <a class="wa-btn" data-mail-link href="mailto:hanyk201@gmail.com?subject=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D9%85%D9%86%20%D8%B5%D9%81%D8%AD%D8%A9%20FarmDoctorAI&body=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%0A%0A%D9%85%D8%B9%D8%B1%D9%91%D9%81%20%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%3A%20%0A%D8%B1%D8%B3%D8%A7%D9%84%D8%AA%D9%8A%3A%20%0A">hanyk201@gmail.com</a>
   </div>
+  <!-- روابط التواصل الاجتماعي - فيسبوك ويوتيوب مخفيين تلقائيًا للغة zh_cn
+       (محجوبين في الصين البرّية). لما تتوفر بدائل صينية (Weibo/Douyin/
+       Bilibili)، تتضاف هنا في حاوية منفصلة تظهر بس لـ zh_cn. -->
+  <div id="socialLinks" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px;">
+    <a class="wa-btn" href="https://www.facebook.com/share/1EMSUCP5KU/" target="_blank" data-i18n="footer_facebook">فيسبوك</a>
+    <a class="wa-btn" href="https://www.youtube.com/@FarmDoctorAI" target="_blank" data-i18n="footer_youtube">يوتيوب</a>
+  </div>
+  <!-- روابط تحميل التطبيق (Google Play / متجر هواوي) - هتتضاف هنا لما
+       تكون النسخ متاحة رسميًا على المتاجر (Google Play جاهز فعليًا،
+       هواوي لسه قيد الرفع). -->
   <div class="links" style="margin-top:6px;">
     <a href="tel:+201063732596" style="color:inherit;">+20 106 373 2596</a>
   </div>
@@ -332,71 +350,74 @@
 <script>
 // ============ الترجمات — نفس مفاتيح translations.py حيث أمكن ============
 const I18N = {
-  app_name:{ar:"طبيب المزرعة الذكي",en:"FarmDoctorAI",fr:"FarmDoctorAI",zh:"FarmDoctorAI 智慧農場醫生",hi:"फार्मडॉक्टरएआई"},
-  nav_contact:{ar:"تواصل واتساب",en:"Contact WhatsApp",fr:"Contacter WhatsApp",zh:"聯繫 WhatsApp",hi:"व्हाट्सएप्प से संपर्क करें"},
-  hero_eyebrow:{ar:"🌱 جرّب 3 أيام مجانًا قبل ما تختار",en:"🌱 Try 3 days free before you choose",fr:"🌱 Essayez 3 jours gratuitement avant de choisir",zh:"🌱 選擇前先免費試用3天",hi:"🌱 चुनने से पहले 3 दिन मुफ़्त आज़माएं"},
-  hero_title_1:{ar:"زرعك يستاهل تشخيص",en:"Your crop deserves",fr:"Votre récolte mérite",zh:"您的作物值得",hi:"आपकी फ़सल के लिए चाहिए"},
-  hero_title_hl:{ar:"ذكي وسريع",en:"smart, fast diagnosis",fr:"un diagnostic rapide et intelligent",zh:"智慧快速的診斷",hi:"स्मार्ट और तेज़ निदान"},
-  hero_title_2:{ar:"اختر الباقة اللي تناسب مزرعتك",en:"Choose the plan that fits your farm",fr:"Choisissez le forfait adapté à votre ferme",zh:"選擇適合您農場的方案",hi:"अपने खेत के लिए सही प्लान चुनें"},
-  hero_sub:{ar:"تشخيص فوري بالكاميرا، متابعة الطقس، وتحليل التربة والماء — بالذكاء الاصطناعي، بلغتك، وبطريقة دفع تناسبك.",en:"Instant camera diagnosis, weather tracking, and soil & water analysis — powered by AI, in your language, with a payment method that suits you.",fr:"Diagnostic instantané par caméra, suivi météo et analyse du sol et de l'eau — grâce à l'IA, dans votre langue, avec un mode de paiement qui vous convient.",zh:"相機即時診斷、天氣追蹤、土壤與水質分析——由AI驅動，支援您的語言，並提供適合您的付款方式。",hi:"कैमरे से तुरंत निदान, मौसम की जानकारी, और मिट्टी व पानी का विश्लेषण — AI द्वारा संचालित, आपकी भाषा में, और आपके अनुकूल भुगतान तरीके के साथ।"},
-  hero_cta:{ar:"شوف الباقات",en:"View Plans",fr:"Voir les Forfaits",zh:"查看方案",hi:"प्लान देखें"},
-  growth_title:{ar:"كل باقة تفتحلك خطوة جديدة",en:"Each plan unlocks a new step",fr:"Chaque forfait débloque une nouvelle étape",zh:"每個方案解鎖新階段",hi:"हर प्लान एक नया कदम खोलता है"},
-  growth_sub:{ar:"من التشخيص الأساسي، لتحليل التربة والماء، للطقس الذكي الحصري — كل ما تكبر الباقة، تكبر معاها إمكانياتك.",en:"From basic diagnosis, to soil & water analysis, to exclusive smart weather — the bigger the plan, the more you unlock.",fr:"Du diagnostic de base à l'analyse du sol et de l'eau, jusqu'à la météo intelligente exclusive — plus le forfait grandit, plus vos possibilités grandissent.",zh:"從基本診斷、土壤與水質分析，到專屬智慧天氣——方案越高階，解鎖的功能越多。",hi:"बुनियादी निदान से लेकर मिट्टी व पानी विश्लेषण और विशेष स्मार्ट मौसम तक — जितना बड़ा प्लान, उतनी ज़्यादा सुविधाएं।"},
-  plan_basic:{ar:"أساس",en:"Basic",fr:"Basique",zh:"基本",hi:"बेसिक"},
-  plan_pro:{ar:"برو",en:"Pro",fr:"Pro",zh:"專業版",hi:"प्रो"},
-  plan_max:{ar:"ماكس",en:"Max",fr:"Max",zh:"旗艦版",hi:"मैक्स"},
-  region_egypt:{ar:"مصر",en:"Egypt",fr:"Égypte",zh:"埃及",hi:"मिस्र"},
-  region_intl:{ar:"خارج مصر",en:"Outside Egypt",fr:"Hors Égypte",zh:"埃及境外",hi:"मिस्र के बाहर"},
-  cycle_monthly:{ar:"شهري",en:"Monthly",fr:"Mensuel",zh:"每月",hi:"मासिक"},
-  cycle_yearly:{ar:"سنوي",en:"Yearly",fr:"Annuel",zh:"每年",hi:"वार्षिक"},
-  save_badge:{ar:"وفّر 15%",en:"Save 15%",fr:"Économisez 15%",zh:"節省15%",hi:"15% बचाएं"},
-  per_day:{ar:"طلب / يوم",en:"requests / day",fr:"demandes / jour",zh:"次 / 天",hi:"अनुरोध / दिन"},
-  feat_diag:{ar:"تشخيص بالكاميرا والمعرض",en:"Camera & gallery diagnosis",fr:"Diagnostic caméra et galerie",zh:"相機與相簿診斷",hi:"कैमरा और गैलरी निदान"},
-  feat_consult:{ar:"استشارة نصية",en:"Text consultation",fr:"Consultation textuelle",zh:"文字諮詢",hi:"टेक्स्ट परामर्श"},
-  feat_weather:{ar:"الطقس الذكي",en:"Smart Weather",fr:"Météo Intelligente",zh:"智慧天氣",hi:"स्मार्ट मौसम"},
-  feat_soil:{ar:"تحليل التربة والماء",en:"Soil & Water Analysis",fr:"Analyse du Sol et de l'Eau",zh:"土壤與水質分析",hi:"मिट्टी और पानी का विश्लेषण"},
-  feat_weeds:{ar:"تحديد الحشائش",en:"Weed Identification",fr:"Identification des Mauvaises Herbes",zh:"雜草辨識",hi:"खरपतवार पहचान"},
-  badge_popular:{ar:"الأكثر طلبًا",en:"Most Popular",fr:"Le Plus Populaire",zh:"最受歡迎",hi:"सबसे लोकप्रिय"},
-  cta_basic:{ar:"اشترك في أساس",en:"Subscribe to Basic",fr:"S'abonner à Basique",zh:"訂閱基本方案",hi:"बेसिक में सदस्यता लें"},
-  cta_pro:{ar:"اشترك في برو",en:"Subscribe to Pro",fr:"S'abonner à Pro",zh:"訂閱專業版",hi:"प्रो में सदस्यता लें"},
-  cta_max:{ar:"اشترك في ماكس",en:"Subscribe to Max",fr:"S'abonner à Max",zh:"訂閱旗艦版",hi:"मैक्स में सदस्यता लें"},
-  pay_title:{ar:"ادفع بالطريقة اللي تناسبك",en:"Pay the way that suits you",fr:"Payez de la manière qui vous convient",zh:"以適合您的方式付款",hi:"अपनी सुविधा अनुसार भुगतान करें"},
-  pay_sub:{ar:"دعم كامل لوسائل الدفع المصرية، وبطاقات دولية لو كنت خارج مصر",en:"Full support for Egyptian payment methods, and international cards if you're outside Egypt",fr:"Prise en charge complète des moyens de paiement égyptiens, et cartes internationales si vous êtes hors d'Égypte",zh:"全面支援埃及付款方式，境外用戶可使用國際卡付款",hi:"मिस्र के भुगतान तरीकों के साथ-साथ मिस्र के बाहर के लिए अंतरराष्ट्रीय कार्ड समर्थन"},
-  pm_vodafone:{ar:"فودافون كاش",en:"Vodafone Cash",fr:"Vodafone Cash",zh:"Vodafone Cash",hi:"वोडाफोन कैश"},
-  pm_fawry:{ar:"فوري",en:"Fawry",fr:"Fawry",zh:"Fawry",hi:"फ़ॉरी"},
-  pm_bank:{ar:"تحويل بنكي",en:"Bank Transfer",fr:"Virement Bancaire",zh:"銀行轉帳",hi:"बैंक ट्रांसफर"},
-  pm_card:{ar:"بطاقة دولية",en:"International Card",fr:"Carte Internationale",zh:"國際信用卡",hi:"अंतरराष्ट्रीय कार्ड"},
-  steps_title:{ar:"إزاي تفعّل اشتراكك؟",en:"How to activate your subscription?",fr:"Comment activer votre abonnement ?",zh:"如何啟用您的訂閱？",hi:"अपनी सदस्यता कैसे सक्रिय करें?"},
-  step1_title:{ar:"اختار باقتك وادفع",en:"Choose your plan & pay",fr:"Choisissez votre forfait et payez",zh:"選擇方案並付款",hi:"अपना प्लान चुनें और भुगतान करें"},
-  step1_body:{ar:"اختار الباقة والمدة، وادفع بأي وسيلة من اللي فوق.",en:"Choose the plan and duration, and pay with any method above.",fr:"Choisissez le forfait et la durée, et payez avec l'une des méthodes ci-dessus.",zh:"選擇方案與週期，並使用上述任一方式付款。",hi:"प्लान और अवधि चुनें, और ऊपर दी गई किसी भी विधि से भुगतान करें।"},
-  step2_title:{ar:"التطبيق هيتفعّل تلقائي",en:"The app activates automatically",fr:"L'application s'active automatiquement",zh:"應用程式將自動啟用",hi:"ऐप अपने आप सक्रिय हो जाएगा"},
-  step2_body:{ar:"بعد تأكيد الدفع، دوس على رابط التفعيل وهيفتح التطبيق ويشتغل على طول.",en:"After payment confirmation, tap the activation link and the app will open and start working right away.",fr:"Après confirmation du paiement, appuyez sur le lien d'activation et l'application s'ouvrira et fonctionnera immédiatement.",zh:"付款確認後，點擊啟用連結，應用程式將立即開啟並開始運作。",hi:"भुगतान की पुष्टि के बाद, सक्रियण लिंक पर टैप करें और ऐप तुरंत खुलकर काम करना शुरू कर देगा।"},
-  faq_title:{ar:"أسئلة شائعة",en:"Frequently Asked Questions",fr:"Questions Fréquentes",zh:"常見問題",hi:"अक्सर पूछे जाने वाले प्रश्न"},
-  faq1_q:{ar:"هل فيه تجربة مجانية؟",en:"Is there a free trial?",fr:"Y a-t-il un essai gratuit ?",zh:"有免費試用嗎？",hi:"क्या कोई मुफ़्त ट्रायल है?"},
-  faq1_a:{ar:"أيوه، 3 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.",en:"Yes, 3 free days with all features (diagnosis + weather + soil), up to 4 requests per day, no payment or card required.",fr:"Oui, 3 jours d'essai gratuit avec toutes les fonctionnalités (diagnostic + météo + sol), jusqu'à 4 demandes par jour, sans paiement ni carte.",zh:"是的，3天免費試用所有功能（診斷+天氣+土壤），每日最多4次請求，無需付款或信用卡。",hi:"हां, सभी सुविधाओं के साथ 3 दिन का मुफ़्त ट्रायल (निदान + मौसम + मिट्टी), प्रतिदिन अधिकतम 4 अनुरोध, बिना किसी भुगतान या कार्ड के।"},
-  faq2_q:{ar:"الكود بيشتغل على جهاز واحد ولا أكتر؟",en:"Does the code work on one device or more?",fr:"Le code fonctionne-t-il sur un ou plusieurs appareils ?",zh:"代碼可在一台還是多台裝置上使用？",hi:"क्या कोड एक डिवाइस पर या अधिक पर काम करता है?"},
-  faq2_a:{ar:"الكود مرتبط بمعرف جهازك، فيشتغل على نفس الجهاز حتى لو مسحت التطبيق وثبتّه تاني.",en:"The code is linked to your device ID, so it works on the same device even if you delete and reinstall the app.",fr:"Le code est lié à l'identifiant de votre appareil, il fonctionne donc sur le même appareil même si vous supprimez et réinstallez l'application.",zh:"代碼與您的裝置編號綁定，即使刪除並重新安裝應用程式，仍可在同一裝置上使用。",hi:"कोड आपकी डिवाइस आईडी से जुड़ा है, इसलिए ऐप को हटाने और फिर से इंस्टॉल करने पर भी यह उसी डिवाइस पर काम करता है।"},
-  faq3_q:{ar:"إمتى الاشتراك بينتهي؟",en:"When does the subscription expire?",fr:"Quand l'abonnement expire-t-il ?",zh:"訂閱何時到期？",hi:"सदस्यता कब समाप्त होती है?"},
-  faq3_a:{ar:"حسب المدة اللي اخترتها (شهري أو سنوي)، وهتلاقي تاريخ الانتهاء ظاهر داخل شاشة الاشتراك بالتطبيق.",en:"Based on the duration you chose (monthly or yearly); you'll find the expiry date shown in the subscription screen in the app.",fr:"Selon la durée choisie (mensuelle ou annuelle), vous trouverez la date d'expiration affichée dans l'écran d'abonnement de l'application.",zh:"根據您選擇的週期（每月或每年），到期日將顯示在應用程式的訂閱畫面中。",hi:"आपके चुने गए अवधि (मासिक या वार्षिक) के अनुसार, समाप्ति तिथि ऐप की सदस्यता स्क्रीन में दिखाई देगी।"},
-  faq4_q:{ar:"ممكن أغيّر باقتي بعدين؟",en:"Can I change my plan later?",fr:"Puis-je changer de forfait plus tard ?",zh:"之後可以更改方案嗎？",hi:"क्या मैं बाद में अपना प्लान बदल सकता हूँ?"},
-  faq4_a:{ar:"أكيد، تقدر تشترك في باقة أعلى في أي وقت من نفس الصفحة دي.",en:"Sure, you can subscribe to a higher plan anytime from this same page.",fr:"Bien sûr, vous pouvez vous abonner à un forfait supérieur à tout moment depuis cette même page.",zh:"當然，您可以隨時透過此頁面訂閱更高階的方案。",hi:"ज़रूर, आप कभी भी इसी पेज से उच्च प्लान की सदस्यता ले सकते हैं।"},
-  footer_wa:{ar:"تواصل معنا على واتساب",en:"Contact us on WhatsApp",fr:"Contactez-nous sur WhatsApp",zh:"透過WhatsApp聯繫我們",hi:"व्हाट्सएप्प पर हमसे संपर्क करें"},
-  footer_privacy:{ar:"سياسة الخصوصية",en:"Privacy Policy",fr:"Politique de Confidentialité",zh:"隱私政策",hi:"गोपनीयता नीति"},
-  footer_refund:{ar:"سياسة الاسترجاع والإلغاء",en:"Refund & Cancellation Policy",fr:"Politique de Remboursement et d'Annulation",zh:"退款與取消政策",hi:"रिफंड और रद्दीकरण नीति"},
-  footer_delivery:{ar:"سياسة التسليم",en:"Delivery Policy",fr:"Politique de Livraison",zh:"交付政策",hi:"डिलीवरी नीति"},
-  about_title:{ar:"من نحن",en:"About Us",fr:"À Propos de Nous",zh:"關於我們",hi:"हमारे बारे में"},
-  about_body:{ar:"FarmDoctorAI (طبيب المزرعة الذكي) تطبيق ذكاء اصطناعي مصري يساعد المزارعين على تشخيص أمراض المحاصيل، وتحليل التربة والماء، ومتابعة الطقس الزراعي، بلغتهم الأصلية وبأسلوب بسيط وسريع. نعمل على جعل التقنيات الحديثة في متناول كل مزارع، بغض النظر عن حجم أرضه أو خبرته التقنية.",en:"FarmDoctorAI is an Egyptian AI application that helps farmers diagnose crop diseases, analyze soil and water, and track agricultural weather — in their own language, simply and quickly. We work to make modern technology accessible to every farmer, regardless of farm size or technical experience.",fr:"FarmDoctorAI est une application d'intelligence artificielle égyptienne qui aide les agriculteurs à diagnostiquer les maladies des cultures, analyser le sol et l'eau, et suivre la météo agricole — dans leur propre langue, simplement et rapidement. Nous travaillons à rendre la technologie moderne accessible à chaque agriculteur, quelle que soit la taille de sa ferme ou son expérience technique.",zh:"FarmDoctorAI 是一款埃及人工智慧應用程式，協助農民診斷作物病害、分析土壤與水質，並追蹤農業氣象——使用他們自己的語言，簡單又快速。我們致力於讓每位農民都能使用現代科技，無論農場規模或技術經驗如何。",hi:"FarmDoctorAI एक मिस्री AI एप्लिकेशन है जो किसानों को फसल रोगों का निदान करने, मिट्टी और पानी का विश्लेषण करने, और कृषि मौसम पर नज़र रखने में मदद करता है — उनकी अपनी भाषा में, सरल और तेज़ी से। हम हर किसान तक आधुनिक तकनीक पहुंचाने के लिए काम करते हैं, चाहे उसके खेत का आकार या तकनीकी अनुभव कुछ भी हो।"},
-  about_address:{ar:"📍 جمهورية مصر العربية",en:"📍 Arab Republic of Egypt",fr:"📍 République Arabe d'Égypte",zh:"📍 埃及阿拉伯共和國",hi:"📍 मिस्र अरब गणराज्य"},
-  footer_copyright:{ar:"© FarmDoctorAI — جميع الحقوق محفوظة",en:"© FarmDoctorAI — All rights reserved",fr:"© FarmDoctorAI — Tous droits réservés",zh:"© FarmDoctorAI — 版權所有",hi:"© FarmDoctorAI — सर्वाधिकार सुरक्षित"},
-  device_id_label:{ar:"معرّف جهازك (هتلاقيه داخل التطبيق في شاشة الاشتراك)",en:"Your Device ID (found inside the app's subscription screen)",fr:"Identifiant de votre appareil (disponible dans l'écran d'abonnement de l'application)",zh:"您的裝置編號（可在應用程式的訂閱畫面中找到）",hi:"आपकी डिवाइस आईडी (ऐप की सदस्यता स्क्रीन में मिलेगी)"},
-  device_id_placeholder:{ar:"C938-8B66-5081",en:"C938-8B66-5081",fr:"C938-8B66-5081",zh:"C938-8B66-5081",hi:"C938-8B66-5081"},
-  device_id_hint:{ar:"اكتبه أو الصقه هنا مرة واحدة، وهيتضاف تلقائيًا لأي باقة تختارها.",en:"Type or paste it here once, and it'll be added automatically to any plan you choose.",fr:"Saisissez-le ou collez-le ici une fois, il sera ajouté automatiquement au forfait choisi.",zh:"在此輸入或貼上一次，即可自動套用到您選擇的任何方案。",hi:"इसे यहां एक बार लिखें या पेस्ट करें, यह आपके चुने गए किसी भी प्लान में अपने आप जुड़ जाएगा।"},
-  device_id_error:{ar:"من فضلك اكتب معرّف جهازك الأول قبل الاشتراك.",en:"Please enter your Device ID first before subscribing.",fr:"Veuillez d'abord saisir l'identifiant de votre appareil avant de vous abonner.",zh:"訂閱前請先輸入您的裝置編號。",hi:"सदस्यता लेने से पहले कृपया अपनी डिवाइस आईडी दर्ज करें।"},
+  app_name:{ar:"طبيب المزرعة الذكي",en:"FarmDoctorAI",fr:"FarmDoctorAI",zh:"FarmDoctorAI 智慧農場醫生",zh_cn:"FarmDoctorAI 智能农场医生",hi:"फार्मडॉक्टरएआई"},
+  nav_contact:{ar:"تواصل واتساب",en:"Contact WhatsApp",fr:"Contacter WhatsApp",zh:"聯繫 WhatsApp",zh_cn:"联系 WhatsApp",hi:"व्हाट्सएप्प से संपर्क करें"},
+  hero_eyebrow:{ar:"🌱 جرّب 3 أيام مجانًا قبل ما تختار",en:"🌱 Try 3 days free before you choose",fr:"🌱 Essayez 3 jours gratuitement avant de choisir",zh:"🌱 選擇前先免費試用3天",zh_cn:"🌱 选择前先免费试用3天",hi:"🌱 चुनने से पहले 3 दिन मुफ़्त आज़माएं"},
+  hero_title_1:{ar:"زرعك يستاهل تشخيص",en:"Your crop deserves",fr:"Votre récolte mérite",zh:"您的作物值得",zh_cn:"您的作物值得",hi:"आपकी फ़सल के लिए चाहिए"},
+  hero_title_hl:{ar:"ذكي وسريع",en:"smart, fast diagnosis",fr:"un diagnostic rapide et intelligent",zh:"智慧快速的診斷",zh_cn:"智能快速的诊断",hi:"स्मार्ट और तेज़ निदान"},
+  hero_title_2:{ar:"اختر الباقة اللي تناسب مزرعتك",en:"Choose the plan that fits your farm",fr:"Choisissez le forfait adapté à votre ferme",zh:"選擇適合您農場的方案",zh_cn:"选择适合您农场的方案",hi:"अपने खेत के लिए सही प्लान चुनें"},
+  hero_sub:{ar:"تشخيص فوري بالكاميرا، متابعة الطقس، وتحليل التربة والماء — بالذكاء الاصطناعي، بلغتك، وبطريقة دفع تناسبك.",en:"Instant camera diagnosis, weather tracking, and soil & water analysis — powered by AI, in your language, with a payment method that suits you.",fr:"Diagnostic instantané par caméra, suivi météo et analyse du sol et de l'eau — grâce à l'IA, dans votre langue, avec un mode de paiement qui vous convient.",zh:"相機即時診斷、天氣追蹤、土壤與水質分析——由AI驅動，支援您的語言，並提供適合您的付款方式。",zh_cn:"相机即时诊断、天气追踪、土壤与水质分析——由AI驱动，支持您的语言，并提供适合您的付款方式。",hi:"कैमरे से तुरंत निदान, मौसम की जानकारी, और मिट्टी व पानी का विश्लेषण — AI द्वारा संचालित, आपकी भाषा में, और आपके अनुकूल भुगतान तरीके के साथ।"},
+  hero_cta:{ar:"شوف الباقات",en:"View Plans",fr:"Voir les Forfaits",zh:"查看方案",zh_cn:"查看方案",hi:"प्लान देखें"},
+  growth_title:{ar:"كل باقة تفتحلك خطوة جديدة",en:"Each plan unlocks a new step",fr:"Chaque forfait débloque une nouvelle étape",zh:"每個方案解鎖新階段",zh_cn:"每个方案解锁新阶段",hi:"हर प्लान एक नया कदम खोलता है"},
+  growth_sub:{ar:"من التشخيص الأساسي، لتحليل التربة والماء، للطقس الذكي الحصري — كل ما تكبر الباقة، تكبر معاها إمكانياتك.",en:"From basic diagnosis, to soil & water analysis, to exclusive smart weather — the bigger the plan, the more you unlock.",fr:"Du diagnostic de base à l'analyse du sol et de l'eau, jusqu'à la météo intelligente exclusive — plus le forfait grandit, plus vos possibilités grandissent.",zh:"從基本診斷、土壤與水質分析，到專屬智慧天氣——方案越高階，解鎖的功能越多。",zh_cn:"从基本诊断、土壤与水质分析，到专属智能天气——方案越高阶，解锁的功能越多。",hi:"बुनियादी निदान से लेकर मिट्टी व पानी विश्लेषण और विशेष स्मार्ट मौसम तक — जितना बड़ा प्लान, उतनी ज़्यादा सुविधाएं।"},
+  plan_basic:{ar:"أساس",en:"Basic",fr:"Basique",zh:"基本",zh_cn:"基本",hi:"बेसिक"},
+  plan_pro:{ar:"برو",en:"Pro",fr:"Pro",zh:"專業版",zh_cn:"专业版",hi:"प्रो"},
+  plan_max:{ar:"ماكس",en:"Max",fr:"Max",zh:"旗艦版",zh_cn:"旗舰版",hi:"मैक्स"},
+  region_egypt:{ar:"مصر",en:"Egypt",fr:"Égypte",zh:"埃及",zh_cn:"埃及",hi:"मिस्र"},
+  region_intl:{ar:"خارج مصر",en:"Outside Egypt",fr:"Hors Égypte",zh:"埃及境外",zh_cn:"埃及境外",hi:"मिस्र के बाहर"},
+  cycle_monthly:{ar:"شهري",en:"Monthly",fr:"Mensuel",zh:"每月",zh_cn:"每月",hi:"मासिक"},
+  cycle_yearly:{ar:"سنوي",en:"Yearly",fr:"Annuel",zh:"每年",zh_cn:"每年",hi:"वार्षिक"},
+  save_badge:{ar:"وفّر 15%",en:"Save 15%",fr:"Économisez 15%",zh:"節省15%",zh_cn:"节省15%",hi:"15% बचाएं"},
+  per_day:{ar:"طلب / يوم",en:"requests / day",fr:"demandes / jour",zh:"次 / 天",zh_cn:"次 / 天",hi:"अनुरोध / दिन"},
+  feat_diag:{ar:"تشخيص بالكاميرا والمعرض",en:"Camera & gallery diagnosis",fr:"Diagnostic caméra et galerie",zh:"相機與相簿診斷",zh_cn:"相机与相册诊断",hi:"कैमरा और गैलरी निदान"},
+  feat_consult:{ar:"استشارة نصية",en:"Text consultation",fr:"Consultation textuelle",zh:"文字諮詢",zh_cn:"文字咨询",hi:"टेक्स्ट परामर्श"},
+  feat_weather:{ar:"الطقس الذكي",en:"Smart Weather",fr:"Météo Intelligente",zh:"智慧天氣",zh_cn:"智能天气",hi:"स्मार्ट मौसम"},
+  feat_soil:{ar:"تحليل التربة والماء",en:"Soil & Water Analysis",fr:"Analyse du Sol et de l'Eau",zh:"土壤與水質分析",zh_cn:"土壤与水质分析",hi:"मिट्टी और पानी का विश्लेषण"},
+  feat_weeds:{ar:"تحديد الحشائش",en:"Weed Identification",fr:"Identification des Mauvaises Herbes",zh:"雜草辨識",zh_cn:"杂草辨识",hi:"खरपतवार पहचान"},
+  badge_popular:{ar:"الأكثر طلبًا",en:"Most Popular",fr:"Le Plus Populaire",zh:"最受歡迎",zh_cn:"最受欢迎",hi:"सबसे लोकप्रिय"},
+  cta_basic:{ar:"اشترك في أساس",en:"Subscribe to Basic",fr:"S'abonner à Basique",zh:"訂閱基本方案",zh_cn:"订阅基本方案",hi:"बेसिक में सदस्यता लें"},
+  cta_pro:{ar:"اشترك في برو",en:"Subscribe to Pro",fr:"S'abonner à Pro",zh:"訂閱專業版",zh_cn:"订阅专业版",hi:"प्रो में सदस्यता लें"},
+  cta_max:{ar:"اشترك في ماكس",en:"Subscribe to Max",fr:"S'abonner à Max",zh:"訂閱旗艦版",zh_cn:"订阅旗舰版",hi:"मैक्स में सदस्यता लें"},
+  pay_title:{ar:"ادفع بالطريقة اللي تناسبك",en:"Pay the way that suits you",fr:"Payez de la manière qui vous convient",zh:"以適合您的方式付款",zh_cn:"以适合您的方式付款",hi:"अपनी सुविधा अनुसार भुगतान करें"},
+  pay_sub:{ar:"دعم كامل لوسائل الدفع المصرية، وبطاقات دولية لو كنت خارج مصر",en:"Full support for Egyptian payment methods, and international cards if you're outside Egypt",fr:"Prise en charge complète des moyens de paiement égyptiens, et cartes internationales si vous êtes hors d'Égypte",zh:"全面支援埃及付款方式，境外用戶可使用國際卡付款",zh_cn:"全面支持埃及付款方式，境外用户可使用国际卡付款",hi:"मिस्र के भुगतान तरीकों के साथ-साथ मिस्र के बाहर के लिए अंतरराष्ट्रीय कार्ड समर्थन"},
+  pm_vodafone:{ar:"فودافون كاش",en:"Vodafone Cash",fr:"Vodafone Cash",zh:"Vodafone Cash",zh_cn:"Vodafone Cash",hi:"वोडाफोन कैश"},
+  pm_fawry:{ar:"فوري",en:"Fawry",fr:"Fawry",zh:"Fawry",zh_cn:"Fawry",hi:"फ़ॉरी"},
+  pm_bank:{ar:"تحويل بنكي",en:"Bank Transfer",fr:"Virement Bancaire",zh:"銀行轉帳",zh_cn:"银行转账",hi:"बैंक ट्रांसफर"},
+  pm_card:{ar:"بطاقة دولية",en:"International Card",fr:"Carte Internationale",zh:"國際信用卡",zh_cn:"国际信用卡",hi:"अंतरराष्ट्रीय कार्ड"},
+  steps_title:{ar:"إزاي تفعّل اشتراكك؟",en:"How to activate your subscription?",fr:"Comment activer votre abonnement ?",zh:"如何啟用您的訂閱？",zh_cn:"如何启用您的订阅？",hi:"अपनी सदस्यता कैसे सक्रिय करें?"},
+  step1_title:{ar:"اختار باقتك وادفع",en:"Choose your plan & pay",fr:"Choisissez votre forfait et payez",zh:"選擇方案並付款",zh_cn:"选择方案并付款",hi:"अपना प्लान चुनें और भुगतान करें"},
+  step1_body:{ar:"اختار الباقة والمدة، وادفع بأي وسيلة من اللي فوق.",en:"Choose the plan and duration, and pay with any method above.",fr:"Choisissez le forfait et la durée, et payez avec l'une des méthodes ci-dessus.",zh:"選擇方案與週期，並使用上述任一方式付款。",zh_cn:"选择方案与周期，并使用上述任一方式付款。",hi:"प्लान और अवधि चुनें, और ऊपर दी गई किसी भी विधि से भुगतान करें।"},
+  step2_title:{ar:"التطبيق هيتفعّل تلقائي",en:"The app activates automatically",fr:"L'application s'active automatiquement",zh:"應用程式將自動啟用",zh_cn:"应用程序将自动启用",hi:"ऐप अपने आप सक्रिय हो जाएगा"},
+  step2_body:{ar:"بعد تأكيد الدفع، دوس على رابط التفعيل وهيفتح التطبيق ويشتغل على طول.",en:"After payment confirmation, tap the activation link and the app will open and start working right away.",fr:"Après confirmation du paiement, appuyez sur le lien d'activation et l'application s'ouvrira et fonctionnera immédiatement.",zh:"付款確認後，點擊啟用連結，應用程式將立即開啟並開始運作。",zh_cn:"付款确认后，点击启用链接，应用程序将立即打开并开始运行。",hi:"भुगतान की पुष्टि के बाद, सक्रियण लिंक पर टैप करें और ऐप तुरंत खुलकर काम करना शुरू कर देगा।"},
+  faq_title:{ar:"أسئلة شائعة",en:"Frequently Asked Questions",fr:"Questions Fréquentes",zh:"常見問題",zh_cn:"常见问题",hi:"अक्सर पूछे जाने वाले प्रश्न"},
+  faq1_q:{ar:"هل فيه تجربة مجانية؟",en:"Is there a free trial?",fr:"Y a-t-il un essai gratuit ?",zh:"有免費試用嗎？",zh_cn:"有免费试用吗？",hi:"क्या कोई मुफ़्त ट्रायल है?"},
+  faq1_a:{ar:"أيوه، 3 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.",en:"Yes, 3 free days with all features (diagnosis + weather + soil), up to 4 requests per day, no payment or card required.",fr:"Oui, 3 jours d'essai gratuit avec toutes les fonctionnalités (diagnostic + météo + sol), jusqu'à 4 demandes par jour, sans paiement ni carte.",zh:"是的，3天免費試用所有功能（診斷+天氣+土壤），每日最多4次請求，無需付款或信用卡。",zh_cn:"是的，3天免费试用所有功能（诊断+天气+土壤），每日最多4次请求，无需付款或信用卡。",hi:"हां, सभी सुविधाओं के साथ 3 दिन का मुफ़्त ट्रायल (निदान + मौसम + मिट्टी), प्रतिदिन अधिकतम 4 अनुरोध, बिना किसी भुगतान या कार्ड के।"},
+  faq2_q:{ar:"الكود بيشتغل على جهاز واحد ولا أكتر؟",en:"Does the code work on one device or more?",fr:"Le code fonctionne-t-il sur un ou plusieurs appareils ?",zh:"代碼可在一台還是多台裝置上使用？",zh_cn:"代码可在一台还是多台设备上使用？",hi:"क्या कोड एक डिवाइस पर या अधिक पर काम करता है?"},
+  faq2_a:{ar:"الكود مرتبط بمعرف جهازك، فيشتغل على نفس الجهاز حتى لو مسحت التطبيق وثبتّه تاني.",en:"The code is linked to your device ID, so it works on the same device even if you delete and reinstall the app.",fr:"Le code est lié à l'identifiant de votre appareil, il fonctionne donc sur le même appareil même si vous supprimez et réinstallez l'application.",zh:"代碼與您的裝置編號綁定，即使刪除並重新安裝應用程式，仍可在同一裝置上使用。",zh_cn:"代码与您的设备编号绑定，即使删除并重新安装应用程序，仍可在同一设备上使用。",hi:"कोड आपकी डिवाइस आईडी से जुड़ा है, इसलिए ऐप को हटाने और फिर से इंस्टॉल करने पर भी यह उसी डिवाइस पर काम करता है।"},
+  faq3_q:{ar:"إمتى الاشتراك بينتهي؟",en:"When does the subscription expire?",fr:"Quand l'abonnement expire-t-il ?",zh:"訂閱何時到期？",zh_cn:"订阅何时到期？",hi:"सदस्यता कब समाप्त होती है?"},
+  faq3_a:{ar:"حسب المدة اللي اخترتها (شهري أو سنوي)، وهتلاقي تاريخ الانتهاء ظاهر داخل شاشة الاشتراك بالتطبيق.",en:"Based on the duration you chose (monthly or yearly); you'll find the expiry date shown in the subscription screen in the app.",fr:"Selon la durée choisie (mensuelle ou annuelle), vous trouverez la date d'expiration affichée dans l'écran d'abonnement de l'application.",zh:"根據您選擇的週期（每月或每年），到期日將顯示在應用程式的訂閱畫面中。",zh_cn:"根据您选择的周期（每月或每年），到期日将显示在应用程序的订阅画面中。",hi:"आपके चुने गए अवधि (मासिक या वार्षिक) के अनुसार, समाप्ति तिथि ऐप की सदस्यता स्क्रीन में दिखाई देगी।"},
+  faq4_q:{ar:"ممكن أغيّر باقتي بعدين؟",en:"Can I change my plan later?",fr:"Puis-je changer de forfait plus tard ?",zh:"之後可以更改方案嗎？",zh_cn:"之后可以更改方案吗？",hi:"क्या मैं बाद में अपना प्लान बदल सकता हूँ?"},
+  faq4_a:{ar:"أكيد، تقدر تشترك في باقة أعلى في أي وقت من نفس الصفحة دي.",en:"Sure, you can subscribe to a higher plan anytime from this same page.",fr:"Bien sûr, vous pouvez vous abonner à un forfait supérieur à tout moment depuis cette même page.",zh:"當然，您可以隨時透過此頁面訂閱更高階的方案。",zh_cn:"当然，您可以随时通过此页面订阅更高阶的方案。",hi:"ज़रूर, आप कभी भी इसी पेज से उच्च प्लान की सदस्यता ले सकते हैं।"},
+  footer_wa:{ar:"تواصل معنا على واتساب",en:"Contact us on WhatsApp",fr:"Contactez-nous sur WhatsApp",zh:"透過WhatsApp聯繫我們",zh_cn:"通过WhatsApp联系我们",hi:"व्हाट्सएप्प पर हमसे संपर्क करें"},
+  footer_facebook:{ar:"فيسبوك",en:"Facebook",fr:"Facebook",zh:"Facebook",zh_cn:"Facebook",hi:"फेसबुक"},
+  footer_youtube:{ar:"يوتيوب",en:"YouTube",fr:"YouTube",zh:"YouTube",zh_cn:"YouTube",hi:"यूट्यूब"},
+  footer_privacy:{ar:"سياسة الخصوصية",en:"Privacy Policy",fr:"Politique de Confidentialité",zh:"隱私政策",zh_cn:"隐私政策",hi:"गोपनीयता नीति"},
+  footer_refund:{ar:"سياسة الاسترجاع والإلغاء",en:"Refund & Cancellation Policy",fr:"Politique de Remboursement et d'Annulation",zh:"退款與取消政策",zh_cn:"退款与取消政策",hi:"रिफंड और रद्दीकरण नीति"},
+  footer_delivery:{ar:"سياسة التسليم",en:"Delivery Policy",fr:"Politique de Livraison",zh:"交付政策",zh_cn:"交付政策",hi:"डिलीवरी नीति"},
+  about_title:{ar:"من نحن",en:"About Us",fr:"À Propos de Nous",zh:"關於我們",zh_cn:"关于我们",hi:"हमारे बारे में"},
+  about_body:{ar:"FarmDoctorAI (طبيب المزرعة الذكي) تطبيق ذكاء اصطناعي مصري يساعد المزارعين على تشخيص أمراض المحاصيل، وتحليل التربة والماء، ومتابعة الطقس الزراعي، بلغتهم الأصلية وبأسلوب بسيط وسريع. نعمل على جعل التقنيات الحديثة في متناول كل مزارع، بغض النظر عن حجم أرضه أو خبرته التقنية.",en:"FarmDoctorAI is an Egyptian AI application that helps farmers diagnose crop diseases, analyze soil and water, and track agricultural weather — in their own language, simply and quickly. We work to make modern technology accessible to every farmer, regardless of farm size or technical experience.",fr:"FarmDoctorAI est une application d'intelligence artificielle égyptienne qui aide les agriculteurs à diagnostiquer les maladies des cultures, analyser le sol et l'eau, et suivre la météo agricole — dans leur propre langue, simplement et rapidement. Nous travaillons à rendre la technologie moderne accessible à chaque agriculteur, quelle que soit la taille de sa ferme ou son expérience technique.",zh:"FarmDoctorAI 是一款埃及人工智慧應用程式，協助農民診斷作物病害、分析土壤與水質，並追蹤農業氣象——使用他們自己的語言，簡單又快速。我們致力於讓每位農民都能使用現代科技，無論農場規模或技術經驗如何。",zh_cn:"FarmDoctorAI 是一款埃及人工智能应用程序，协助农民诊断作物病害、分析土壤与水质，并追踪农业气象——使用他们自己的语言，简单又快速。我们致力于让每位农民都能使用现代科技，无论农场规模或技术经验如何。",hi:"FarmDoctorAI एक मिस्री AI एप्लिकेशन है जो किसानों को फसल रोगों का निदान करने, मिट्टी और पानी का विश्लेषण करने, और कृषि मौसम पर नज़र रखने में मदद करता है — उनकी अपनी भाषा में, सरल और तेज़ी से। हम हर किसान तक आधुनिक तकनीक पहुंचाने के लिए काम करते हैं, चाहे उसके खेत का आकार या तकनीकी अनुभव कुछ भी हो।"},
+  about_address:{ar:"📍 جمهورية مصر العربية",en:"📍 Arab Republic of Egypt",fr:"📍 République Arabe d'Égypte",zh:"📍 埃及阿拉伯共和國",zh_cn:"📍 埃及阿拉伯共和国",hi:"📍 मिस्र अरब गणराज्य"},
+  footer_copyright:{ar:"© FarmDoctorAI — جميع الحقوق محفوظة",en:"© FarmDoctorAI — All rights reserved",fr:"© FarmDoctorAI — Tous droits réservés",zh:"© FarmDoctorAI — 版權所有",zh_cn:"© FarmDoctorAI — 版权所有",hi:"© FarmDoctorAI — सर्वाधिकार सुरक्षित"},
+  device_id_label:{ar:"معرّف جهازك (هتلاقيه داخل التطبيق في شاشة الاشتراك)",en:"Your Device ID (found inside the app's subscription screen)",fr:"Identifiant de votre appareil (disponible dans l'écran d'abonnement de l'application)",zh:"您的裝置編號（可在應用程式的訂閱畫面中找到）",zh_cn:"您的设备编号（可在应用程序的订阅画面中找到）",hi:"आपकी डिवाइस आईडी (ऐप की सदस्यता स्क्रीन में मिलेगी)"},
+  device_id_placeholder:{ar:"C938-8B66-5081",en:"C938-8B66-5081",fr:"C938-8B66-5081",zh:"C938-8B66-5081",zh_cn:"C938-8B66-5081",hi:"C938-8B66-5081"},
+  device_id_hint:{ar:"اكتبه أو الصقه هنا مرة واحدة، وهيتضاف تلقائيًا لأي باقة تختارها.",en:"Type or paste it here once, and it'll be added automatically to any plan you choose.",fr:"Saisissez-le ou collez-le ici une fois, il sera ajouté automatiquement au forfait choisi.",zh:"在此輸入或貼上一次，即可自動套用到您選擇的任何方案。",zh_cn:"在此输入或粘贴一次，即可自动套用到您选择的任何方案。",hi:"इसे यहां एक बार लिखें या पेस्ट करें, यह आपके चुने गए किसी भी प्लान में अपने आप जुड़ जाएगा।"},
+  device_id_error:{ar:"من فضلك اكتب معرّف جهازك الأول قبل الاشتراك.",en:"Please enter your Device ID first before subscribing.",fr:"Veuillez d'abord saisir l'identifiant de votre appareil avant de vous abonner.",zh:"訂閱前請先輸入您的裝置編號。",zh_cn:"订阅前请先输入您的设备编号。",hi:"सदस्यता लेने से पहले कृपया अपनी डिवाइस आईडी दर्ज करें।"},
   wa_message:{
     ar:(p,c,pr,cur,did)=>`أريد الاشتراك في باقة ${p} (${c}) بسعر ${pr} ${cur}\nمعرّف جهازي: ${did}`,
     en:(p,c,pr,cur,did)=>`I want to subscribe to the ${p} plan (${c}) for ${pr} ${cur}\nMy Device ID: ${did}`,
     fr:(p,c,pr,cur,did)=>`Je veux m'abonner au forfait ${p} (${c}) pour ${pr} ${cur}\nIdentifiant de mon appareil : ${did}`,
     zh:(p,c,pr,cur,did)=>`我想訂閱${p}方案（${c}），價格為${pr} ${cur}\n我的裝置編號：${did}`,
+    zh_cn:(p,c,pr,cur,did)=>`我想订阅${p}方案（${c}），价格为${pr} ${cur}\n我的设备编号：${did}`,
     hi:(p,c,pr,cur,did)=>`मैं ${p} प्लान (${c}) की सदस्यता ${pr} ${cur} में लेना चाहता/चाहती हूं\nमेरी डिवाइस आईडी: ${did}`,
   },
   mail_subject:{
@@ -404,6 +425,7 @@ const I18N = {
     en:"Inquiry from the FarmDoctorAI page",
     fr:"Demande depuis la page FarmDoctorAI",
     zh:"來自 FarmDoctorAI 頁面的詢問",
+    zh_cn:"来自 FarmDoctorAI 页面的询问",
     hi:"FarmDoctorAI पेज से पूछताछ",
   },
   mail_body:{
@@ -411,14 +433,15 @@ const I18N = {
     en:"Hello,\n\nMy Device ID: \nMy message: \n",
     fr:"Bonjour,\n\nIdentifiant de mon appareil : \nMon message : \n",
     zh:"您好，\n\n我的裝置編號：\n我的訊息：\n",
+    zh_cn:"您好，\n\n我的设备编号：\n我的消息：\n",
     hi:"नमस्ते,\n\nमेरी डिवाइस आईडी: \nमेरा संदेश: \n",
   },
-  unit_egp_m:{ar:"جنيه / شهر",en:"EGP / month",fr:"EGP / mois",zh:"埃鎊 / 月",hi:"मिस्री पाउंड / माह"},
-  unit_egp_y:{ar:"جنيه / سنة",en:"EGP / year",fr:"EGP / an",zh:"埃鎊 / 年",hi:"मिस्री पाउंड / वर्ष"},
-  unit_usd_m:{ar:"$ / شهر",en:"$ / month",fr:"$ / mois",zh:"$ / 月",hi:"$ / माह"},
-  unit_usd_y:{ar:"$ / سنة",en:"$ / year",fr:"$ / an",zh:"$ / 年",hi:"$ / वर्ष"},
-  unit_suffix_m:{ar:"/ شهر",en:"/ month",fr:"/ mois",zh:"/ 月",hi:"/ माह"},
-  unit_suffix_y:{ar:"/ سنة",en:"/ year",fr:"/ an",zh:"/ 年",hi:"/ वर्ष"},
+  unit_egp_m:{ar:"جنيه / شهر",en:"EGP / month",fr:"EGP / mois",zh:"埃鎊 / 月",zh_cn:"埃镑 / 月",hi:"मिस्री पाउंड / माह"},
+  unit_egp_y:{ar:"جنيه / سنة",en:"EGP / year",fr:"EGP / an",zh:"埃鎊 / 年",zh_cn:"埃镑 / 年",hi:"मिस्री पाउंड / वर्ष"},
+  unit_usd_m:{ar:"$ / شهر",en:"$ / month",fr:"$ / mois",zh:"$ / 月",zh_cn:"$ / 月",hi:"$ / माह"},
+  unit_usd_y:{ar:"$ / سنة",en:"$ / year",fr:"$ / an",zh:"$ / 年",zh_cn:"$ / 年",hi:"$ / वर्ष"},
+  unit_suffix_m:{ar:"/ شهر",en:"/ month",fr:"/ mois",zh:"/ 月",zh_cn:"/ 月",hi:"/ माह"},
+  unit_suffix_y:{ar:"/ سنة",en:"/ year",fr:"/ an",zh:"/ 年",zh_cn:"/ 年",hi:"/ वर्ष"},
 };
 
 const RTL_LANGS = ["ar"];
@@ -763,7 +786,7 @@ document.querySelectorAll(".cta-btn").forEach(btn=>{
 // تحديد اللغة المبدئية: لو التطبيق فتح الصفحة برابط فيه ?lang=xx نستخدمها،
 // وإلا آخر لغة محفوظة من زيارة سابقة، وإلا العربية افتراضياً
 (function initLang(){
-  const SUPPORTED = ["ar","en","fr","zh","hi"];
+  const SUPPORTED = ["ar","en","fr","zh","zh_cn","hi"];
   let lang = "ar";
   try{
     const urlLang = new URLSearchParams(window.location.search).get("lang");
