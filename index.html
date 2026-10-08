@@ -173,7 +173,7 @@
 </header>
 
 <section class="hero">
-  <div class="eyebrow" data-i18n="hero_eyebrow">🌱 جرّب 3 أيام مجانًا قبل ما تختار</div>
+  <div class="eyebrow" data-i18n="hero_eyebrow">🌱 جرّب 5 أيام مجانًا قبل ما تختار</div>
   <h1><span data-i18n="hero_title_1">زرعك يستاهل تشخيص</span> <span class="hl" data-i18n="hero_title_hl">ذكي وسريع</span><br><span data-i18n="hero_title_2">اختر الباقة اللي تناسب مزرعتك</span></h1>
   <p data-i18n="hero_sub">تشخيص فوري بالكاميرا، متابعة الطقس، وتحليل التربة والماء — بالذكاء الاصطناعي، بلغتك، وبطريقة دفع تناسبك.</p>
   <a class="cta" href="#plans" data-i18n="hero_cta">شوف الباقات</a>
@@ -214,6 +214,7 @@
         <li class="off"><span class="cross">✕</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
         <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
         <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weeds">تحديد الحشائش</span></li>
+        <li class="off"><span class="cross">✕</span> <span data-i18n="feat_fertilizer">الحاسبة الزراعية (تسميد)</span></li>
       </ul>
       <button class="cta-btn" data-plan="basic"><span data-i18n="cta_basic">اشترك في أساس</span></button>
     </div>
@@ -230,6 +231,7 @@
         <li><span class="check">✓</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
         <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
         <li class="off"><span class="cross">✕</span> <span data-i18n="feat_weeds">تحديد الحشائش</span></li>
+        <li class="off"><span class="cross">✕</span> <span data-i18n="feat_fertilizer">الحاسبة الزراعية (تسميد)</span></li>
       </ul>
       <button class="cta-btn" data-plan="pro"><span data-i18n="cta_pro">اشترك في برو</span></button>
     </div>
@@ -245,6 +247,7 @@
         <li><span class="check">✓</span> <span data-i18n="feat_soil">تحليل التربة والماء</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_weather">الطقس الذكي</span></li>
         <li><span class="check">✓</span> <span data-i18n="feat_weeds">تحديد الحشائش</span></li>
+        <li><span class="check">✓</span> <span data-i18n="feat_fertilizer">الحاسبة الزراعية (تسميد)</span></li>
       </ul>
       <button class="cta-btn" data-plan="max"><span data-i18n="cta_max">اشترك في ماكس</span></button>
     </div>
@@ -257,8 +260,9 @@
   <p class="sub" data-i18n="pay_sub">دعم كامل لوسائل الدفع المصرية، وبطاقات دولية لو كنت خارج مصر</p>
   <div class="pm-row">
     <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_vodafone">فودافون كاش</span></div>
-    <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_fawry">فوري</span></div>
-    <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_bank">تحويل بنكي</span></div>
+    <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_aman">أمان</span></div>
+    <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_masary">مصاري</span></div>
+    <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_local_card">بطاقة محلية</span></div>
     <div class="pm-chip"><span class="dot"></span> <span data-i18n="pm_card">بطاقة دولية</span></div>
   </div>
 </section>
@@ -283,7 +287,7 @@
   <h2 data-i18n="faq_title">أسئلة شائعة</h2>
   <details>
     <summary data-i18n="faq1_q">هل فيه تجربة مجانية؟</summary>
-    <p data-i18n="faq1_a">أيوه، 3 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.</p>
+    <p data-i18n="faq1_a">أيوه، 5 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.</p>
   </details>
   <details>
     <summary data-i18n="faq2_q">الكود بيشتغل على جهاز واحد ولا أكتر؟</summary>
@@ -352,7 +356,7 @@
 const I18N = {
   app_name:{ar:"طبيب المزرعة الذكي",en:"FarmDoctorAI",fr:"FarmDoctorAI",zh:"FarmDoctorAI 智慧農場醫生",zh_cn:"FarmDoctorAI 智能农场医生",hi:"फार्मडॉक्टरएआई"},
   nav_contact:{ar:"تواصل واتساب",en:"Contact WhatsApp",fr:"Contacter WhatsApp",zh:"聯繫 WhatsApp",zh_cn:"联系 WhatsApp",hi:"व्हाट्सएप्प से संपर्क करें"},
-  hero_eyebrow:{ar:"🌱 جرّب 3 أيام مجانًا قبل ما تختار",en:"🌱 Try 3 days free before you choose",fr:"🌱 Essayez 3 jours gratuitement avant de choisir",zh:"🌱 選擇前先免費試用3天",zh_cn:"🌱 选择前先免费试用3天",hi:"🌱 चुनने से पहले 3 दिन मुफ़्त आज़माएं"},
+  hero_eyebrow:{ar:"🌱 جرّب 5 أيام مجانًا قبل ما تختار",en:"🌱 Try 5 days free before you choose",fr:"🌱 Essayez 5 jours gratuitement avant de choisir",zh:"🌱 選擇前先免費試用5天",zh_cn:"🌱 选择前先免费试用5天",hi:"🌱 चुनने से पहले 5 दिन मुफ़्त आज़माएं"},
   hero_title_1:{ar:"زرعك يستاهل تشخيص",en:"Your crop deserves",fr:"Votre récolte mérite",zh:"您的作物值得",zh_cn:"您的作物值得",hi:"आपकी फ़सल के लिए चाहिए"},
   hero_title_hl:{ar:"ذكي وسريع",en:"smart, fast diagnosis",fr:"un diagnostic rapide et intelligent",zh:"智慧快速的診斷",zh_cn:"智能快速的诊断",hi:"स्मार्ट और तेज़ निदान"},
   hero_title_2:{ar:"اختر الباقة اللي تناسب مزرعتك",en:"Choose the plan that fits your farm",fr:"Choisissez le forfait adapté à votre ferme",zh:"選擇適合您農場的方案",zh_cn:"选择适合您农场的方案",hi:"अपने खेत के लिए सही प्लान चुनें"},
@@ -374,6 +378,7 @@ const I18N = {
   feat_weather:{ar:"الطقس الذكي",en:"Smart Weather",fr:"Météo Intelligente",zh:"智慧天氣",zh_cn:"智能天气",hi:"स्मार्ट मौसम"},
   feat_soil:{ar:"تحليل التربة والماء",en:"Soil & Water Analysis",fr:"Analyse du Sol et de l'Eau",zh:"土壤與水質分析",zh_cn:"土壤与水质分析",hi:"मिट्टी और पानी का विश्लेषण"},
   feat_weeds:{ar:"تحديد الحشائش",en:"Weed Identification",fr:"Identification des Mauvaises Herbes",zh:"雜草辨識",zh_cn:"杂草辨识",hi:"खरपतवार पहचान"},
+  feat_fertilizer:{ar:"الحاسبة الزراعية (تسميد)",en:"Fertilizer Calculator",fr:"Calculateur d'Engrais",zh:"施肥計算器",zh_cn:"施肥计算器",hi:"खाद कैलकुलेटर"},
   badge_popular:{ar:"الأكثر طلبًا",en:"Most Popular",fr:"Le Plus Populaire",zh:"最受歡迎",zh_cn:"最受欢迎",hi:"सबसे लोकप्रिय"},
   cta_basic:{ar:"اشترك في أساس",en:"Subscribe to Basic",fr:"S'abonner à Basique",zh:"訂閱基本方案",zh_cn:"订阅基本方案",hi:"बेसिक में सदस्यता लें"},
   cta_pro:{ar:"اشترك في برو",en:"Subscribe to Pro",fr:"S'abonner à Pro",zh:"訂閱專業版",zh_cn:"订阅专业版",hi:"प्रो में सदस्यता लें"},
@@ -381,8 +386,9 @@ const I18N = {
   pay_title:{ar:"ادفع بالطريقة اللي تناسبك",en:"Pay the way that suits you",fr:"Payez de la manière qui vous convient",zh:"以適合您的方式付款",zh_cn:"以适合您的方式付款",hi:"अपनी सुविधा अनुसार भुगतान करें"},
   pay_sub:{ar:"دعم كامل لوسائل الدفع المصرية، وبطاقات دولية لو كنت خارج مصر",en:"Full support for Egyptian payment methods, and international cards if you're outside Egypt",fr:"Prise en charge complète des moyens de paiement égyptiens, et cartes internationales si vous êtes hors d'Égypte",zh:"全面支援埃及付款方式，境外用戶可使用國際卡付款",zh_cn:"全面支持埃及付款方式，境外用户可使用国际卡付款",hi:"मिस्र के भुगतान तरीकों के साथ-साथ मिस्र के बाहर के लिए अंतरराष्ट्रीय कार्ड समर्थन"},
   pm_vodafone:{ar:"فودافون كاش",en:"Vodafone Cash",fr:"Vodafone Cash",zh:"Vodafone Cash",zh_cn:"Vodafone Cash",hi:"वोडाफोन कैश"},
-  pm_fawry:{ar:"فوري",en:"Fawry",fr:"Fawry",zh:"Fawry",zh_cn:"Fawry",hi:"फ़ॉरी"},
-  pm_bank:{ar:"تحويل بنكي",en:"Bank Transfer",fr:"Virement Bancaire",zh:"銀行轉帳",zh_cn:"银行转账",hi:"बैंक ट्रांसफर"},
+  pm_aman:{ar:"أمان",en:"Aman",fr:"Aman",zh:"Aman",zh_cn:"Aman",hi:"अमान"},
+  pm_masary:{ar:"مصاري",en:"Masary",fr:"Masary",zh:"Masary",zh_cn:"Masary",hi:"मसारी"},
+  pm_local_card:{ar:"بطاقة محلية",en:"Local Card",fr:"Carte Locale",zh:"本地信用卡",zh_cn:"本地信用卡",hi:"स्थानीय कार्ड"},
   pm_card:{ar:"بطاقة دولية",en:"International Card",fr:"Carte Internationale",zh:"國際信用卡",zh_cn:"国际信用卡",hi:"अंतरराष्ट्रीय कार्ड"},
   steps_title:{ar:"إزاي تفعّل اشتراكك؟",en:"How to activate your subscription?",fr:"Comment activer votre abonnement ?",zh:"如何啟用您的訂閱？",zh_cn:"如何启用您的订阅？",hi:"अपनी सदस्यता कैसे सक्रिय करें?"},
   step1_title:{ar:"اختار باقتك وادفع",en:"Choose your plan & pay",fr:"Choisissez votre forfait et payez",zh:"選擇方案並付款",zh_cn:"选择方案并付款",hi:"अपना प्लान चुनें और भुगतान करें"},
@@ -391,7 +397,7 @@ const I18N = {
   step2_body:{ar:"بعد تأكيد الدفع، دوس على رابط التفعيل وهيفتح التطبيق ويشتغل على طول.",en:"After payment confirmation, tap the activation link and the app will open and start working right away.",fr:"Après confirmation du paiement, appuyez sur le lien d'activation et l'application s'ouvrira et fonctionnera immédiatement.",zh:"付款確認後，點擊啟用連結，應用程式將立即開啟並開始運作。",zh_cn:"付款确认后，点击启用链接，应用程序将立即打开并开始运行。",hi:"भुगतान की पुष्टि के बाद, सक्रियण लिंक पर टैप करें और ऐप तुरंत खुलकर काम करना शुरू कर देगा।"},
   faq_title:{ar:"أسئلة شائعة",en:"Frequently Asked Questions",fr:"Questions Fréquentes",zh:"常見問題",zh_cn:"常见问题",hi:"अक्सर पूछे जाने वाले प्रश्न"},
   faq1_q:{ar:"هل فيه تجربة مجانية؟",en:"Is there a free trial?",fr:"Y a-t-il un essai gratuit ?",zh:"有免費試用嗎？",zh_cn:"有免费试用吗？",hi:"क्या कोई मुफ़्त ट्रायल है?"},
-  faq1_a:{ar:"أيوه، 3 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.",en:"Yes, 3 free days with all features (diagnosis + weather + soil), up to 4 requests per day, no payment or card required.",fr:"Oui, 3 jours d'essai gratuit avec toutes les fonctionnalités (diagnostic + météo + sol), jusqu'à 4 demandes par jour, sans paiement ni carte.",zh:"是的，3天免費試用所有功能（診斷+天氣+土壤），每日最多4次請求，無需付款或信用卡。",zh_cn:"是的，3天免费试用所有功能（诊断+天气+土壤），每日最多4次请求，无需付款或信用卡。",hi:"हां, सभी सुविधाओं के साथ 3 दिन का मुफ़्त ट्रायल (निदान + मौसम + मिट्टी), प्रतिदिन अधिकतम 4 अनुरोध, बिना किसी भुगतान या कार्ड के।"},
+  faq1_a:{ar:"أيوه، 5 أيام تجربة مجانية بكل المميزات (تشخيص + طقس + تربة)، بحد أقصى 4 طلبات في اليوم، من غير أي دفع أو بطاقة.",en:"Yes, 5 free days with all features (diagnosis + weather + soil), up to 4 requests per day, no payment or card required.",fr:"Oui, 5 jours d'essai gratuit avec toutes les fonctionnalités (diagnostic + météo + sol), jusqu'à 4 demandes par jour, sans paiement ni carte.",zh:"是的，5天免費試用所有功能（診斷+天氣+土壤），每日最多4次請求，無需付款或信用卡。",zh_cn:"是的，5天免费试用所有功能（诊断+天气+土壤），每日最多4次请求，无需付款或信用卡。",hi:"हां, सभी सुविधाओं के साथ 5 दिन का मुफ़्त ट्रायल (निदान + मौसम + मिट्टी), प्रतिदिन अधिकतम 4 अनुरोध, बिना किसी भुगतान या कार्ड के।"},
   faq2_q:{ar:"الكود بيشتغل على جهاز واحد ولا أكتر؟",en:"Does the code work on one device or more?",fr:"Le code fonctionne-t-il sur un ou plusieurs appareils ?",zh:"代碼可在一台還是多台裝置上使用？",zh_cn:"代码可在一台还是多台设备上使用？",hi:"क्या कोड एक डिवाइस पर या अधिक पर काम करता है?"},
   faq2_a:{ar:"الكود مرتبط بمعرف جهازك، فيشتغل على نفس الجهاز حتى لو مسحت التطبيق وثبتّه تاني.",en:"The code is linked to your device ID, so it works on the same device even if you delete and reinstall the app.",fr:"Le code est lié à l'identifiant de votre appareil, il fonctionne donc sur le même appareil même si vous supprimez et réinstallez l'application.",zh:"代碼與您的裝置編號綁定，即使刪除並重新安裝應用程式，仍可在同一裝置上使用。",zh_cn:"代码与您的设备编号绑定，即使删除并重新安装应用程序，仍可在同一设备上使用。",hi:"कोड आपकी डिवाइस आईडी से जुड़ा है, इसलिए ऐप को हटाने और फिर से इंस्टॉल करने पर भी यह उसी डिवाइस पर काम करता है।"},
   faq3_q:{ar:"إمتى الاشتراك بينتهي؟",en:"When does the subscription expire?",fr:"Quand l'abonnement expire-t-il ?",zh:"訂閱何時到期？",zh_cn:"订阅何时到期？",hi:"सदस्यता कब समाप्त होती है?"},
