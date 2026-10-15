@@ -89,7 +89,7 @@
 <main>
 <h1 class="page-title" data-i18n="page_h1">سياسة الخصوصية</h1>
 
-  <p class="updated" data-i18n="updated">آخر تحديث: يوليو 2026</p>
+  <p class="updated" data-i18n="updated">آخر تحديث: أكتوبر 2026</p>
 
   <section>
     <h2 data-i18n="s1_h">مقدمة</h2>
@@ -103,10 +103,10 @@
   <section>
     <h2 data-i18n="s2_h">البيانات التي نجمعها</h2>
     <ul>
-      <li data-i18n="s2_li1"><b>الصور التي ترفعها:</b> صور المحاصيل أو التربة أو الماء التي تلتقطها بالكاميرا أو تختارها من المعرض، وتُرسَل إلى واجهة Google Gemini API لغرض التحليل والتشخيص فقط.</li>
+      <li data-i18n="s2_li1"><b>الصور التي ترفعها:</b> صور المحاصيل أو التربة أو الماء التي تلتقطها بالكاميرا أو تختارها من المعرض، وتُرسَل إلى واجهة Google Gemini API لغرض التحليل والتشخيص فقط (وإذا تعذّرت الخدمة تقنيًا فقد تُرسَل إلى مزوّد بديل مذكور في قسم مشاركة البيانات مع أطراف ثالثة).</li>
       <li data-i18n="s2_li2"><b>النصوص التي تكتبها:</b> أي استفسار أو وصف نصي تكتبه في شاشات الاستشارة أو تحليل التربة والماء.</li>
       <li data-i18n="s2_li3"><b>معرّف الجهاز (Device ID):</b> مُعرّف تقني غير شخصي يُستخدم فقط لإدارة الاشتراك وتفعيله على جهازك.</li>
-      <li data-i18n="s2_li4"><b>بيانات الموقع (اختياري):</b> في حالة استخدام ميزة "الطقس الذكي"، قد يُستخدم موقعك (أو اسم المدينة الذي تكتبه) لجلب بيانات الطقس الخاصة بمنطقتك فقط.</li>
+      <li data-i18n="s2_li4"><b>بيانات الموقع (اختياري):</b> في حالة استخدام ميزة "الطقس الذكي"، قد يُستخدم موقعك (بإحداثياته، وقد تكون دقيقة) أو اسم المدينة الذي تكتبه لجلب بيانات الطقس واسم المكان الخاصة بمنطقتك فقط، عبر خدمتي Open-Meteo وOpenStreetMap.</li>
       <li data-i18n="s2_li5"><b>سجلات الاستخدام المحلية:</b> نتائج التشخيص والتحليل تُحفظ محليًا على جهازك (شاشة السجلات) لتسهيل الرجوع إليها، ولا تُرفع لأي خادم خارجي دائم بخلاف ما يلزم لعملية التحليل نفسها.</li>
       <li data-i18n="s2_li6"><b>الإدخال الصوتي (اختياري):</b> عند الضغط على زر الميكروفون فقط، يطلب التطبيق إذن الميكروفون ويستخدم خدمة التعرّف على الكلام في جهازك (وهي في أغلب الأجهزة من Google) لتحويل كلامك إلى نص يظهر في خانة السؤال. لا يسجّل التطبيق الصوت ولا يحفظه ولا يرسله إلى خوادمنا؛ ويخضع معالجة الصوت لسياسة خصوصية مزوّد خدمة التعرّف على الكلام. يُعامَل النص الناتج كالنص المكتوب. يمكنك رفض الإذن واستخدام التطبيق بالكتابة.</li>
     </ul>
@@ -125,11 +125,7 @@
   <section>
     <h2 data-i18n="s4_h">مشاركة البيانات مع أطراف ثالثة</h2>
     <p data-i18n="s4_p">
-      لا نبيع بياناتك ولا نشاركها لأغراض تسويقية مع أي طرف ثالث. تُرسَل الصور
-      والنصوص فقط إلى <b>Google Gemini API</b> بغرض التحليل الفني، وتخضع تلك
-      البيانات لسياسة خصوصية Google الخاصة بواجهة Gemini. تُستخدم
-      <b>Firebase Firestore</b> (خدمة تابعة لـ Google) لتخزين بيانات تقنية
-      محدودة متعلقة بحالة الاشتراك والفترة التجريبية فقط.
+      لا نبيع بياناتك ولا نشاركها لأغراض تسويقية مع أي طرف ثالث. تُرسَل الصور والنصوص إلى <b>Google Gemini API</b> بغرض التحليل الفني، وإذا تعذّرت الخدمة تقنيًا فقد تُرسَل لنفس الغرض فقط إلى مزوّد بديل: <b>OpenAI</b> أو <b>DeepSeek</b> (نصوص فقط) أو <b>Alibaba Cloud (Qwen)</b>، وتخضع تلك البيانات لسياسات الخصوصية الخاصة بهذه الجهات. وعند استخدام ميزة الطقس تُرسَل إحداثيات الموقع أو اسم المدينة إلى <b>Open-Meteo</b> و<b>OpenStreetMap (Nominatim)</b> لجلب بيانات الطقس واسم المكان. وتُستخدم <b>Firebase Firestore</b> (خدمة تابعة لـ Google) وخادمنا لتخزين بيانات تقنية محدودة تتعلق بالفترة التجريبية وحالة الاشتراك (معرّف الجهاز، حالة الاشتراك وتاريخ انتهائه)، كما يستقبل خادمنا رمز الشراء أو كود التفعيل للتحقق من الاشتراك وتفعيله.
     </p>
   </section>
 
@@ -198,7 +194,12 @@ const I18N = {
   back_link:{ar:"← رجوع لصفحة الأسعار",en:"← Back to pricing page",fr:"← Retour à la page des tarifs",zh:"← 返回價格頁面",zh_cn:"← 返回价格页面",hi:"← मूल्य निर्धारण पेज पर वापस जाएं"},
   nav_wa:{ar:"تواصل واتساب",en:"Contact on WhatsApp",fr:"Contacter sur WhatsApp",zh:"透過WhatsApp聯繫",zh_cn:"通过WhatsApp联系",hi:"व्हाट्सएप्प पर संपर्क करें"},
   page_h1:{ar:"سياسة الخصوصية",en:"Privacy Policy",fr:"Politique de Confidentialité",zh:"隱私政策",zh_cn:"隐私政策",hi:"गोपनीयता नीति"},
-  updated:{ar:"آخر تحديث: يوليو 2026",en:"Last updated: July 2026",fr:"Dernière mise à jour : juillet 2026",zh:"最後更新：2026年7月",zh_cn:"最后更新：2026年7月",hi:"अंतिम अपडेट: जुलाई 2026"},
+  updated:{ar:"آخر تحديث: أكتوبر 2026",
+    en:"Last updated: October 2026",
+    fr:"Dernière mise à jour : octobre 2026",
+    zh:"最後更新：2026年10月",
+    zh_cn:"最后更新：2026年10月",
+    hi:"अंतिम अपडेट: अक्टूबर 2026"},
 
   s1_h:{ar:"مقدمة",en:"Introduction",fr:"Introduction",zh:"簡介",zh_cn:"简介",hi:"परिचय"},
   s1_p:{ar:"نحن في FarmDoctorAI نحترم خصوصيتك. توضح هذه السياسة نوع البيانات التي يجمعها التطبيق، وكيف تُستخدم، ومع من قد تُشارَك، والخيارات المتاحة لك. باستخدامك للتطبيق فإنك توافق على الممارسات الموضحة هنا.",
@@ -209,12 +210,12 @@ const I18N = {
     hi:"FarmDoctorAI में, हम आपकी गोपनीयता का सम्मान करते हैं। यह नीति बताती है कि ऐप किस प्रकार का डेटा एकत्र करता है, इसका उपयोग कैसे किया जाता है, इसे किसके साथ साझा किया जा सकता है, और आपके पास उपलब्ध विकल्प क्या हैं। ऐप का उपयोग करके, आप यहां वर्णित प्रथाओं से सहमत होते हैं।"},
 
   s2_h:{ar:"البيانات التي نجمعها",en:"Data We Collect",fr:"Données que Nous Collectons",zh:"我們收集的資料",zh_cn:"我们收集的数据",hi:"हम जो डेटा एकत्र करते हैं"},
-  s2_li1:{ar:"<b>الصور التي ترفعها:</b> صور المحاصيل أو التربة أو الماء التي تلتقطها بالكاميرا أو تختارها من المعرض، وتُرسَل إلى واجهة Google Gemini API لغرض التحليل والتشخيص فقط.",
-    en:"<b>Images you upload:</b> photos of crops, soil, or water captured via camera or chosen from the gallery, sent to the Google Gemini API solely for analysis and diagnosis.",
-    fr:"<b>Images que vous téléchargez :</b> photos de cultures, de sol ou d'eau prises par la caméra ou choisies dans la galerie, envoyées à l'API Google Gemini uniquement à des fins d'analyse et de diagnostic.",
-    zh:"<b>您上傳的圖片：</b>透過相機拍攝或從相簿選擇的作物、土壤或水質照片，僅用於傳送至 Google Gemini API 進行分析與診斷。",
-    zh_cn:"<b>您上传的图片：</b>通过相机拍摄或从相册选择的作物、土壤或水质照片，仅用于发送至 Google Gemini API 进行分析与诊断。",
-    hi:"<b>आपके द्वारा अपलोड की गई तस्वीरें:</b> कैमरे से ली गई या गैलरी से चुनी गई फसलों, मिट्टी या पानी की तस्वीरें, जो केवल विश्लेषण और निदान के लिए Google Gemini API को भेजी जाती हैं।"},
+  s2_li1:{ar:"<b>الصور التي ترفعها:</b> صور المحاصيل أو التربة أو الماء التي تلتقطها بالكاميرا أو تختارها من المعرض، وتُرسَل إلى واجهة Google Gemini API لغرض التحليل والتشخيص فقط (وإذا تعذّرت الخدمة تقنيًا فقد تُرسَل إلى مزوّد بديل مذكور في قسم مشاركة البيانات مع أطراف ثالثة).",
+    en:"<b>Images you upload:</b> photos of crops, soil, or water captured via camera or chosen from the gallery, sent to the Google Gemini API solely for analysis and diagnosis (if the service is technically unavailable, they may be sent to a fallback provider listed in the section on sharing data with third parties).",
+    fr:"<b>Images que vous téléchargez :</b> photos de cultures, de sol ou d'eau prises par la caméra ou choisies dans la galerie, envoyées à l'API Google Gemini uniquement à des fins d'analyse et de diagnostic (si le service est techniquement indisponible, elles peuvent être envoyées à un prestataire de secours mentionné dans la section sur le partage des données avec des tiers).",
+    zh:"<b>您上傳的圖片：</b>透過相機拍攝或從相簿選擇的作物、土壤或水質照片，僅用於傳送至 Google Gemini API 進行分析與診斷（若該服務因技術原因無法使用，圖片可能會傳送至「與第三方共享資料」一節所列的備援服務提供者）。",
+    zh_cn:"<b>您上传的图片：</b>通过相机拍摄或从相册选择的作物、土壤或水质照片，仅用于发送至 Google Gemini API 进行分析与诊断（若该服务因技术原因无法使用，图片可能会发送至「与第三方共享数据」一节所列的备用服务提供商）。",
+    hi:"<b>आपके द्वारा अपलोड की गई तस्वीरें:</b> कैमरे से ली गई या गैलरी से चुनी गई फसलों, मिट्टी या पानी की तस्वीरें, जो केवल विश्लेषण और निदान के लिए Google Gemini API को भेजी जाती हैं (सेवा के तकनीकी कारणों से अनुपलब्ध होने पर इन्हें \"तृतीय पक्षों के साथ डेटा साझा करना\" अनुभाग में सूचीबद्ध किसी वैकल्पिक प्रदाता को भेजा जा सकता है)।"},
   s2_li2:{ar:"<b>النصوص التي تكتبها:</b> أي استفسار أو وصف نصي تكتبه في شاشات الاستشارة أو تحليل التربة والماء.",
     en:"<b>Text you write:</b> any inquiry or description you type in the consultation or soil/water analysis screens.",
     fr:"<b>Texte que vous saisissez :</b> toute demande ou description que vous rédigez dans les écrans de consultation ou d'analyse du sol et de l'eau.",
@@ -227,12 +228,12 @@ const I18N = {
     zh:"<b>裝置編號：</b>非個人技術識別碼，僅用於在您的裝置上管理與啟用訂閱。",
     zh_cn:"<b>设备 ID：</b>非个人技术标识符，仅用于在您的设备上管理与激活订阅。",
     hi:"<b>डिवाइस आईडी:</b> एक गैर-व्यक्तिगत तकनीकी पहचानकर्ता जो केवल आपके डिवाइस पर सदस्यता प्रबंधित और सक्रिय करने के लिए उपयोग किया जाता है।"},
-  s2_li4:{ar:"<b>بيانات الموقع (اختياري):</b> في حالة استخدام ميزة \"الطقس الذكي\"، قد يُستخدم موقعك (أو اسم المدينة الذي تكتبه) لجلب بيانات الطقس الخاصة بمنطقتك فقط.",
-    en:"<b>Location data (optional):</b> when using the \"Smart Weather\" feature, your location (or the city name you enter) may be used solely to fetch weather data for your area.",
-    fr:"<b>Données de localisation (facultatif) :</b> lors de l'utilisation de la fonction « Météo Intelligente », votre position (ou le nom de la ville saisi) peut être utilisée uniquement pour récupérer les données météo de votre région.",
-    zh:"<b>位置資料（選填）：</b>使用「智慧天氣」功能時，您的位置（或您輸入的城市名稱）僅用於取得您所在地區的天氣資料。",
-    zh_cn:"<b>位置数据（可选）：</b>使用「智能天气」功能时，您的位置（或您输入的城市名称）仅用于获取您所在地区的天气数据。",
-    hi:"<b>स्थान डेटा (वैकल्पिक):</b> \"स्मार्ट मौसम\" सुविधा का उपयोग करते समय, आपके क्षेत्र के मौसम डेटा को प्राप्त करने के लिए केवल आपका स्थान (या आपके द्वारा दर्ज किया गया शहर का नाम) उपयोग किया जा सकता है।"},
+  s2_li4:{ar:"<b>بيانات الموقع (اختياري):</b> في حالة استخدام ميزة \"الطقس الذكي\"، قد يُستخدم موقعك (بإحداثياته، وقد تكون دقيقة) أو اسم المدينة الذي تكتبه لجلب بيانات الطقس واسم المكان الخاصة بمنطقتك فقط، عبر خدمتي Open-Meteo وOpenStreetMap.",
+    en:"<b>Location data (optional):</b> when using the \"Smart Weather\" feature, your location (as coordinates, which may be precise) or the city name you enter may be used solely to fetch weather data and the place name for your area, through the Open-Meteo and OpenStreetMap services.",
+    fr:"<b>Données de localisation (facultatif) :</b> lors de l'utilisation de la fonction « Météo Intelligente », votre position (sous forme de coordonnées, éventuellement précises) ou le nom de la ville saisi peut être utilisé uniquement pour récupérer les données météo et le nom du lieu de votre région, via les services Open-Meteo et OpenStreetMap.",
+    zh:"<b>位置資料（選填）：</b>使用「智慧天氣」功能時，您的位置（以座標形式，可能為精確位置）或您輸入的城市名稱，僅用於透過 Open-Meteo 與 OpenStreetMap 服務取得您所在地區的天氣資料與地名。",
+    zh_cn:"<b>位置数据（可选）：</b>使用「智能天气」功能时，您的位置（以坐标形式，可能为精确位置）或您输入的城市名称，仅用于通过 Open-Meteo 与 OpenStreetMap 服务获取您所在地区的天气数据与地名。",
+    hi:"<b>स्थान डेटा (वैकल्पिक):</b> \"स्मार्ट मौसम\" सुविधा का उपयोग करते समय, आपके क्षेत्र के मौसम डेटा और स्थान का नाम प्राप्त करने के लिए केवल आपका स्थान (निर्देशांक के रूप में, जो सटीक हो सकता है) या आपके द्वारा दर्ज किया गया शहर का नाम Open-Meteo और OpenStreetMap सेवाओं के माध्यम से उपयोग किया जा सकता है।"},
   s2_li5:{ar:"<b>سجلات الاستخدام المحلية:</b> نتائج التشخيص والتحليل تُحفظ محليًا على جهازك (شاشة السجلات) لتسهيل الرجوع إليها، ولا تُرفع لأي خادم خارجي دائم بخلاف ما يلزم لعملية التحليل نفسها.",
     en:"<b>Local usage records:</b> diagnosis and analysis results are stored locally on your device (Records screen) for easy reference, and are not uploaded to any persistent external server beyond what's required for the analysis itself.",
     fr:"<b>Enregistrements d'utilisation locaux :</b> les résultats de diagnostic et d'analyse sont stockés localement sur votre appareil (écran des enregistrements) pour faciliter la consultation, et ne sont pas téléchargés vers un serveur externe permanent au-delà de ce qui est nécessaire à l'analyse elle-même.",
@@ -253,12 +254,12 @@ const I18N = {
   s3_li4:{ar:"تحسين دقة الاستجابات وتجربة الاستخدام بشكل عام.",en:"Improving response accuracy and the overall user experience.",fr:"Améliorer la précision des réponses et l'expérience utilisateur globale.",zh:"提升回應準確度與整體使用體驗。",zh_cn:"提升响应准确度与整体使用体验。",hi:"प्रतिक्रिया सटीकता और समग्र उपयोगकर्ता अनुभव में सुधार करना।"},
 
   s4_h:{ar:"مشاركة البيانات مع أطراف ثالثة",en:"Sharing Data with Third Parties",fr:"Partage des Données avec des Tiers",zh:"與第三方共享資料",zh_cn:"与第三方共享数据",hi:"तृतीय पक्षों के साथ डेटा साझा करना"},
-  s4_p:{ar:"لا نبيع بياناتك ولا نشاركها لأغراض تسويقية مع أي طرف ثالث. تُرسَل الصور والنصوص فقط إلى <b>Google Gemini API</b> بغرض التحليل الفني، وتخضع تلك البيانات لسياسة خصوصية Google الخاصة بواجهة Gemini. تُستخدم <b>Firebase Firestore</b> (خدمة تابعة لـ Google) لتخزين بيانات تقنية محدودة متعلقة بحالة الاشتراك والفترة التجريبية فقط.",
-    en:"We do not sell your data or share it for marketing purposes with any third party. Images and text are sent only to the <b>Google Gemini API</b> for technical analysis, and that data is subject to Google's Gemini API privacy policy. <b>Firebase Firestore</b> (a Google service) is used to store limited technical data related solely to subscription status and the trial period.",
-    fr:"Nous ne vendons pas vos données et ne les partageons pas à des fins marketing avec des tiers. Les images et le texte sont envoyés uniquement à l'<b>API Google Gemini</b> à des fins d'analyse technique, et ces données sont soumises à la politique de confidentialité de l'API Gemini de Google. <b>Firebase Firestore</b> (un service Google) est utilisé pour stocker des données techniques limitées relatives uniquement au statut de l'abonnement et à la période d'essai.",
-    zh:"我們不會出售您的資料，也不會為行銷目的與任何第三方共享。圖片與文字僅傳送至 <b>Google Gemini API</b> 進行技術分析，該資料受 Google Gemini API 隱私政策約束。<b>Firebase Firestore</b>（Google 服務）僅用於儲存與訂閱狀態及試用期相關的有限技術資料。",
-    zh_cn:"我们不会出售您的数据，也不会为营销目的与任何第三方共享。图片与文字仅发送至 <b>Google Gemini API</b> 进行技术分析，该数据受 Google Gemini API 隐私政策约束。<b>Firebase Firestore</b>（Google 服务）仅用于存储与订阅状态及试用期相关的有限技术数据。",
-    hi:"हम आपके डेटा को बेचते नहीं हैं और न ही इसे मार्केटिंग उद्देश्यों के लिए किसी तृतीय पक्ष के साथ साझा करते हैं। छवियां और टेक्स्ट केवल तकनीकी विश्लेषण के लिए <b>Google Gemini API</b> को भेजे जाते हैं, और वह डेटा Google की Gemini API गोपनीयता नीति के अधीन है। <b>Firebase Firestore</b> (एक Google सेवा) का उपयोग केवल सदस्यता स्थिति और परीक्षण अवधि से संबंधित सीमित तकनीकी डेटा संग्रहीत करने के लिए किया जाता है।"},
+  s4_p:{ar:"لا نبيع بياناتك ولا نشاركها لأغراض تسويقية مع أي طرف ثالث. تُرسَل الصور والنصوص إلى <b>Google Gemini API</b> بغرض التحليل الفني، وإذا تعذّرت الخدمة تقنيًا فقد تُرسَل لنفس الغرض فقط إلى مزوّد بديل: <b>OpenAI</b> أو <b>DeepSeek</b> (نصوص فقط) أو <b>Alibaba Cloud (Qwen)</b>، وتخضع تلك البيانات لسياسات الخصوصية الخاصة بهذه الجهات. وعند استخدام ميزة الطقس تُرسَل إحداثيات الموقع أو اسم المدينة إلى <b>Open-Meteo</b> و<b>OpenStreetMap (Nominatim)</b> لجلب بيانات الطقس واسم المكان. وتُستخدم <b>Firebase Firestore</b> (خدمة تابعة لـ Google) وخادمنا لتخزين بيانات تقنية محدودة تتعلق بالفترة التجريبية وحالة الاشتراك (معرّف الجهاز، حالة الاشتراك وتاريخ انتهائه)، كما يستقبل خادمنا رمز الشراء أو كود التفعيل للتحقق من الاشتراك وتفعيله.",
+    en:"We do not sell your data or share it for marketing purposes with any third party. Images and text are sent to the <b>Google Gemini API</b> for technical analysis; if that service is technically unavailable, they may be sent, for the same purpose only, to a fallback provider: <b>OpenAI</b>, <b>DeepSeek</b> (text only), or <b>Alibaba Cloud (Qwen)</b>, and that data is subject to those providers' privacy policies. When you use the weather feature, location coordinates or the city name are sent to <b>Open-Meteo</b> and <b>OpenStreetMap (Nominatim)</b> to retrieve weather data and the place name. <b>Firebase Firestore</b> (a Google service) and our own server are used to store limited technical data related to the trial period and subscription status (device ID, subscription status and its expiry date); our server also receives the purchase token or activation code in order to verify and activate your subscription.",
+    fr:"Nous ne vendons pas vos données et ne les partageons pas à des fins marketing avec des tiers. Les images et le texte sont envoyés à l'<b>API Google Gemini</b> à des fins d'analyse technique ; si ce service est techniquement indisponible, ils peuvent être envoyés, dans le même but uniquement, à un prestataire de secours : <b>OpenAI</b>, <b>DeepSeek</b> (texte uniquement) ou <b>Alibaba Cloud (Qwen)</b>, et ces données sont soumises aux politiques de confidentialité de ces prestataires. Lorsque vous utilisez la fonction météo, les coordonnées de localisation ou le nom de la ville sont envoyés à <b>Open-Meteo</b> et <b>OpenStreetMap (Nominatim)</b> pour obtenir les données météo et le nom du lieu. <b>Firebase Firestore</b> (un service Google) et notre propre serveur sont utilisés pour stocker des données techniques limitées relatives à la période d'essai et au statut de l'abonnement (identifiant de l'appareil, statut de l'abonnement et sa date d'expiration) ; notre serveur reçoit également le jeton d'achat ou le code d'activation afin de vérifier et d'activer votre abonnement.",
+    zh:"我們不會出售您的資料，也不會為行銷目的與任何第三方共享。圖片與文字會傳送至 <b>Google Gemini API</b> 進行技術分析；若該服務因技術原因無法使用，則僅為相同目的，可能傳送至備援服務提供者：<b>OpenAI</b>、<b>DeepSeek</b>（僅限文字）或 <b>Alibaba Cloud（Qwen）</b>，該資料受這些服務提供者的隱私政策約束。使用天氣功能時，位置座標或城市名稱會傳送至 <b>Open-Meteo</b> 與 <b>OpenStreetMap（Nominatim）</b>，以取得天氣資料與地名。<b>Firebase Firestore</b>（Google 服務）及我們自己的伺服器，用於儲存與試用期及訂閱狀態相關的有限技術資料（裝置編號、訂閱狀態及到期日）；我們的伺服器也會接收購買憑證或啟用碼，以驗證並啟用您的訂閱。",
+    zh_cn:"我们不会出售您的数据，也不会为营销目的与任何第三方共享。图片与文字会发送至 <b>Google Gemini API</b> 进行技术分析；若该服务因技术原因无法使用，则仅为相同目的，可能发送至备用服务提供商：<b>OpenAI</b>、<b>DeepSeek</b>（仅限文字）或 <b>Alibaba Cloud（Qwen）</b>，该数据受这些服务提供商的隐私政策约束。使用天气功能时，位置坐标或城市名称会发送至 <b>Open-Meteo</b> 与 <b>OpenStreetMap（Nominatim）</b>，以获取天气数据与地名。<b>Firebase Firestore</b>（Google 服务）及我们自己的服务器，用于存储与试用期及订阅状态相关的有限技术数据（设备 ID、订阅状态及到期日）；我们的服务器也会接收购买凭证或激活码，以验证并激活您的订阅。",
+    hi:"हम आपके डेटा को बेचते नहीं हैं और न ही इसे मार्केटिंग उद्देश्यों के लिए किसी तृतीय पक्ष के साथ साझा करते हैं। छवियां और टेक्स्ट तकनीकी विश्लेषण के लिए <b>Google Gemini API</b> को भेजे जाते हैं; यदि यह सेवा तकनीकी कारणों से अनुपलब्ध हो, तो इन्हें केवल उसी उद्देश्य के लिए किसी वैकल्पिक प्रदाता — <b>OpenAI</b>, <b>DeepSeek</b> (केवल टेक्स्ट) या <b>Alibaba Cloud (Qwen)</b> — को भेजा जा सकता है, और वह डेटा इन प्रदाताओं की गोपनीयता नीतियों के अधीन है। मौसम सुविधा का उपयोग करते समय, मौसम डेटा और स्थान का नाम प्राप्त करने के लिए आपके स्थान के निर्देशांक या शहर का नाम <b>Open-Meteo</b> और <b>OpenStreetMap (Nominatim)</b> को भेजा जाता है। परीक्षण अवधि और सदस्यता स्थिति से संबंधित सीमित तकनीकी डेटा (डिवाइस आईडी, सदस्यता स्थिति और उसकी समाप्ति तिथि) संग्रहीत करने के लिए <b>Firebase Firestore</b> (एक Google सेवा) और हमारे अपने सर्वर का उपयोग किया जाता है; सदस्यता को सत्यापित और सक्रिय करने के लिए हमारा सर्वर खरीद टोकन या सक्रियण कोड भी प्राप्त करता है।"},
 
   s5_h:{ar:"الدفع والاشتراكات",en:"Payments and Subscriptions",fr:"Paiements et Abonnements",zh:"付款與訂閱",zh_cn:"支付与订阅",hi:"भुगतान और सदस्यताएं"},
   s5_p:{ar:"تتم عمليات الدفع عبر مزوّد دفع معتمد (مثل نظام الدفع الخاص بمتجر التطبيقات). لا نقوم بتخزين أي بيانات بطاقات ائتمان أو معلومات دفع حساسة داخل التطبيق نفسه؛ تتم معالجة هذه البيانات بالكامل من خلال مزوّد خدمة الدفع المعتمد.",en:"Payments are processed through an approved payment provider (such as the app store's own payment system). We do not store any credit card data or sensitive payment information within the app itself; this data is handled entirely by the approved payment service provider.",fr:"Les paiements sont traités par un prestataire de paiement agréé (tel que le système de paiement propre à la boutique d'applications). Nous ne stockons aucune donnée de carte de crédit ni information de paiement sensible dans l'application elle-même ; ces données sont entièrement traitées par le prestataire de services de paiement agréé.",zh:"付款透過經核准的付款服務提供商處理（例如應用程式商店本身的付款系統）。我們不會在應用程式內儲存任何信用卡資料或敏感付款資訊；此類資料完全由核准的付款服務提供商處理。",zh_cn:"支付通过经批准的支付服务提供商处理（例如应用商店自身的支付系统）。我们不会在应用程序内存储任何信用卡数据或敏感支付信息；此类数据完全由批准的支付服务提供商处理。",hi:"भुगतान एक अनुमोदित भुगतान सेवा प्रदाता (जैसे ऐप स्टोर की अपनी भुगतान प्रणाली) के माध्यम से संसाधित किए जाते हैं। हम ऐप के भीतर कोई क्रेडिट कार्ड डेटा या संवेदनशील भुगतान जानकारी संग्रहीत नहीं करते हैं; यह डेटा पूरी तरह से अनुमोदित भुगतान सेवा प्रदाता द्वारा संभाला जाता है।"},
